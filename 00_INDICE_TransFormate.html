@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>TransFórmate — Tableros del Proceso de Transformación · Grupo Empresarial Integra</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1f2e; --ink-soft:#3a4255; --ink-mute:#6b7280;
+  --cream:#f4efe6; --cream-soft:#faf6ee; --paper:#fffdf7;
+  --rule:#d9d2c4; --rule-soft:#e8e2d4;
+  --accent:#b85a1f; --accent-deep:#7a3a14; --accent-soft:#fbe9d8;
+  --verde:#3d7a52; --verde-bg:#e3eee6;
+  --azul:#2c5680; --azul-bg:#dde6ee;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'IBM Plex Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;padding:0}
+
+.shell{max-width:1280px;margin:0 auto;padding:48px 56px 96px}
+@media (max-width:900px){.shell{padding:32px 24px 64px}}
+
+.brand-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--accent);padding-bottom:18px;margin-bottom:32px;gap:24px;flex-wrap:wrap}
+.brand-row .grp{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);font-weight:600}
+.brand-row .ver{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+
+.hero{margin-bottom:48px}
+.hero .kicker{font-size:11px;text-transform:uppercase;letter-spacing:0.22em;color:var(--accent);font-weight:600;margin-bottom:14px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:54px;line-height:1.05;letter-spacing:-0.015em;color:var(--ink);max-width:920px;margin-bottom:18px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .lede{font-size:17px;color:var(--ink-soft);max-width:760px;line-height:1.55;font-family:var(--serif)}
+
+.notice{background:var(--cream-soft);border-left:3px solid var(--azul);padding:18px 22px;margin:32px 0 44px;font-size:14px;color:var(--ink-soft);line-height:1.6;max-width:920px}
+.notice strong{color:var(--ink);font-weight:600}
+.notice .tag{display:inline-block;font-family:var(--mono);font-size:10px;background:var(--azul-bg);color:var(--azul);padding:2px 7px;border-radius:1px;letter-spacing:0.04em;margin-right:8px;text-transform:uppercase;font-weight:500}
+
+section.block{margin:44px 0}
+section.block > h2{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-0.01em;margin-bottom:6px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+section.block > .desc{font-size:13px;color:var(--ink-mute);margin-bottom:24px;font-style:italic}
+
+.grid{display:grid;gap:18px}
+.grid.cols-1{grid-template-columns:1fr}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:1000px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:680px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+a.card{display:block;background:var(--paper);border:1px solid var(--rule);padding:22px 24px;text-decoration:none;color:inherit;transition:all 0.18s;position:relative;border-left:3px solid var(--rule)}
+a.card:hover{border-left-color:var(--accent);box-shadow:0 4px 16px rgba(26,31,46,0.06);transform:translateY(-1px)}
+a.card.maestro{border-left-color:var(--ink);background:linear-gradient(180deg,var(--paper) 0%,var(--cream-soft) 100%)}
+a.card.maestro:hover{border-left-color:var(--accent)}
+
+a.card .id-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+a.card .id-tag{font-family:var(--mono);font-size:10px;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:1px;letter-spacing:0.05em;font-weight:500;text-transform:uppercase}
+a.card .id-tag.master{background:var(--ink);color:var(--cream-soft)}
+a.card .h-tag{font-family:var(--mono);font-size:10px;background:var(--cream-soft);color:var(--ink-mute);padding:2px 6px;border-radius:1px;letter-spacing:0.05em}
+a.card h3{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.2;margin-bottom:6px;letter-spacing:-0.01em}
+a.card .sub{font-size:13px;color:var(--ink-mute);margin-bottom:14px;line-height:1.45}
+a.card .meta{display:flex;gap:18px;font-size:11px;color:var(--ink-mute);padding-top:12px;border-top:1px solid var(--rule-soft)}
+a.card .meta .k{font-family:var(--mono);text-transform:uppercase;letter-spacing:0.08em;font-size:9px;color:var(--ink-mute);display:block;margin-bottom:2px}
+a.card .meta .v{color:var(--ink-soft);font-weight:500;font-size:12px}
+a.card .arrow{position:absolute;top:24px;right:24px;font-family:var(--mono);font-size:18px;color:var(--rule);transition:all 0.18s}
+a.card:hover .arrow{color:var(--accent);transform:translateX(3px)}
+
+.governance{margin-top:64px;padding-top:36px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr);gap:32px;font-size:13px;color:var(--ink-soft);line-height:1.55}
+@media (max-width:760px){.governance{grid-template-columns:1fr;gap:24px}}
+.governance h4{font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink);font-weight:600;margin-bottom:10px}
+.governance p{margin-bottom:6px}
+.governance .mono{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:11px;color:var(--ink-mute);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.1em;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="brand-row">
+    <div class="grp">Grupo Empresarial Integra · Proceso de Transformación 2026–2030</div>
+    <div class="ver">Fase 0 · Despliegue puente · v1.0</div>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">TransFórmate</div>
+    <h1>Tableros del proceso de <em>transformación</em> del grupo</h1>
+    <p class="lede">Punto único de acceso a los siete tableros editores y al tablero gerencial maestro que consolidan el Plan de Acción 2026–2030. Custodia: Gerencia de I+D+i, en su rol de Concertador del proceso.</p>
+  </div>
+
+  <div class="notice">
+    <span class="tag">Fase 0 · Bridge</span>
+    <strong>Persistencia local por navegador.</strong> Esta es la fase puente del despliegue: cada tablero conserva los cambios en el navegador desde el que se edita. Para consolidar los avances en el Tablero Maestro, cada custodio debe exportar el JSON de su tablero y el Concertador los carga en la vista maestra. La consolidación en tiempo real se habilita en la Fase 1 (Power Apps + SharePoint Lists), prevista entre septiembre y diciembre de 2026.
+  </div>
+
+  <section class="block">
+    <h2>Tablero Gerencial Maestro</h2>
+    <div class="desc">Vista consolidada del Plan de Acción. Custodia y operación: Gerencia de I+D+i.</div>
+    <div class="grid cols-1">
+      <a class="card maestro" href="TABLERO_GERENCIAL_Integra.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag master">TG-00 · Maestro</span>
+          <span class="h-tag">Audiencia: Gerencia General · Junta</span>
+        </div>
+        <h3>Tablero Gerencial — Transformación Integra 2026–2030</h3>
+        <p class="sub">Consolida los cinco pilares y los dos subplanes en una sola vista navegable. Permite cargar los JSON exportados de los tableros hijos para producir la consolidación.</p>
+        <div class="meta">
+          <div><span class="k">Custodio</span><span class="v">Gerencia I+D+i</span></div>
+          <div><span class="k">Audiencia</span><span class="v">Directiva</span></div>
+          <div><span class="k">Cadencia</span><span class="v">Mensual</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Cinco pilares estratégicos</h2>
+    <div class="desc">Un tablero editor por pilar. Cada gerencia responsable edita el suyo y exporta el JSON para la consolidación gerencial.</div>
+    <div class="grid cols-3">
+
+      <a class="card" href="EDITOR_02_tablero_pilar_I_talento.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">P1 · Talento</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Talento, Cultura y Conocimiento</h3>
+        <p class="sub">Transición laboral del cierre del Contrato 02 de 2004, escuela corporativa, formación en IA y energía, retención de talento doctoral.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Talento Humano</span></div>
+          <div><span class="k">Acciones</span><span class="v">12</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="EDITOR_03_tablero_pilar_II_integracion.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">P2 · Integración</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Integración y Eficiencia Operacional</h3>
+        <p class="sub">Transversalización de Mantenimiento, Operaciones y Contabilidad como fronts estratégicos del grupo. Servicios compartidos.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Operaciones · Mtto · Contabilidad</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="EDITOR_04_tablero_pilar_III_tecnologia_ia.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">P3 · Tecnología e IA</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Tecnología e Inteligencia Artificial</h3>
+        <p class="sub">Habilita la plataforma M365 del grupo, gestión documental, analítica avanzada, capacidades de IA aplicada en operación y administración.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Gerencia I+D+i · TIC</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="EDITOR_05_tablero_pilar_IV_ecosistema.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">P4 · Ecosistema</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Ecosistema y Reputación</h3>
+        <p class="sub">Alianzas estratégicas con universidades, MinCiencias, sector energético, consultoría. Posicionamiento del grupo como holding regente.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Gerencia I+D+i · Comunicaciones</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="EDITOR_06_tablero_pilar_V_financiero.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">P5 · Financiero</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Sostenibilidad Financiera</h3>
+        <p class="sub">Modelo financiero del cierre concesional, capitalización de IMPULXA, pivote hacia generación energética y beneficios tributarios CTeI.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Gerencia Financiera</span></div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Subplanes operativos</h2>
+    <div class="desc">Tableros editores de los dos subplanes de transformación con escala y temporalidad propias.</div>
+    <div class="grid cols-2">
+
+      <a class="card" href="EDITOR_07_tablero_subplan_patios_impulxa.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">SP1 · Patios IMPULXA</span>
+          <span class="h-tag">H1 H2</span>
+        </div>
+        <h3>Subplan Patios IMPULXA</h3>
+        <p class="sub">Infraestructura de carga, talleres de mantenimiento de flota eléctrica, despliegue operacional de IMPULXA S.A.S. como operador del sistema Megabús.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">IMPULXA · Operaciones</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="EDITOR_08_tablero_subplan_servicios_compartidos.html">
+        <span class="arrow">→</span>
+        <div class="id-row">
+          <span class="id-tag">SP2 · Servicios Compartidos</span>
+          <span class="h-tag">H1 H2 H3</span>
+        </div>
+        <h3>Subplan Servicios Compartidos</h3>
+        <p class="sub">Transversalización formal de Mantenimiento, Operaciones, Contabilidad y servicios tecnológicos a través de todas las empresas del grupo.</p>
+        <div class="meta">
+          <div><span class="k">Responsable</span><span class="v">Gerencia General · Áreas Transversales</span></div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="governance">
+    <div>
+      <h4>Custodio del proceso</h4>
+      <p><strong>Gerencia de I+D+i</strong></p>
+      <p>Concertador formal del Proceso de Transformación. Custodia los tableros, conduce las sesiones de concertación, consolida el avance mensual ante Gerencia General.</p>
+    </div>
+    <div>
+      <h4>Cómo usar los tableros</h4>
+      <p>1. Acceda al tablero de su pilar o subplan.</p>
+      <p>2. Edite los campos editables conforme avanza la ejecución.</p>
+      <p>3. Use <em>Exportar JSON</em> al cierre del ciclo mensual.</p>
+      <p>4. Envíe el JSON al Concertador para consolidación.</p>
+    </div>
+    <div>
+      <h4>Soporte</h4>
+      <p>Para dudas técnicas o de proceso, contacte a la Gerencia de I+D+i a través del canal <span class="mono">#transformate</span> en Microsoft Teams.</p>
+      <p>Documento de referencia: <span class="mono">DE-001-2026</span> — Decisión Estratégica de la Plataforma.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div>Grupo Empresarial Integra · TransFórmate</div>
+    <div>Fase 0 · Despliegue puente · Mayo 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>

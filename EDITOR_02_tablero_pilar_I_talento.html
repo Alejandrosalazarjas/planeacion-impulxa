@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PILAR I — Talento, Cultura y Conocimiento — Tablero Articulador</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1f2e; --ink-soft:#3a4255; --ink-mute:#6b7280;
+  --cream:#f4efe6; --cream-soft:#faf6ee; --paper:#fffdf7;
+  --rule:#d9d2c4; --rule-soft:#e8e2d4;
+  --accent:#b85a1f; --accent-deep:#7a3a14; --accent-soft:#fbe9d8;
+  --verde:#3d7a52; --verde-bg:#e3eee6;
+  --amarillo:#b58a26; --amarillo-bg:#f5ecd4;
+  --rojo:#a33636; --rojo-bg:#f0dada;
+  --gris:#8a8579; --gris-bg:#ece8de;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'IBM Plex Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.shell{max-width:1400px;margin:0 auto;padding:32px 48px 96px}
+@media (max-width:900px){.shell{padding:24px}}
+
+/* Header */
+header.editor-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:28px;gap:24px;flex-wrap:wrap}
+.titles .kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.22em;color:var(--accent);font-weight:700}
+.titles h1{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.1;letter-spacing:-0.015em;margin-top:6px}
+.titles .sub{margin-top:8px;font-size:13px;color:var(--ink-mute);font-family:var(--mono)}
+.right-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.changes-badge{font-size:11px;font-family:var(--mono);padding:5px 12px;background:var(--amarillo-bg);color:var(--amarillo);border-radius:2px;letter-spacing:0.05em;font-weight:600;display:none}
+.autosave-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-mute);font-family:var(--mono)}
+.autosave-status .dot{width:7px;height:7px;border-radius:50%;background:var(--gris);transition:background 0.2s}
+.autosave-status.saved .dot{background:var(--verde)}
+.autosave-status.saving .dot{background:var(--amarillo);animation:pulse 1s infinite}
+.autosave-status.error .dot{background:var(--rojo)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.restore-banner{background:var(--amarillo-bg);border:1px solid #ddc580;border-left:4px solid var(--amarillo);padding:14px 20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.restore-banner .info{flex:1;min-width:280px;font-size:13px;color:var(--ink)}
+.restore-banner .info strong{color:var(--ink)}
+input[type=file].hidden-file-input{display:none}
+.changes-badge.visible{display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--ink);color:var(--cream-soft);border:none;border-radius:2px;font-family:var(--sans);font-weight:500;font-size:13px;cursor:pointer;letter-spacing:0.02em;transition:all 0.15s}
+.btn:hover{background:var(--accent)}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.btn.btn-secondary{background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+.btn.btn-secondary:hover{background:var(--cream-soft);border-color:var(--ink)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Sections */
+section.block{margin:32px 0}
+section.block > h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.005em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+section.block > .desc{font-size:12px;color:var(--ink-mute);margin-top:-10px;margin-bottom:16px;font-style:italic}
+
+/* Estado general */
+.eg-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media (max-width:900px){.eg-grid{grid-template-columns:repeat(2,1fr)}}
+.eg-card{background:var(--paper);padding:14px 16px}
+.eg-card .label{font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:6px;font-weight:600}
+.eg-card .num{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1;letter-spacing:-0.02em}
+.eg-card .num.muted{color:var(--ink-mute)}
+.eg-card .num.verde{color:var(--verde)}
+.eg-card .num.amarillo{color:var(--amarillo)}
+.eg-card .num.rojo{color:var(--rojo)}
+.eg-summary{margin-top:14px;background:var(--paper);border:1px solid var(--rule);padding:14px 18px}
+.eg-summary .label{font-size:9px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:6px;font-weight:600}
+.eg-summary textarea{width:100%;border:none;background:transparent;font-family:var(--serif);font-size:15px;color:var(--ink-soft);font-style:italic;resize:vertical;min-height:60px;outline:none;padding:4px 0}
+.eg-summary textarea:focus{outline:1px solid var(--accent);outline-offset:4px}
+.semaforo-select{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--rule);background:var(--paper);font-family:var(--mono);font-size:11px;cursor:pointer}
+
+/* Tabla acciones editable */
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--paper)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{text-align:left;padding:10px 12px;background:var(--cream-soft);border-bottom:1px solid var(--rule);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--cream-soft)}
+tbody tr.modified{background:#fdf5e6}
+tbody tr.modified:hover{background:#fbecd3}
+td.id-cell{font-family:var(--mono);font-size:10.5px;color:var(--accent);white-space:nowrap;font-weight:600}
+td.name-cell{font-weight:500;color:var(--ink);min-width:280px}
+td.resp-cell{color:var(--ink-soft);white-space:nowrap;font-size:11px}
+td.h-cell{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);white-space:nowrap}
+
+/* Inputs editables */
+.cell-input{width:100%;border:1px solid transparent;background:#fff8ec;padding:5px 7px;font-family:var(--sans);font-size:12px;color:var(--ink);border-radius:1px;outline:none}
+.cell-input:focus{border-color:var(--accent);background:#fff}
+.cell-input.modified{background:#fff;border-color:var(--accent);font-weight:500}
+select.cell-input{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-mute) 50%),linear-gradient(135deg,var(--ink-mute) 50%,transparent 50%);background-position:calc(100% - 12px) 50%,calc(100% - 7px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:24px}
+input[type=number].cell-input{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+input[type=date].cell-input{font-family:var(--mono);font-size:11px}
+textarea.cell-input{resize:vertical;min-height:32px;line-height:1.4;font-size:11.5px}
+
+/* Estados */
+.h-tag{display:inline-block;font-family:var(--mono);font-size:9.5px;padding:2px 6px;border-radius:1px;letter-spacing:0.05em;font-weight:500}
+.h-tag.H1{background:#dde7ee;color:#2a4a63}
+.h-tag.H2{background:#f3e7d4;color:#7a5418}
+.h-tag.H3{background:#e3ddec;color:#523f73}
+.h-tag.ACEL{background:#f5dada;color:#7a2828}
+
+.bloque-head{margin:14px 0 8px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-deep);padding:6px 12px;background:var(--accent-soft);display:inline-block;border-radius:1px;font-weight:600}
+
+/* KPIs cards */
+.kpi-card{background:var(--paper);border:1px solid var(--rule);padding:14px 16px}
+.kpi-card .id{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600;letter-spacing:0.05em}
+.kpi-card h4{font-size:13px;font-weight:600;margin:4px 0 6px}
+.kpi-card .baseline{font-size:11px;color:var(--ink-mute);font-family:var(--mono)}
+.kpi-card .meta-2030{font-size:11px;color:var(--ink-soft);margin-top:2px}
+.kpi-card .meta-2030 strong{color:var(--ink)}
+.kpi-card .value-row{margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.kpi-card .value-row label{font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+
+/* Decisión cards */
+.decision{padding:14px 18px;border:1px solid var(--rule);background:var(--paper);margin-bottom:10px}
+.decision .top{display:flex;gap:14px;align-items:baseline;margin-bottom:6px;flex-wrap:wrap}
+.decision .id{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:600;letter-spacing:0.05em}
+.decision .fl{font-family:var(--mono);font-size:10.5px;color:var(--rojo);font-weight:500;background:var(--rojo-bg);padding:2px 8px;border-radius:1px}
+.decision .name{font-weight:600;font-size:14px;color:var(--ink);margin:4px 0}
+.decision .body{font-size:12px;color:var(--ink-soft);line-height:1.55}
+
+/* Riesgos */
+.riesgo-row{display:grid;grid-template-columns:60px 1fr 110px 110px 110px;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--rule-soft);font-size:12px}
+.riesgo-row:last-child{border-bottom:none}
+.riesgo-row.header{background:var(--cream-soft);border-bottom:1px solid var(--rule);font-weight:600;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-soft)}
+.riesgo-id{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:600}
+
+/* Footer */
+.footer-actions{position:sticky;bottom:0;background:var(--cream);border-top:1px solid var(--rule);padding:14px 0;margin-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-actions .help{font-size:11px;color:var(--ink-mute);font-style:italic}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--cream-soft);padding:14px 20px;border-radius:3px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,0.18);transform:translateY(120%);transition:transform 0.3s;z-index:1000;max-width:380px}
+.toast.show{transform:translateY(0)}
+.toast.success{background:var(--verde)}
+.toast.error{background:var(--rojo)}
+/* ============ ESTILOS DE EVOLUCIÓN MENSUAL ============ */
+.g-evolucion{margin:32px 0}
+.g-evolucion h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.005em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.g-no-history{padding:24px;background:var(--cream-soft);border:1px dashed var(--rule);color:var(--ink-mute);font-style:italic;text-align:center;font-size:13px}
+
+.g-evol-row{display:grid;grid-template-columns:1.8fr 1fr;gap:24px;align-items:center;background:var(--paper);border:1px solid var(--rule);padding:18px 22px;margin-bottom:14px}
+@media (max-width:800px){.g-evol-row{grid-template-columns:1fr}}
+.g-evol-spark{display:flex;justify-content:center}
+.g-evol-spark svg{max-width:480px;width:100%;height:auto}
+.g-evol-trend{padding:8px 0;text-align:center;border-left:1px solid var(--rule-soft)}
+@media (max-width:800px){.g-evol-trend{border-left:none;border-top:1px solid var(--rule-soft);padding-top:14px}}
+.g-trend-label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);font-weight:600;margin-bottom:8px}
+.g-trend-value{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1;letter-spacing:-0.02em}
+.g-trend-value.g-trend-verde{color:var(--verde)}
+.g-trend-value.g-trend-rojo{color:var(--rojo)}
+.g-trend-value.g-trend-gris{color:var(--ink-mute)}
+.g-trend-sub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:6px}
+
+.g-meses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.g-mes-cell{background:var(--paper);padding:14px 14px 18px;display:flex;flex-direction:column;align-items:center}
+.g-mes-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);font-weight:600;margin-bottom:8px}
+.g-mes-cell svg{max-width:160px;height:auto}
+
+/* Mini sparkline en celdas de tabla de acciones */
+.g-mini-histo{display:inline-block;vertical-align:middle;margin-top:3px;max-width:120px}
+td .g-mini-histo{margin-left:6px}
+.g-cell-bullet-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+
+/* Evolución del Maestro */
+.g-evolucion-maestro{margin:32px 0}
+.g-evolucion-maestro h2{font-family:var(--serif);font-size:24px;font-weight:600}
+.g-evol-meses-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:24px}
+.g-mes-dial{background:var(--paper);padding:18px 14px;display:flex;flex-direction:column;align-items:center}
+.g-mes-dial svg{max-width:200px;height:auto}
+.g-mes-dial .g-mes-label{margin-bottom:10px}
+
+.g-comp-title{font-family:var(--serif);font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--ink)}
+.g-comp-table{background:var(--paper);border:1px solid var(--rule)}
+.g-comp-row{display:grid;grid-template-columns:50px 1.5fr 2fr 90px 70px;gap:14px;padding:12px 18px;align-items:center;border-bottom:1px solid var(--rule-soft);font-size:13px}
+.g-comp-row:last-child{border-bottom:none}
+.g-comp-row.g-comp-head{background:var(--cream-soft);font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);font-weight:600;padding-top:10px;padding-bottom:10px}
+.g-comp-id{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;background:var(--accent-soft);padding:3px 8px;border-radius:1px;text-align:center}
+.g-comp-row.g-comp-head .g-comp-id{background:transparent;color:var(--ink-soft);font-size:9.5px;font-family:var(--sans);font-weight:600;padding:0}
+.g-comp-name{font-family:var(--sans);color:var(--ink);font-weight:500}
+.g-comp-spark{display:flex;justify-content:center}
+.g-comp-spark svg{max-width:300px;height:auto}
+.g-comp-current{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);text-align:right;letter-spacing:-0.02em}
+.g-comp-current .g-comp-pct{font-size:14px;color:var(--ink-mute);font-weight:400}
+.g-comp-row.g-comp-head .g-comp-current{font-family:var(--sans);font-size:9.5px;font-weight:600;color:var(--ink-soft)}
+.g-comp-trend{font-weight:700;font-size:14px;text-align:center;font-family:var(--sans)}
+.g-comp-row.g-comp-head .g-comp-trend{color:var(--ink-soft);font-size:9.5px}
+
+/* Mini-sparkline en tarjetas de pilar del maestro */
+.g-pilar-spark{display:flex;flex-direction:column;align-items:center;gap:4px}
+.g-pilar-spark-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-mute);font-weight:600}
+.g-pilar-spark svg{max-width:140px;height:auto}
+
+/* ============ ESTILOS DE GAUGES — coherente con paleta tablero ============ */
+.g-resumen-visual{margin:24px 0 32px}
+.g-resumen-visual h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.005em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.g-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:var(--rule);border:1px solid var(--rule);padding:1px}
+@media (max-width:1100px){.g-grid-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.g-grid-4{grid-template-columns:1fr}}
+.g-cell{background:var(--paper);padding:22px 18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px}
+.g-gauge{display:block;width:100%;height:auto;max-width:240px}
+.g-bullet-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.g-bullet-label{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600;font-family:var(--sans)}
+.g-bullet-sub{font-size:11px;color:var(--ink-mute);font-family:var(--mono)}
+.g-bullet-wrap .g-bullet{max-width:280px}
+
+/* Gauges en celdas de tabla (acciones) */
+.g-cell-bullet{display:block;width:100%;max-width:140px;height:18px}
+td .g-cell-bullet{margin-top:4px}
+
+/* Tarjetas de pilar en el maestro */
+.g-pilar-card{background:var(--paper);border:1px solid var(--rule);padding:18px 22px;margin-bottom:14px;border-left:3px solid var(--rule);transition:border-color 0.15s}
+.g-pilar-card.loaded{border-left-color:var(--accent)}
+.g-pilar-card.pending{border-left-color:var(--rule);opacity:0.78}
+.g-pilar-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--rule-soft)}
+.g-pilar-id{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;letter-spacing:0.05em;background:var(--accent-soft);padding:3px 8px;border-radius:1px}
+.g-pilar-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);flex:1;min-width:200px}
+.g-pilar-status{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:0.05em}
+.g-pilar-gauges{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:18px;align-items:center}
+@media (max-width:1000px){.g-pilar-gauges{grid-template-columns:1fr 1fr;gap:14px}}
+@media (max-width:600px){.g-pilar-gauges{grid-template-columns:1fr;gap:8px}}
+.g-pilar-gauges > div{display:flex;justify-content:center}
+.g-pilar-empty{padding:24px;text-align:center;color:var(--ink-mute);font-style:italic;font-size:13px}
+
+/* Consolidado global */
+.g-consolidado-global{margin:32px 0}
+.g-consolidado-row{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding:32px;background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--accent)}
+@media (max-width:900px){.g-consolidado-row{grid-template-columns:1fr;gap:24px;padding:20px}}
+.g-dial-main{display:flex;justify-content:center}
+.g-dial-main svg{max-width:340px}
+.g-consolidado-side{display:flex;flex-direction:column;gap:18px}
+.g-side-stat{padding:12px 16px;background:var(--cream-soft);border-left:2px solid var(--accent)}
+.g-side-label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);font-weight:600;margin-bottom:8px}
+.g-side-gauge{margin-bottom:6px}
+.g-side-sub{font-size:11px;color:var(--ink-mute);font-family:var(--mono);text-align:right}
+.g-side-big{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1}
+.g-side-of{font-size:18px;color:var(--ink-mute);font-weight:400}
+.g-empty-global{padding:48px 24px;text-align:center;color:var(--ink-mute);font-style:italic;font-family:var(--serif);font-size:16px;background:var(--paper);border:1px dashed var(--rule)}
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="editor-head">
+    <div class="titles">
+      <div class="kicker">P1 · Tablero Articulador (editable)</div>
+      <h1>PILAR I — Talento, Cultura y Conocimiento</h1>
+      <div class="sub">Custodio: Gerencia de Talento Humano · Archivo destino: 02_tablero_pilar_I_talento.json</div>
+    </div>
+    <div class="right-actions">
+      <div class="autosave-status" id="autosave-status"><span class="dot"></span><span class="msg">Listo</span></div>
+      <div class="changes-badge" id="changes-badge">0 cambios sin exportar</div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="btn-load">↑ Cargar JSON</button>
+        <button class="btn btn-secondary" id="btn-reset">↺ Empezar de cero</button>
+        <button class="btn" id="btn-export">↓ Exportar JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main"></main>
+
+  <div class="footer-actions">
+    <div class="help">Edite los campos amarillos y exporte el JSON. Envíe el archivo descargado al Concertador antes del día 2 del mes siguiente.</div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="btn-load2">↑ Cargar JSON</button>
+      <button class="btn btn-secondary" id="btn-reset2">↺ Empezar de cero</button>
+      <button class="btn" id="btn-export2">↓ Exportar JSON</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script id="data" type="application/json">{"meta": {"id_tablero": "TG-P1-TALENTO", "nombre": "Tablero Pilar I — Talento, Cultura y Conocimiento", "tipo": "pilar", "pilar_id": "P1", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia de Talento Humano + Concertador", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar I", "tablero_padre": "TG-00-MAESTRO"}, "declaracion_pilar": "El talento humano es el sustrato de toda la transformación. Sin un equipo cohesionado, fidelizado, formado en las nuevas capacidades y motivado por una cultura de innovación y excelencia, ningún pilar restante es viable.", "objetivos_2030": ["Constituir una cultura organizacional consolidada, identificada por sus colaboradores y reconocida por su entorno", "Sostener un equipo de alto desempeño con tasa anual de retención superior al 90% en cargos críticos", "Tener al 100% del equipo gerencial certificado en uso productivo de IA", "Conservar y transferir el conocimiento crítico a Impulxa y al resto del grupo"], "lectura_directiva": "El cierre del Contrato 02 de 2004 implica una transición laboral de aproximadamente 50 personas en cargos directamente afectados. El éxito o fracaso de este pilar se mide por una sola pregunta: ¿logramos que cada persona afectada por la transición tenga un nuevo lugar digno (dentro o fuera del grupo) y que el conocimiento crítico viaje con ellas o quede documentado?", "estado_general": {"semaforo": "amarillo", "resumen": "Pilar fundacional con mayor concentración de Quick Wins. Diagnóstico de los ~50 cargos en transición es la urgencia operativa de junio-julio 2026.", "acciones_total": 12, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 12}, "capacidades_a_construir": ["Diseño de experiencia del colaborador (employee experience)", "Gestión del conocimiento", "Analítica de talento (people analytics)"], "acciones": [{"id": "A1.1", "nombre": "Diagnóstico personalizado de los cargos en transición", "horizonte": "H1", "responsable": "Talento Humano", "apoyos": ["Concertador", "Jurídica"], "inicio": "2026-06", "fin": "2026-07", "palanca": "L1", "kpi_principal": "% personas con diagnóstico cerrado", "meta_kpi": "100%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Documento por persona: perfil, antigüedad, posibilidades de recolocación interna o digna salida, intereses formativos"}, {"id": "A1.2", "nombre": "Plan personal de transición laboral por persona", "horizonte": "H1", "responsable": "Talento Humano", "apoyos": ["Gerencia General", "Concertador"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L1", "kpi_principal": "% planes personales firmados", "meta_kpi": "100% antes de oct 2026", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Carta firmada por colaborador y empresa con ruta acordada (recolocación / formación / transición digna)"}, {"id": "A1.3", "nombre": "Programa de comunicación interna estructurada del proceso", "horizonte": "H1", "responsable": "Comunicaciones", "apoyos": ["Gerencia General", "Concertador"], "inicio": "2026-06", "fin": "continuo", "palanca": "L6", "kpi_principal": "Pulso de clima organizacional", "meta_kpi": "≥7/10 sostenido", "valor_actual": "Por medir", "estado": "no_iniciada", "producto_entregable": "Calendario mensual de comunicaciones, canales activos, FAQ permanente, encuesta de pulso bimestral"}, {"id": "A1.4", "nombre": "Identificación y formalización de guardianes del conocimiento", "horizonte": "H1", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano", "Operaciones"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L3", "kpi_principal": "# guardianes formalizados con plan activo", "meta_kpi": "≥15", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Lista priorizada de personas con conocimiento crítico no documentado, con plan de retención y/o documentación"}, {"id": "A1.5", "nombre": "Documentación del know-how operacional crítico", "horizonte": "H1", "responsable": "Operaciones", "apoyos": ["Gerencia I+D+i", "TIC"], "inicio": "2026-08", "fin": "2027-01", "palanca": "L3", "kpi_principal": "% procesos críticos documentados", "meta_kpi": "90%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Manuales operativos, videos de procedimiento y wiki interna del cierre del contrato y la operación base"}, {"id": "A1.6", "nombre": "Diseño y lanzamiento piloto de la Escuela Corporativa Integra", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Gerencia I+D+i", "Gerencia General"], "inicio": "2026-09", "fin": "2027-09", "palanca": "L1", "kpi_principal": "# personas formadas en primera cohorte", "meta_kpi": "≥50", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Modelo pedagógico, alianzas universitarias, primera cohorte (energía + IA + servicio)"}, {"id": "A1.7", "nombre": "Programa de formación masiva en IA aplicada", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano", "TIC"], "inicio": "2027-01", "fin": "2028-06", "palanca": "L1", "kpi_principal": "% colaboradores con certificación nivel 1", "meta_kpi": "≥70%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Currículo modular para tres niveles (básico, aplicado, especializado) con certificación verificable"}, {"id": "A1.8", "nombre": "Programa de formación en energía renovable y electromovilidad", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Operaciones", "Impulxa"], "inicio": "2027-01", "fin": "2027-12", "palanca": "L1", "kpi_principal": "# técnicos certificados en flota eléctrica", "meta_kpi": "≥30", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Currículo enfocado en operación y mantenimiento de flota eléctrica y de granjas solares"}, {"id": "A1.9", "nombre": "Revisión y rediseño de la escala salarial corporativa", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Financiera", "Gerencia General"], "inicio": "2027-03", "fin": "2027-12", "palanca": "L1", "kpi_principal": "Nueva política aprobada y comunicada", "meta_kpi": "SÍ", "valor_actual": "NO", "estado": "no_iniciada", "producto_entregable": "Nueva política salarial aprobada por Gerencia General, con bandas competitivas y lógica de progresión por capacidades"}, {"id": "A1.10", "nombre": "Programa de bienestar ajustado a realidades operativas", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Comunicaciones"], "inicio": "2026-09", "fin": "2027-03", "palanca": "L1", "kpi_principal": "Satisfacción con plan de bienestar", "meta_kpi": "≥7,5/10", "valor_actual": "Por medir", "estado": "no_iniciada", "producto_entregable": "Plan diferenciado por turno (administrativo, conductor, técnico) con beneficios verificables y medición trimestral"}, {"id": "A1.11", "nombre": "Atracción de talento exponencial (energía, IA, consultoría)", "horizonte": "H3", "responsable": "Talento Humano", "apoyos": ["Gerencia General", "Gerencia I+D+i"], "inicio": "2028-01", "fin": "continuo", "palanca": "L4", "kpi_principal": "# contrataciones de perfiles MSc/PhD/año", "meta_kpi": "≥3", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Programa de marca empleadora dirigido a perfiles MSc/PhD en ER e IA, con propuesta de valor diferenciada"}, {"id": "A1.12", "nombre": "Retención del talento doctoral y posdoctoral", "horizonte": "H3", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano"], "inicio": "2027-01", "fin": "continuo", "palanca": "L4", "kpi_principal": "Tasa de retención del talento doctoral", "meta_kpi": "≥90% anual", "valor_actual": "Por establecer", "estado": "no_iniciada", "producto_entregable": "Esquema de incentivos a publicación, propiedad intelectual compartida, sabáticos y rotaciones internacionales"}], "kpis_del_pilar": [{"id": "K-P1-01", "nombre": "% planes personales de transición firmados", "linea_base": "0%", "meta_2030": "100% antes oct 2026", "frecuencia": "Mensual"}, {"id": "K-P1-02", "nombre": "Pulso de clima organizacional", "linea_base": "Por establecer T2 2026", "meta_2030": "≥7/10 sostenido", "frecuencia": "Bimestral"}, {"id": "K-P1-03", "nombre": "% colaboradores con certificación IA nivel 1", "linea_base": "0%", "meta_2030": "≥70%", "frecuencia": "Trimestral"}, {"id": "K-P1-04", "nombre": "# técnicos certificados en flota eléctrica", "linea_base": "0", "meta_2030": "≥30", "frecuencia": "Semestral"}, {"id": "K-P1-05", "nombre": "Tasa de retención del talento doctoral", "linea_base": "Por establecer", "meta_2030": "≥90% anual", "frecuencia": "Anual"}], "riesgos_del_pilar": [{"id": "R3", "nombre": "Resistencia al cambio del talento humano", "probabilidad": "Alta", "impacto": "Alto", "mitigacion": "Plan de comunicación interna estructurado. Programa formal de transición laboral. Diagnóstico de clima trimestral. Escuela corporativa abierta a empleados en transición."}, {"id": "R8", "nombre": "Riesgo reputacional asociado al cierre laboral", "probabilidad": "Media", "impacto": "Alto", "mitigacion": "Cierre laboral conducido como caso ejemplar de transición justa. Comunicación proactiva. Documentación pública del programa de recolocación."}]}</script>
+<script>
+// ============ LIBRERÍA DE GAUGES — TransFórmate v1.0 ============
+// 4 tipos de gauge en SVG puro, sin dependencias externas
+// Paleta y tipografías coherentes con los tableros institucionales
+(function(){
+  const GC = {
+    bg: '#e8e2d4', rojo: '#a33636', amarillo: '#b58a26', verde: '#3d7a52',
+    accent: '#b85a1f', ink: '#1a1f2e', inkSoft: '#3a4255', inkMute: '#6b7280',
+    paper: '#fffdf7', creamSoft: '#faf6ee', rule: '#d9d2c4'
+  };
+
+  function colorByPct(pct){
+    if(pct >= 67) return GC.verde;
+    if(pct >= 34) return GC.amarillo;
+    return GC.rojo;
+  }
+
+  function clamp(v, max=100){
+    v = Number(v); if(!isFinite(v)) v = 0;
+    return Math.max(0, Math.min(max, v));
+  }
+
+  // Parser tolerante: convierte "75%", "75", "0,75", "≥7/10", etc. a número 0-100
+  function parseToPct(value, maxHint=100){
+    if(value == null) return null;
+    if(typeof value === 'number') return clamp(value, 100);
+    let s = String(value).trim();
+    if(!s || /^(por\s+(medir|establecer|dimensionar|definir)|pendiente|n\/a|—|-)$/i.test(s)) return null;
+    if(/^SÍ$/i.test(s) || /^SI$/i.test(s)) return 100;
+    if(/^NO$/i.test(s)) return 0;
+    s = s.replace(',', '.').replace(/[≥≤<>]/g, '').replace(/[$]/g,'').trim();
+    const m = s.match(/(-?\d+(?:\.\d+)?)/);
+    if(!m) return null;
+    let n = parseFloat(m[1]);
+    if(s.includes('%')) return clamp(n, 100);
+    if(s.includes('/10')) return clamp(n * 10, 100);
+    if(s.includes('/')) { const m2 = s.match(/(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)/); if(m2) return clamp((+m2[1]/+m2[2])*100, 100); }
+    // Si parece un % implícito (0-100), usar como pct
+    if(n >= 0 && n <= 100) return clamp(n, 100);
+    return null;
+  }
+
+  // ============ 1. SEMICIRCULAR (medidor radial 180°) ============
+  // Uso: resumen por pilar — gauge grande, vistoso
+  function semicircular({value=0, max=100, label='', sub='', size=200}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size*0.68, r = size*0.4, sw = size*0.08;
+    const angle = (pct/100) * 180;
+    const endRad = (180 - angle) * Math.PI / 180;
+    const endX = cx + r * Math.cos(Math.PI - angle*Math.PI/180);
+    const endY = cy - r * Math.sin(angle * Math.PI / 180);
+    const color = colorByPct(pct);
+    const bgPath = `M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${cx+r} ${cy}`;
+    const valPath = pct > 0 ? `M ${cx-r} ${cy} A ${r} ${r} 0 ${angle>180?1:0} 1 ${endX} ${endY}` : '';
+    return `<svg viewBox="0 0 ${size} ${size*0.88}" class="g-gauge g-semi" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <path d="${bgPath}" stroke="${GC.bg}" stroke-width="${sw}" fill="none" stroke-linecap="butt"/>
+  ${valPath?`<path d="${valPath}" stroke="${color}" stroke-width="${sw}" fill="none" stroke-linecap="round"/>`:''}
+  <text x="${cx}" y="${cy-r*0.18}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${size*0.24}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${size*0.14}" fill="${GC.inkMute}">%</tspan></text>
+  ${sub?`<text x="${cx}" y="${cy+size*0.04}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="${size*0.06}" fill="${GC.inkMute}">${sub}</text>`:''}
+  ${label?`<text x="${cx}" y="${size*0.84}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${size*0.065}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.1em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 2. CIRCULAR (radial completo 360°) ============
+  // Uso: KPIs individuales
+  function circular({value=0, max=100, label='', size=120}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size/2, r = size*0.38, sw = size*0.08;
+    const circ = 2 * Math.PI * r;
+    const offset = circ * (1 - pct/100);
+    const color = colorByPct(pct);
+    return `<svg viewBox="0 0 ${size} ${size*1.12}" class="g-gauge g-circ" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${GC.bg}" stroke-width="${sw}"/>
+  ${pct>0?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-dasharray="${circ.toFixed(2)}" stroke-dashoffset="${offset.toFixed(2)}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>`:''}
+  <text x="${cx}" y="${cy+size*0.08}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${size*0.28}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${size*0.15}" fill="${GC.inkMute}">%</tspan></text>
+  ${label?`<text x="${cx}" y="${size*1.07}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${size*0.08}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.08em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 3. BULLET (barra horizontal con umbrales) ============
+  // Uso: % avance por acción en tabla
+  function bullet({value=0, max=100, target=null, label='', width=180, height=22, showText=true}){
+    const pct = clamp((value/max)*100);
+    const targetPct = target != null ? clamp((target/max)*100) : null;
+    const w = width, h = height;
+    const color = colorByPct(pct);
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-bullet" preserveAspectRatio="none" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <rect x="0" y="0" width="${(w*0.33).toFixed(1)}" height="${h}" fill="#f0dada" opacity="0.55"/>
+  <rect x="${(w*0.33).toFixed(1)}" y="0" width="${(w*0.33).toFixed(1)}" height="${h}" fill="#f5ecd4" opacity="0.55"/>
+  <rect x="${(w*0.66).toFixed(1)}" y="0" width="${(w*0.34).toFixed(1)}" height="${h}" fill="#e3eee6" opacity="0.55"/>
+  <rect x="0" y="${(h*0.28).toFixed(1)}" width="${(w*pct/100).toFixed(2)}" height="${(h*0.44).toFixed(1)}" fill="${color}"/>
+  ${targetPct!==null?`<line x1="${(w*targetPct/100).toFixed(2)}" y1="${(h*0.1).toFixed(1)}" x2="${(w*targetPct/100).toFixed(2)}" y2="${(h*0.9).toFixed(1)}" stroke="${GC.ink}" stroke-width="2"/>`:''}
+  ${showText?`<text x="${w-5}" y="${(h*0.72).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="${(h*0.5).toFixed(1)}" font-weight="600" fill="${GC.ink}">${pct.toFixed(0)}%</text>`:''}
+</svg>`;
+  }
+
+  // ============ 4. DIAL (medidor con aguja) ============
+  // Uso: gauge maestro consolidado
+  function dial({value=0, max=100, label='', size=240}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size*0.7, r = size*0.4, sw = size*0.07;
+    const needleLen = r * 0.88;
+    const angle = -180 + (pct/100) * 180;
+    const needleX = cx + needleLen * Math.cos(angle * Math.PI / 180);
+    const needleY = cy + needleLen * Math.sin(angle * Math.PI / 180);
+    function bandPath(pStart, pEnd){
+      const a1 = -180 + (pStart/100)*180;
+      const a2 = -180 + (pEnd/100)*180;
+      const x1 = cx + r * Math.cos(a1 * Math.PI / 180);
+      const y1 = cy + r * Math.sin(a1 * Math.PI / 180);
+      const x2 = cx + r * Math.cos(a2 * Math.PI / 180);
+      const y2 = cy + r * Math.sin(a2 * Math.PI / 180);
+      return `M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`;
+    }
+    // tick marks
+    let ticks = '';
+    for(let p=0; p<=100; p+=10){
+      const a = -180 + (p/100)*180;
+      const x1 = cx + (r-sw*0.6) * Math.cos(a * Math.PI / 180);
+      const y1 = cy + (r-sw*0.6) * Math.sin(a * Math.PI / 180);
+      const x2 = cx + (r+sw*0.15) * Math.cos(a * Math.PI / 180);
+      const y2 = cy + (r+sw*0.15) * Math.sin(a * Math.PI / 180);
+      ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${GC.inkMute}" stroke-width="${p%50===0?2:1}" opacity="${p%50===0?0.7:0.35}"/>`;
+    }
+    return `<svg viewBox="0 0 ${size} ${size*0.92}" class="g-gauge g-dial" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <path d="${bandPath(0,33)}" stroke="${GC.rojo}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  <path d="${bandPath(33,67)}" stroke="${GC.amarillo}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  <path d="${bandPath(67,100)}" stroke="${GC.verde}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  ${ticks}
+  <line x1="${cx}" y1="${cy}" x2="${needleX.toFixed(2)}" y2="${needleY.toFixed(2)}" stroke="${GC.ink}" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="${cx}" cy="${cy}" r="${(size*0.045).toFixed(2)}" fill="${GC.ink}"/>
+  <text x="${cx}" y="${(cy-r*0.5).toFixed(1)}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${(size*0.18).toFixed(1)}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${(size*0.10).toFixed(1)}" fill="${GC.inkMute}">%</tspan></text>
+  ${label?`<text x="${cx}" y="${(size*0.88).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${(size*0.06).toFixed(1)}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.12em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 5. HISTÓRICO (sparkline + valor actual) ============
+  // Uso: evolución a lo largo de meses
+  function historico({history=[], label='', sub='', width=280, height=120, max=100, showLabels=true}){
+    const w = width, h = height;
+    const padL = 38, padR = 18, padT = 18, padB = showLabels ? 26 : 10;
+    const innerW = w - padL - padR;
+    const innerH = h - padT - padB;
+    if(!history.length){
+      return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-historico" preserveAspectRatio="xMidYMid meet">
+  <rect x="0" y="0" width="${w}" height="${h}" fill="${GC.creamSoft}" stroke="${GC.rule}"/>
+  <text x="${w/2}" y="${h/2}" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="${GC.inkMute}" font-style="italic">Sin historial disponible</text>
+</svg>`;
+    }
+    const n = history.length;
+    const xAt = i => padL + (n>1 ? (i*innerW/(n-1)) : innerW/2);
+    const yAt = v => padT + innerH * (1 - clamp(v)/100);
+    // Background grid lines at 0/50/100
+    let grid = '';
+    [0, 50, 100].forEach(v => {
+      grid += `<line x1="${padL}" y1="${yAt(v).toFixed(1)}" x2="${(w-padR).toFixed(1)}" y2="${yAt(v).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.6"/>`;
+      grid += `<text x="${padL-6}" y="${(yAt(v)+3).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="${GC.inkMute}">${v}</text>`;
+    });
+    // Area path
+    let areaPath = '';
+    history.forEach((p, i) => {
+      const x = xAt(i).toFixed(2), y = yAt(p.value).toFixed(2);
+      areaPath += (i===0 ? `M ${x} ${(padT+innerH).toFixed(1)} L ${x} ${y}` : ` L ${x} ${y}`);
+    });
+    areaPath += ` L ${xAt(n-1).toFixed(2)} ${(padT+innerH).toFixed(1)} Z`;
+    // Line path
+    let linePath = '';
+    history.forEach((p, i) => {
+      linePath += (i===0?'M':' L') + ' ' + xAt(i).toFixed(2) + ' ' + yAt(p.value).toFixed(2);
+    });
+    // Last point + dot
+    const last = history[n-1];
+    const lastX = xAt(n-1), lastY = yAt(last.value);
+    const lastColor = colorByPct(last.value);
+    // Points
+    let points = '';
+    history.forEach((p, i) => {
+      const x = xAt(i), y = yAt(p.value);
+      const c = colorByPct(p.value);
+      points += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${i===n-1?5:3.5}" fill="${c}" stroke="${GC.paper}" stroke-width="${i===n-1?2:1.5}"/>`;
+    });
+    // X labels
+    let xLabels = '';
+    if(showLabels){
+      history.forEach((p, i) => {
+        const lbl = p.label || p.mes || '';
+        xLabels += `<text x="${xAt(i).toFixed(2)}" y="${(h-8).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="${GC.inkMute}">${lbl}</text>`;
+      });
+    }
+    // Trend arrow + delta
+    const first = history[0];
+    const delta = last.value - first.value;
+    const arrow = n < 2 ? '' : (delta > 5 ? '↑' : delta < -5 ? '↓' : '→');
+    const arrowColor = delta > 5 ? GC.verde : delta < -5 ? GC.rojo : GC.inkMute;
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-historico" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: evolución de ${n} puntos">
+  ${grid}
+  <path d="${areaPath}" fill="${lastColor}" opacity="0.12"/>
+  <path d="${linePath}" stroke="${lastColor}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+  ${points}
+  ${xLabels}
+  <text x="${(lastX+8).toFixed(1)}" y="${(lastY-8).toFixed(1)}" text-anchor="start" font-family="Newsreader, serif" font-size="14" font-weight="600" fill="${lastColor}">${last.value.toFixed(0)}%</text>
+  ${arrow?`<text x="${(w-padR).toFixed(1)}" y="${(padT+10).toFixed(1)}" text-anchor="end" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="${arrowColor}">${arrow} ${delta>0?'+':''}${delta.toFixed(0)}pp</text>`:''}
+</svg>`;
+  }
+
+  // Mini-sparkline para tabla (sin labels, compacto)
+  function miniHistorico({history=[], width=120, height=24}){
+    if(!history || !history.length) return '';
+    const w = width, h = height;
+    const n = history.length;
+    const xAt = i => 2 + (n>1 ? (i*(w-4)/(n-1)) : (w-4)/2);
+    const yAt = v => 2 + (h-4) * (1 - clamp(v)/100);
+    let linePath = '';
+    history.forEach((p, i) => {
+      linePath += (i===0?'M':' L') + ' ' + xAt(i).toFixed(2) + ' ' + yAt(p.value).toFixed(2);
+    });
+    let points = '';
+    history.forEach((p, i) => {
+      const x = xAt(i), y = yAt(p.value);
+      const c = colorByPct(p.value);
+      points += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${i===n-1?2.5:1.6}" fill="${c}"/>`;
+    });
+    const last = history[n-1];
+    const lastColor = colorByPct(last.value);
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-mini-histo" preserveAspectRatio="none">
+  <line x1="2" y1="${yAt(0).toFixed(1)}" x2="${(w-2).toFixed(1)}" y2="${yAt(0).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" opacity="0.6"/>
+  <line x1="2" y1="${yAt(100).toFixed(1)}" x2="${(w-2).toFixed(1)}" y2="${yAt(100).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" opacity="0.6"/>
+  <path d="${linePath}" stroke="${lastColor}" stroke-width="1.5" fill="none"/>
+  ${points}
+</svg>`;
+  }
+
+  // ============ Cálculos derivados ============
+  // % avance del pilar = promedio de porcentaje_avance de acciones (default 0 si null)
+  function pctAvancePilar(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    const vals = acciones.map(a => {
+      if(a.porcentaje_avance != null && !isNaN(+a.porcentaje_avance)) return +a.porcentaje_avance;
+      // Inferir desde valor_actual si parece numérico vs meta
+      const p = parseToPct(a.valor_actual);
+      return p != null ? p : 0;
+    });
+    return vals.reduce((s,v)=>s+v, 0) / vals.length;
+  }
+
+  // Extrae la serie de meses agregada del pilar a partir del historial de las acciones
+  // Retorna [{mes, label, value, cerradas, total}, ...] ordenado cronológicamente
+  function historialPilar(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return [];
+    // Recolectar todos los meses únicos de los historiales
+    const mesesSet = new Set();
+    acciones.forEach(a => {
+      (a.historial_mensual || []).forEach(h => { if(h.mes) mesesSet.add(h.mes); });
+    });
+    const meses = Array.from(mesesSet).sort();
+    if(!meses.length) return [];
+    return meses.map(mesId => {
+      // Para cada acción, encontrar su valor en ese mes (o 0 si no tiene)
+      const vals = acciones.map(a => {
+        const h = (a.historial_mensual || []).find(x => x.mes === mesId);
+        return h ? (+h.porcentaje_avance || 0) : 0;
+      });
+      const cerradas = acciones.filter(a => {
+        const h = (a.historial_mensual || []).find(x => x.mes === mesId);
+        return h && h.estado === 'cerrada';
+      }).length;
+      const avg = vals.reduce((s,v)=>s+v, 0) / vals.length;
+      // Label legible: "Mar", "Abr", "May", etc.
+      const m = mesId.match(/^(\d{4})-(\d{2})$/);
+      let label = mesId;
+      if(m){
+        const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        label = M[(+m[2])-1] || mesId;
+      }
+      return { mes: mesId, label, value: avg, cerradas, total: acciones.length };
+    });
+  }
+
+  // Devuelve los puntos del historial de una acción individual: [{mes, label, value}]
+  function historialAccion(accion){
+    if(!accion || !accion.historial_mensual || !accion.historial_mensual.length) return [];
+    return accion.historial_mensual.map(h => {
+      const m = h.mes.match(/^(\d{4})-(\d{2})$/);
+      const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      const label = m ? (M[(+m[2])-1] || h.mes) : h.mes;
+      return { mes: h.mes, label, value: +h.porcentaje_avance || 0, estado: h.estado };
+    });
+  }
+
+  // ============ FUSIÓN DE LÍNEAS BASE ============
+  // Fusiona el JSON antiguo con el nuevo, acumulando el historial_mensual.
+  // - Para cada acción, combina los historiales por clave "mes" (deduplicación).
+  // - Cuando hay conflicto en el mismo mes, gana el del JSON nuevo (corrección del custodio).
+  // - El valor actual (porcentaje_avance, estado) se toma del mes MÁS RECIENTE del historial fusionado.
+  // - meta.fecha_corte y meta.version se toman del JSON más reciente cronológicamente.
+  function mergeBaseline(oldData, newData){
+    // Caso base: si no hay viejo, devolvemos el nuevo directamente (asegurando que tenga historial inicial)
+    if(!oldData || !oldData.acciones) return _ensureBaselineSelf(newData);
+    if(!newData || !newData.acciones) return oldData;
+
+    // Verificación de coherencia: mismo id_tablero
+    const oldId = oldData.meta && oldData.meta.id_tablero;
+    const newId = newData.meta && newData.meta.id_tablero;
+    if(oldId && newId && oldId !== newId) {
+      console.warn('mergeBaseline: id_tablero distinto (' + oldId + ' vs ' + newId + '), usando nuevo');
+      return _ensureBaselineSelf(newData);
+    }
+
+    // Deep clone del nuevo para no mutar el original
+    const merged = JSON.parse(JSON.stringify(newData));
+
+    // Asegurar que el JSON nuevo tenga su propio mes en historial (snapshot del export actual)
+    _ensureBaselineSelf(merged);
+
+    // Construir un mapa de oldAcciones por id para lookup eficiente
+    const oldById = {};
+    (oldData.acciones || []).forEach((a, i) => {
+      if(a && a.id) oldById[a.id] = a;
+      else oldById['__idx_'+i] = a;
+    });
+
+    // Mes más reciente entre todos para determinar valor "actual"
+    let maxMes = null;
+    function trackMes(m){ if(m && (!maxMes || m > maxMes)) maxMes = m; }
+
+    (merged.acciones || []).forEach((a, i) => {
+      const oldA = oldById[a.id] || oldById['__idx_'+i];
+      const newHist = a.historial_mensual || [];
+      const oldHist = (oldA && oldA.historial_mensual) || [];
+
+      // Merge por mes (nuevo gana en conflicto)
+      const byMes = {};
+      oldHist.forEach(h => { if(h && h.mes) byMes[h.mes] = h; });
+      newHist.forEach(h => { if(h && h.mes) byMes[h.mes] = h; });
+
+      // Sort cronológico
+      const sortedMeses = Object.keys(byMes).sort();
+      a.historial_mensual = sortedMeses.map(m => byMes[m]);
+
+      // Actualizar valor actual al MÁS RECIENTE del historial fusionado
+      if(sortedMeses.length){
+        const latestMes = sortedMeses[sortedMeses.length-1];
+        const latestEntry = byMes[latestMes];
+        a.porcentaje_avance = latestEntry.porcentaje_avance;
+        a.estado = latestEntry.estado;
+        trackMes(latestMes);
+      }
+    });
+
+    // Actualizar meta del JSON fusionado para reflejar el mes más reciente
+    if(maxMes){
+      merged.meta = merged.meta || {};
+      // Si el meta original tenía mes_id y fecha_corte para el más reciente, los conservamos
+      const newMes = newData.meta && newData.meta.mes_id;
+      const oldMes = oldData.meta && oldData.meta.mes_id;
+      if(newMes === maxMes){
+        // Ya está bien
+      } else if(oldMes === maxMes){
+        merged.meta.mes_id = oldData.meta.mes_id;
+        merged.meta.fecha_corte = oldData.meta.fecha_corte;
+        merged.meta.version = oldData.meta.version;
+      } else {
+        merged.meta.mes_id = maxMes;
+      }
+    }
+    return merged;
+  }
+
+  // Garantiza que un JSON tenga al menos su propio mes en historial_mensual
+  function _ensureBaselineSelf(data){
+    if(!data || !data.acciones || !data.meta) return data;
+    const mesId = data.meta.mes_id || (data.meta.fecha_corte ? data.meta.fecha_corte.slice(0,7) : null);
+    if(!mesId) return data;
+    data.acciones.forEach(a => {
+      if(!a) return;
+      a.historial_mensual = a.historial_mensual || [];
+      // Si no hay entrada para este mes, agregarla desde los valores actuales
+      const has = a.historial_mensual.find(h => h && h.mes === mesId);
+      if(!has && a.porcentaje_avance != null){
+        a.historial_mensual.push({
+          mes: mesId,
+          fecha_corte: data.meta.fecha_corte || null,
+          porcentaje_avance: +a.porcentaje_avance || 0,
+          estado: a.estado || 'no_iniciada'
+        });
+        a.historial_mensual.sort((x,y) => x.mes < y.mes ? -1 : 1);
+      }
+    });
+    return data;
+  }
+
+  // % cerradas
+  function pctCerradas(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    return (acciones.filter(a => a.estado === 'cerrada').length / acciones.length) * 100;
+  }
+
+  // % iniciadas o más avanzadas
+  function pctActivas(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    return (acciones.filter(a => a.estado && a.estado !== 'no_iniciada').length / acciones.length) * 100;
+  }
+
+  // % por horizonte
+  function pctPorHorizonte(data, h){
+    const acciones = (data && data.acciones || []).filter(a => a.horizonte === h);
+    if(!acciones.length) return null;
+    const vals = acciones.map(a => +(a.porcentaje_avance) || 0);
+    return vals.reduce((s,v)=>s+v, 0) / vals.length;
+  }
+
+  // Bloque visual de resumen (4 gauges) para los EDITORS
+  function renderResumenVisualEditor(data){
+    const pAvance = pctAvancePilar(data);
+    const pActivas = pctActivas(data);
+    const pCerradas = pctCerradas(data);
+    const totalAcc = (data.acciones||[]).length;
+    return `<section class="block g-resumen-visual">
+  <h2>Resumen Visual del Avance</h2>
+  <div class="desc">Cuatro vistas del estado del tablero: avance promedio de acciones (semicircular), acciones activas (circular), acciones cerradas (bullet) y consolidado (dial).</div>
+  <div class="g-grid-4">
+    <div class="g-cell">${semicircular({value: pAvance, label: 'Avance Promedio', sub: `${totalAcc} acciones`, size: 200})}</div>
+    <div class="g-cell">${circular({value: pActivas, label: 'Acciones Activas', size: 140})}</div>
+    <div class="g-cell">
+      <div class="g-bullet-wrap">
+        <div class="g-bullet-label">Acciones Cerradas</div>
+        ${bullet({value: pCerradas, label: 'Cerradas', width: 240, height: 26})}
+        <div class="g-bullet-sub">${(data.acciones||[]).filter(a=>a.estado==='cerrada').length} de ${totalAcc}</div>
+      </div>
+    </div>
+    <div class="g-cell">${dial({value: pAvance, label: 'Consolidado Pilar', size: 200})}</div>
+  </div>
+</section>`;
+  }
+
+  // Bloque de evolución mensual para los EDITORS — visible solo si hay historial
+  function renderEvolucionEditor(data){
+    const hist = historialPilar(data);
+    if(!hist.length){
+      // Si no hay historial pero hay datos, mostrar mensaje informativo
+      const totalAcc = (data && data.acciones || []).length;
+      if(!totalAcc) return '';
+      return `<section class="block g-evolucion">
+  <h2>Evolución Mensual del Pilar</h2>
+  <div class="desc">No hay historial mensual registrado todavía. Esta sección aparecerá cuando exporte el JSON del pilar mes a mes y se acumule la serie temporal.</div>
+  <div class="g-no-history">↻ Aún sin datos históricos. La serie temporal se construye a medida que se exportan los JSON mensuales.</div>
+</section>`;
+    }
+    // Semicirculares mes a mes
+    const gridSemi = hist.map(p =>
+      `<div class="g-mes-cell">
+        <div class="g-mes-label">${p.label}</div>
+        ${semicircular({value: p.value, sub: `${p.cerradas} cerradas`, size: 140})}
+      </div>`
+    ).join('');
+    const lastVal = hist[hist.length-1].value;
+    const firstVal = hist[0].value;
+    const delta = lastVal - firstVal;
+    const tendencia = hist.length < 2 ? '—' : (delta > 5 ? `↑ +${delta.toFixed(0)}pp` : delta < -5 ? `↓ ${delta.toFixed(0)}pp` : '→ estable');
+    const tendColor = delta > 5 ? 'verde' : delta < -5 ? 'rojo' : 'gris';
+    return `<section class="block g-evolucion">
+  <h2>Evolución Mensual del Pilar</h2>
+  <div class="desc">Serie temporal del avance del pilar a lo largo de los meses reportados. Cada punto del sparkline representa el cierre de un mes; los semicirculares muestran el detalle mes a mes.</div>
+  <div class="g-evol-row">
+    <div class="g-evol-spark">${historico({history: hist, label: 'Avance pilar', width: 420, height: 160})}</div>
+    <div class="g-evol-trend">
+      <div class="g-trend-label">Tendencia</div>
+      <div class="g-trend-value g-trend-${tendColor}">${tendencia}</div>
+      <div class="g-trend-sub">${hist.length} mes${hist.length>1?'es':''} reportado${hist.length>1?'s':''}</div>
+    </div>
+  </div>
+  <div class="g-meses-grid">${gridSemi}</div>
+</section>`;
+  }
+
+  // Bloque para el maestro: una fila por pilar/subplan con gauge
+  function renderTarjetaPilarMaestro({id, nombre, dueno, data, color}){
+    const pAvance = data ? pctAvancePilar(data) : 0;
+    const pActivas = data ? pctActivas(data) : 0;
+    const pCerradas = data ? pctCerradas(data) : 0;
+    const totalAcc = data && data.acciones ? data.acciones.length : 0;
+    const cargado = !!data;
+    const hist = cargado ? historialPilar(data) : [];
+    const sparkline = hist.length > 1 ? miniHistorico({history: hist, width: 130, height: 36}) : '';
+    return `<div class="g-pilar-card ${cargado?'loaded':'pending'}">
+  <div class="g-pilar-head">
+    <span class="g-pilar-id">${id}</span>
+    <span class="g-pilar-name">${nombre}</span>
+    <span class="g-pilar-status">${cargado?`v${data.meta.version||'?'} · ${data.meta.fecha_corte||''}`:'JSON no cargado'}</span>
+  </div>
+  ${cargado ? `
+  <div class="g-pilar-gauges">
+    <div>${semicircular({value: pAvance, label: 'Avance', sub: `${totalAcc} acc.`, size: 170})}</div>
+    <div>${circular({value: pActivas, label: 'Activas', size: 110})}</div>
+    <div>${circular({value: pCerradas, label: 'Cerradas', size: 110})}</div>
+    ${sparkline ? `<div class="g-pilar-spark"><div class="g-pilar-spark-label">${hist.length} meses</div>${sparkline}</div>` : ''}
+  </div>` : `
+  <div class="g-pilar-empty">Esperando carga del JSON exportado por el custodio.</div>`}
+</div>`;
+  }
+
+  // Bloque consolidado global con DIAL
+  function renderConsolidadoGlobal(pilaresData){
+    const cargados = pilaresData.filter(p => p.data);
+    if(!cargados.length){
+      return `<section class="block">
+  <h2>Consolidado Global del Plan</h2>
+  <div class="g-empty-global">Cargue al menos un JSON para ver el consolidado.</div>
+</section>`;
+    }
+    const avances = cargados.map(p => pctAvancePilar(p.data));
+    const promedioGlobal = avances.reduce((s,v)=>s+v, 0) / avances.length;
+    const totalAcciones = cargados.reduce((s,p)=>s+(p.data.acciones||[]).length, 0);
+    const cerradasGlobales = cargados.reduce((s,p)=>s+(p.data.acciones||[]).filter(a=>a.estado==='cerrada').length, 0);
+    const activasGlobales = cargados.reduce((s,p)=>s+(p.data.acciones||[]).filter(a=>a.estado && a.estado!=='no_iniciada').length, 0);
+    const pctCerradasG = totalAcciones ? (cerradasGlobales/totalAcciones)*100 : 0;
+    const pctActivasG = totalAcciones ? (activasGlobales/totalAcciones)*100 : 0;
+    return `<section class="block g-consolidado-global">
+  <h2>Consolidado Global del Plan</h2>
+  <div class="desc">Vista agregada de los ${cargados.length} tableros cargados — ${totalAcciones} acciones totales.</div>
+  <div class="g-consolidado-row">
+    <div class="g-dial-main">${dial({value: promedioGlobal, label: 'Avance Global', size: 280})}</div>
+    <div class="g-consolidado-side">
+      <div class="g-side-stat">
+        <div class="g-side-label">Acciones activas</div>
+        <div class="g-side-gauge">${bullet({value: pctActivasG, width: 240, height: 22})}</div>
+        <div class="g-side-sub">${activasGlobales} de ${totalAcciones}</div>
+      </div>
+      <div class="g-side-stat">
+        <div class="g-side-label">Acciones cerradas</div>
+        <div class="g-side-gauge">${bullet({value: pctCerradasG, width: 240, height: 22})}</div>
+        <div class="g-side-sub">${cerradasGlobales} de ${totalAcciones}</div>
+      </div>
+      <div class="g-side-stat">
+        <div class="g-side-label">Tableros consolidados</div>
+        <div class="g-side-big">${cargados.length}<span class="g-side-of">/${pilaresData.length}</span></div>
+      </div>
+    </div>
+  </div>
+</section>`;
+  }
+
+  // Bloque de evolución global para el MAESTRO
+  function renderEvolucionMaestro(pilaresData){
+    const cargados = pilaresData.filter(p => p.data);
+    if(!cargados.length) return '';
+    // Recolectar todos los meses únicos de todos los tableros cargados
+    const mesesSet = new Set();
+    cargados.forEach(p => historialPilar(p.data).forEach(h => mesesSet.add(h.mes)));
+    const meses = Array.from(mesesSet).sort();
+    if(!meses.length){
+      return `<section class="block g-evolucion-maestro">
+  <h2>Evolución del Plan</h2>
+  <div class="g-no-history">↻ Los JSON cargados no incluyen historial mensual aún. La serie temporal aparecerá cuando los custodios exporten JSONs mes a mes.</div>
+</section>`;
+    }
+    // Calcular avance global por mes
+    const serieGlobal = meses.map(mesId => {
+      let sumAvg = 0, n = 0;
+      cargados.forEach(p => {
+        const hist = historialPilar(p.data);
+        const point = hist.find(h => h.mes === mesId);
+        if(point){ sumAvg += point.value; n++; }
+      });
+      const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      const m = mesId.match(/^(\d{4})-(\d{2})$/);
+      const label = m ? (M[(+m[2])-1] || mesId) : mesId;
+      return { mes: mesId, label, value: n ? sumAvg/n : 0 };
+    });
+
+    // Diales por mes
+    const dialsHTML = serieGlobal.map(p =>
+      `<div class="g-mes-dial">
+        <div class="g-mes-label">${p.label}</div>
+        ${dial({value: p.value, size: 180})}
+      </div>`
+    ).join('');
+
+    // Comparativa entre pilares: una fila por pilar con su sparkline
+    const filasComparativa = cargados.map(p => {
+      const hist = historialPilar(p.data);
+      const lastVal = hist.length ? hist[hist.length-1].value : 0;
+      const firstVal = hist.length ? hist[0].value : 0;
+      const delta = lastVal - firstVal;
+      const arrowColor = delta > 5 ? GC.verde : delta < -5 ? GC.rojo : GC.inkMute;
+      const arrow = hist.length < 2 ? '—' : (delta > 5 ? `↑ +${delta.toFixed(0)}` : delta < -5 ? `↓ ${delta.toFixed(0)}` : '→');
+      return `<div class="g-comp-row">
+        <div class="g-comp-id">${p.id}</div>
+        <div class="g-comp-name">${p.nombre}</div>
+        <div class="g-comp-spark">${historico({history: hist, width: 280, height: 60, showLabels: false})}</div>
+        <div class="g-comp-current">${lastVal.toFixed(0)}<span class="g-comp-pct">%</span></div>
+        <div class="g-comp-trend" style="color:${arrowColor}">${arrow}</div>
+      </div>`;
+    }).join('');
+
+    return `<section class="block g-evolucion-maestro">
+  <h2>Evolución del Plan</h2>
+  <div class="desc">Avance global de la transformación a lo largo de los ${meses.length} mes${meses.length>1?'es':''} reportado${meses.length>1?'s':''}. Cada dial es el promedio de los ${cargados.length} tableros del grupo en ese mes.</div>
+  <div class="g-evol-meses-row">${dialsHTML}</div>
+  <h3 class="g-comp-title">Comparativa por Pilar</h3>
+  <div class="g-comp-table">
+    <div class="g-comp-row g-comp-head">
+      <div class="g-comp-id">ID</div>
+      <div class="g-comp-name">Pilar / Subplan</div>
+      <div class="g-comp-spark">Evolución</div>
+      <div class="g-comp-current">Actual</div>
+      <div class="g-comp-trend">Δ</div>
+    </div>
+    ${filasComparativa}
+  </div>
+</section>`;
+  }
+
+  // ============ EXPORTACIÓN ============
+  window.Gauges = {
+    semicircular, circular, bullet, dial, historico, miniHistorico,
+    parseToPct, colorByPct, clamp,
+    pctAvancePilar, pctCerradas, pctActivas, pctPorHorizonte,
+    historialPilar, historialAccion,
+    mergeBaseline, _ensureBaselineSelf,
+    renderResumenVisualEditor, renderEvolucionEditor,
+    renderTarjetaPilarMaestro, renderConsolidadoGlobal, renderEvolucionMaestro,
+    COLORS: GC
+  };
+})();
+
+</script>
+<script>
+// === Estado del editor ===
+const ORIGINAL = JSON.parse(document.getElementById('data').textContent);
+let DATA = JSON.parse(JSON.stringify(ORIGINAL));  // copia mutable
+const JSON_FILE_NAME = "02_tablero_pilar_I_talento.json";
+const STORAGE_KEY = `integra_editor_${ORIGINAL.meta.id_tablero}`;
+let modifiedFields = new Set();
+let autosaveTimer = null;
+let lastSavedAt = null;
+
+// === LOCALSTORAGE — autosave & restore ===
+function saveToLocalStorage(){
+  try {
+    const payload = {
+      data: DATA,
+      savedAt: new Date().toISOString(),
+      baseVersion: ORIGINAL.meta.version,
+      modifiedFields: Array.from(modifiedFields)
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    lastSavedAt = payload.savedAt;
+    setAutosaveStatus('saved', `Guardado · ${formatTime(lastSavedAt)}`);
+  } catch(e) {
+    setAutosaveStatus('error', 'Error al guardar localmente');
+    console.error('localStorage save failed:', e);
+  }
+}
+
+function debouncedSave(){
+  setAutosaveStatus('saving', 'Guardando...');
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(saveToLocalStorage, 600);
+}
+
+function tryRestoreFromLocalStorage(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return null;
+    const payload = JSON.parse(raw);
+    return payload;
+  } catch(e){
+    return null;
+  }
+}
+
+function clearLocalStorage(){
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+}
+
+function formatTime(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  const now = new Date();
+  const dh = d.toLocaleDateString('es-CO', {day:'2-digit', month:'short'});
+  const hm = d.toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit'});
+  return d.toDateString() === now.toDateString() ? `hoy ${hm}` : `${dh} ${hm}`;
+}
+
+function setAutosaveStatus(klass, msg){
+  const el = document.getElementById('autosave-status');
+  if(!el) return;
+  el.className = 'autosave-status ' + klass;
+  const m = el.querySelector('.msg');
+  if(m) m.textContent = msg;
+}
+
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+
+const ESTADOS = ["no_iniciada","iniciada","en_curso","cerrada","pendiente","desviada"];
+const SEMAFOROS = ["verde","amarillo","rojo"];
+const PROBABILIDADES = ["baja","media","alta","muy alta"];
+const IMPACTOS = ["bajo","medio","alto","muy alto"];
+
+const horizonteTag = (h)=>{
+  if(!h) return '';
+  if(h==='ACELERACION-2026') return `<span class="h-tag ACEL">ACEL</span>`;
+  return `<span class="h-tag ${h}">${h}</span>`;
+};
+
+function markModified(key){
+  modifiedFields.add(key);
+  updateBadge();
+  debouncedSave();
+}
+function updateBadge(){
+  const b = $('#changes-badge');
+  const n = modifiedFields.size;
+  if(n>0){ b.classList.add('visible'); b.textContent = `${n} cambio${n>1?'s':''} sin exportar`; }
+  else b.classList.remove('visible');
+}
+
+function toast(msg, kind=''){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.className = `toast show ${kind}`;
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+// === Render ===
+function render(){
+  const d = DATA;
+  let h = '';
+
+  // RESUMEN VISUAL + EVOLUCIÓN (GAUGES) - inyectado por TransFórmate v2.0
+  if(window.Gauges){
+    h += window.Gauges.renderResumenVisualEditor(d);
+    h += window.Gauges.renderEvolucionEditor(d);
+  }
+
+  // ESTADO GENERAL
+  const eg = d.estado_general || {};
+  h += `<section class="block"><h2>Estado General</h2>
+    <div class="eg-grid">
+      <div class="eg-card"><div class="label">Total acciones</div><div class="num">${eg.acciones_total||0}</div></div>
+      <div class="eg-card"><div class="label">No iniciadas</div><div class="num muted">${eg.acciones_no_iniciadas||0}</div></div>
+      <div class="eg-card"><div class="label">Iniciadas</div><div class="num">${eg.acciones_iniciadas||0}</div></div>
+      <div class="eg-card"><div class="label">En curso</div><div class="num verde">${eg.acciones_en_curso||0}</div></div>
+      <div class="eg-card"><div class="label">Cerradas</div><div class="num">${eg.acciones_cerradas||0}</div></div>
+      <div class="eg-card"><div class="label">Pendientes</div><div class="num amarillo">${eg.acciones_pendientes||0}</div></div>
+      <div class="eg-card"><div class="label">Desviadas</div><div class="num rojo">${eg.acciones_desviadas||0}</div></div>
+    </div>
+    <div class="eg-summary">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div class="label">Semáforo del Tablero</div>
+        <select class="cell-input" style="width:140px" id="semaforo-input">
+          ${SEMAFOROS.map(s=>`<option value="${s}" ${eg.semaforo===s?'selected':''}>${s}</option>`).join('')}
+        </select>
+      </div>
+      <div class="label" style="margin-top:6px">Resumen ejecutivo (síntesis del mes)</div>
+      <textarea id="resumen-input" placeholder="Síntesis ejecutiva del estado del tablero en el mes...">${esc(eg.resumen||'')}</textarea>
+    </div>
+  </section>`;
+
+  // ACCIONES (agrupadas por horizonte si hay, o por bloque si es subplan)
+  const acciones = d.acciones || [];
+  if(acciones.length){
+    h += `<section class="block"><h2>Acciones (${acciones.length})</h2>
+      <div class="desc">Actualice estado, % de avance, comentario y alerta de cada acción. Los campos amarillos son editables.</div>`;
+    
+    // Determinar agrupación
+    const tieneHorizonte = acciones.some(a=>a.horizonte);
+    const tieneBloque = acciones.some(a=>a.bloque);
+    
+    let grupos;
+    if(tieneHorizonte){
+      grupos = {H1:[],H2:[],H3:[],'ACELERACION-2026':[]};
+      acciones.forEach((a,i)=>{ (grupos[a.horizonte]=grupos[a.horizonte]||[]).push({a,i}); });
+    } else if(tieneBloque){
+      grupos = {};
+      acciones.forEach((a,i)=>{ const b=a.bloque||'-'; (grupos[b]=grupos[b]||[]).push({a,i}); });
+    } else {
+      grupos = {todas: acciones.map((a,i)=>({a,i}))};
+    }
+
+    const grupoLabel = (k)=>{
+      const map = {H1:'Horizonte 1 · Defender (2026-27)',H2:'Horizonte 2 · Escalar (2027-29)',H3:'Horizonte 3 · Transformar (2029-30+)','ACELERACION-2026':'Aceleración 2026',
+                   T:'Bloque T · Preparatorios',A:'Bloque A · Diseño general',B:'Bloque B · Piloto',C:'Bloque C · Escalamiento',D:'Bloque D · Apertura externa',E:'Bloque E · Decisión definitiva'};
+      return map[k]||`Grupo ${k}`;
+    };
+    
+    Object.keys(grupos).forEach(k=>{
+      if(!grupos[k].length) return;
+      h += `<div class="bloque-head">${esc(grupoLabel(k))} · ${grupos[k].length} acciones</div>
+        <div class="table-wrap"><table>
+          <thead><tr>
+            <th>ID</th><th>Acción</th>${tieneHorizonte?'<th>H</th>':''}<th>Resp.</th>
+            <th style="background:var(--accent-soft);color:var(--accent-deep)">Estado nuevo</th>
+            <th style="background:var(--accent-soft);color:var(--accent-deep)">% Avance</th>
+            <th style="background:var(--accent-soft);color:var(--accent-deep)">Comentario mes</th>
+            <th style="background:var(--accent-soft);color:var(--accent-deep)">Alerta</th>
+            <th style="background:var(--accent-soft);color:var(--accent-deep)">Fecha reporte</th>
+          </tr></thead><tbody>`;
+      grupos[k].forEach(({a,i})=>{
+        h += `<tr data-idx="${i}">
+          <td class="id-cell">${esc(a.id)}</td>
+          <td class="name-cell">${esc(a.nombre)}</td>
+          ${tieneHorizonte?`<td class="h-cell">${horizonteTag(a.horizonte)}</td>`:''}
+          <td class="resp-cell">${esc(a.responsable||'')}</td>
+          <td>
+            <select class="cell-input" data-field="estado" data-idx="${i}">
+              ${ESTADOS.map(e=>`<option value="${e}" ${a.estado===e?'selected':''}>${e.replace('_',' ')}</option>`).join('')}
+            </select>
+          </td>
+          <td><div class="g-cell-bullet-wrap"><input type="number" min="0" max="100" class="cell-input" data-field="porcentaje_avance" data-idx="${i}" value="${a.porcentaje_avance!=null?a.porcentaje_avance:''}" placeholder="0-100">${a.porcentaje_avance!=null && window.Gauges ? window.Gauges.bullet({value:+a.porcentaje_avance, width:140, height:14, showText:false}).replace('class="g-gauge g-bullet"','class="g-gauge g-bullet g-cell-bullet"') : ''}${window.Gauges && a.historial_mensual && a.historial_mensual.length>1 ? window.Gauges.miniHistorico({history: window.Gauges.historialAccion(a), width:140, height:22}) : ''}</div></td>
+          <td><textarea class="cell-input" data-field="comentario_mensual" data-idx="${i}" rows="2" placeholder="Síntesis del mes...">${esc(a.comentario_mensual||'')}</textarea></td>
+          <td><input type="text" class="cell-input" data-field="alerta" data-idx="${i}" value="${esc(a.alerta||'')}" placeholder="Si hay riesgo..."></td>
+          <td><input type="date" class="cell-input" data-field="fecha_reporte" data-idx="${i}" value="${esc(a.fecha_reporte||'')}"></td>
+        </tr>`;
+      });
+      h += `</tbody></table></div>`;
+    });
+    h += `</section>`;
+  }
+
+  // KPIs DEL TABLERO
+  const kpiKeys = Object.keys(d).filter(k=>k.startsWith('kpis'));
+  kpiKeys.forEach(kkey=>{
+    const kpis = d[kkey];
+    if(!kpis || !kpis.length) return;
+    h += `<section class="block"><h2>${esc(kkey.replace('_',' '))}</h2>
+      <div class="desc">Reporte el valor medido en el mes y la tendencia frente al mes anterior.</div>
+      <div class="kpi-grid">`;
+    kpis.forEach((k,i)=>{
+      h += `<div class="kpi-card">
+        <div class="id">${esc(k.id||'')}</div>
+        <h4>${esc(k.nombre||'')}</h4>
+        <div class="baseline">Línea base: ${esc(k.linea_base||k.baseline||'—')}</div>
+        <div class="meta-2030">Meta 2030: <strong>${esc(k.meta_2030||k.meta||'—')}</strong> · Frecuencia: ${esc(k.frecuencia||k.cadencia||'—')}</div>
+        <div class="value-row">
+          <label>Valor mes:</label>
+          <input type="text" class="cell-input" style="width:100px" data-kpisection="${kkey}" data-kpiidx="${i}" data-field="valor_mes" value="${esc(k.valor_mes||'')}" placeholder="ej. 42">
+          <label>Tendencia:</label>
+          <select class="cell-input" style="width:90px" data-kpisection="${kkey}" data-kpiidx="${i}" data-field="tendencia">
+            <option value="" ${!k.tendencia?'selected':''}>—</option>
+            <option value="sube" ${k.tendencia==='sube'?'selected':''}>↑ sube</option>
+            <option value="estable" ${k.tendencia==='estable'?'selected':''}>→ estable</option>
+            <option value="baja" ${k.tendencia==='baja'?'selected':''}>↓ baja</option>
+          </select>
+        </div>
+      </div>`;
+    });
+    h += `</div></section>`;
+  });
+
+  // RIESGOS
+  const riesgosKey = Object.keys(d).find(k=>['riesgos_estrategicos','riesgos_del_pilar','riesgos_sub_plan','matriz_riesgos','riesgos_del_rol'].includes(k));
+  if(riesgosKey && d[riesgosKey] && d[riesgosKey].length){
+    h += `<section class="block"><h2>Riesgos del Tablero</h2>
+      <div class="desc">Revalore probabilidad e impacto si el contexto ha cambiado.</div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Riesgo</th><th>Prob. dec.</th><th>Imp. dec.</th>
+          <th style="background:var(--accent-soft);color:var(--accent-deep)">Prob. revisada</th>
+          <th style="background:var(--accent-soft);color:var(--accent-deep)">Imp. revisado</th>
+          <th style="background:var(--accent-soft);color:var(--accent-deep)">Evidencia/comentario</th>
+        </tr></thead><tbody>`;
+    d[riesgosKey].forEach((r,i)=>{
+      h += `<tr data-ridx="${i}">
+        <td class="id-cell">${esc(r.id)}</td>
+        <td class="name-cell">${esc(r.nombre)}</td>
+        <td class="h-cell">${esc(r.probabilidad||'-')}</td>
+        <td class="h-cell">${esc(r.impacto||'-')}</td>
+        <td><select class="cell-input" data-rsection="${riesgosKey}" data-ridx="${i}" data-field="probabilidad_revisada">
+          <option value="">—</option>
+          ${PROBABILIDADES.map(p=>`<option value="${p}" ${r.probabilidad_revisada===p?'selected':''}>${p}</option>`).join('')}
+        </select></td>
+        <td><select class="cell-input" data-rsection="${riesgosKey}" data-ridx="${i}" data-field="impacto_revisado">
+          <option value="">—</option>
+          ${IMPACTOS.map(p=>`<option value="${p}" ${r.impacto_revisado===p?'selected':''}>${p}</option>`).join('')}
+        </select></td>
+        <td><textarea class="cell-input" data-rsection="${riesgosKey}" data-ridx="${i}" data-field="evidencia_mes" rows="2">${esc(r.evidencia_mes||'')}</textarea></td>
+      </tr>`;
+    });
+    h += `</tbody></table></div></section>`;
+  }
+
+  // DECISIONES PENDIENTES (si tiene)
+  const decKey = ['decisiones_pendientes_gerencia','decisiones_pendientes'].find(k=>d[k] && d[k].length);
+  if(decKey){
+    h += `<section class="block"><h2>Decisiones Pendientes</h2>
+      <div class="desc">Si la decisión ya fue tomada por el Comité Directivo, registre la respuesta y la fecha real.</div>`;
+    d[decKey].forEach((dec,i)=>{
+      h += `<div class="decision">
+        <div class="top">
+          <span class="id">${esc(dec.id||'')}</span>
+          ${dec.fecha_limite?`<span class="fl">Antes de ${esc(dec.fecha_limite)}</span>`:''}
+        </div>
+        <div class="name">${esc(dec.decision||dec.nombre||'')}</div>
+        <div class="body">${esc(dec.descripcion||dec.contexto||'')}</div>
+        <div style="margin-top:12px;display:grid;grid-template-columns:1fr 180px;gap:10px">
+          <div>
+            <label style="font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600">Respuesta del Comité</label>
+            <textarea class="cell-input" data-dsection="${decKey}" data-didx="${i}" data-field="respuesta_comite" rows="2">${esc(dec.respuesta_comite||'')}</textarea>
+          </div>
+          <div>
+            <label style="font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600">Fecha decisión real</label>
+            <input type="date" class="cell-input" data-dsection="${decKey}" data-didx="${i}" data-field="fecha_decision_real" value="${esc(dec.fecha_decision_real||'')}">
+          </div>
+        </div>
+      </div>`;
+    });
+    h += `</section>`;
+  }
+
+  $('#main').innerHTML = h;
+  bindEvents();
+}
+
+function bindEvents(){
+  $('#semaforo-input')?.addEventListener('change',(e)=>{
+    DATA.estado_general.semaforo = e.target.value;
+    markModified('semaforo');
+  });
+  $('#resumen-input')?.addEventListener('input',(e)=>{
+    DATA.estado_general.resumen = e.target.value;
+    markModified('resumen');
+  });
+  $$('[data-field][data-idx]').forEach(el=>{
+    el.addEventListener('change', updateAccion);
+    if(el.tagName==='TEXTAREA' || el.type==='text' || el.type==='number'){
+      el.addEventListener('input', updateAccion);
+    }
+  });
+  $$('[data-kpisection]').forEach(el=>{
+    el.addEventListener('change', updateKPI);
+    el.addEventListener('input', updateKPI);
+  });
+  $$('[data-rsection]').forEach(el=>{
+    el.addEventListener('change', updateRiesgo);
+    el.addEventListener('input', updateRiesgo);
+  });
+  $$('[data-dsection]').forEach(el=>{
+    el.addEventListener('change', updateDecision);
+    el.addEventListener('input', updateDecision);
+  });
+}
+
+function updateAccion(e){
+  const idx = +e.target.dataset.idx;
+  const field = e.target.dataset.field;
+  let v = e.target.value;
+  if(field==='porcentaje_avance' && v!=='') v = +v;
+  if(v==='' || v==null){ delete DATA.acciones[idx][field]; } else { DATA.acciones[idx][field] = v; }
+  e.target.classList.add('modified');
+  e.target.closest('tr')?.classList.add('modified');
+  markModified(`accion.${idx}.${field}`);
+  
+  // Recalcular estado_general si cambió el estado
+  if(field==='estado'){
+    recalcEstadoGeneral();
+    if(window.Gauges) rerenderResumen();
+  }
+  if(field==='porcentaje_avance'){
+    // Re-render del bullet inline + resumen visual
+    if(window.Gauges) {
+      const newBullet = window.Gauges.bullet({value:+v||0, width:140, height:14, showText:false}).replace('class="g-gauge g-bullet"','class="g-gauge g-bullet g-cell-bullet"');
+      const td = e.target.closest('td');
+      const oldSvg = td && td.querySelector('svg.g-cell-bullet');
+      if(oldSvg) oldSvg.outerHTML = newBullet;
+      else if(td) td.insertAdjacentHTML('beforeend', newBullet);
+      rerenderResumen();
+    }
+  }
+}
+
+function updateKPI(e){
+  const sec = e.target.dataset.kpisection;
+  const idx = +e.target.dataset.kpiidx;
+  const field = e.target.dataset.field;
+  const v = e.target.value;
+  if(v==='' || v==null){ delete DATA[sec][idx][field]; } else { DATA[sec][idx][field] = v; }
+  e.target.classList.add('modified');
+  markModified(`kpi.${sec}.${idx}.${field}`);
+}
+
+function updateRiesgo(e){
+  const sec = e.target.dataset.rsection;
+  const idx = +e.target.dataset.ridx;
+  const field = e.target.dataset.field;
+  const v = e.target.value;
+  if(v==='' || v==null){ delete DATA[sec][idx][field]; } else { DATA[sec][idx][field] = v; }
+  e.target.classList.add('modified');
+  markModified(`riesgo.${sec}.${idx}.${field}`);
+}
+
+function updateDecision(e){
+  const sec = e.target.dataset.dsection;
+  const idx = +e.target.dataset.didx;
+  const field = e.target.dataset.field;
+  const v = e.target.value;
+  if(v==='' || v==null){ delete DATA[sec][idx][field]; } else { DATA[sec][idx][field] = v; }
+  e.target.classList.add('modified');
+  markModified(`decision.${sec}.${idx}.${field}`);
+}
+
+function recalcEstadoGeneral(){
+  const cnt = {no_iniciada:0,iniciada:0,en_curso:0,cerrada:0,pendiente:0,desviada:0};
+  DATA.acciones.forEach(a=>{ if(a.estado && cnt.hasOwnProperty(a.estado)) cnt[a.estado]++; });
+  const eg = DATA.estado_general;
+  eg.acciones_total = DATA.acciones.length;
+  eg.acciones_no_iniciadas = cnt.no_iniciada;
+  eg.acciones_iniciadas = cnt.iniciada;
+  eg.acciones_en_curso = cnt.en_curso;
+  eg.acciones_cerradas = cnt.cerrada;
+  eg.acciones_pendientes = cnt.pendiente;
+  eg.acciones_desviadas = cnt.desviada;
+  // Semáforo automático sugerido
+  if(cnt.desviada > 0) eg.semaforo_sugerido = 'rojo';
+  else if(cnt.pendiente > 0 && cnt.en_curso === 0) eg.semaforo_sugerido = 'amarillo';
+  else if(cnt.en_curso > 0 || cnt.cerrada > 0) eg.semaforo_sugerido = 'verde';
+  // Re-render cards de estado_general
+  const cards = $$('.eg-card .num');
+  if(cards.length>=7){
+    cards[0].textContent = eg.acciones_total;
+    cards[1].textContent = eg.acciones_no_iniciadas;
+    cards[2].textContent = eg.acciones_iniciadas;
+    cards[3].textContent = eg.acciones_en_curso;
+    cards[4].textContent = eg.acciones_cerradas;
+    cards[5].textContent = eg.acciones_pendientes;
+    cards[6].textContent = eg.acciones_desviadas;
+  }
+}
+
+// === Exportar JSON ===
+function exportarJSON(){
+  // Subir versión patch
+  const v = DATA.meta.version || '3.0';
+  const m = v.match(/(\d+)\.(\d+)(?:\.(\d+))?/);
+  if(m){
+    DATA.meta.version = `${m[1]}.${m[2]}.${(+(m[3]||0))+1}`;
+  }
+  // Fecha de corte = hoy si no hay reportes con fecha, o la última fecha reportada
+  const fechas = DATA.acciones.filter(a=>a.fecha_reporte).map(a=>a.fecha_reporte);
+  if(fechas.length) DATA.meta.fecha_corte = fechas.sort().pop();
+  else DATA.meta.fecha_corte = new Date().toISOString().slice(0,10);
+
+  const blob = new Blob([JSON.stringify(DATA,null,2)], {type:'application/json;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = JSON_FILE_NAME;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  modifiedFields.clear();
+  updateBadge();
+  // Persistir el JSON exportado en localStorage (con la nueva versión)
+  saveToLocalStorage();
+  toast(`✓ JSON exportado: ${JSON_FILE_NAME} (v${DATA.meta.version}). Envíelo al Concertador.`, 'success');
+}
+
+function resetear(){
+  const tieneCambios = modifiedFields.size > 0 || tryRestoreFromLocalStorage() !== null;
+  if(!tieneCambios){
+    toast('No hay datos guardados');
+    return;
+  }
+  if(!confirm('¿Descartar TODO el trabajo guardado y volver al estado inicial v' + ORIGINAL.meta.version + '?\n\nEsto borra los datos guardados localmente. No se puede deshacer.')) return;
+  // Preservar historial_mensual antes de resetear — los baselines previos NO se pierden
+  const _historialesPrevios = (DATA.acciones || []).map(a => a && a.historial_mensual ? JSON.parse(JSON.stringify(a.historial_mensual)) : null);
+  DATA = JSON.parse(JSON.stringify(ORIGINAL));
+  // Restaurar historial_mensual a cada acción
+  (DATA.acciones || []).forEach((a, i) => {
+    if(_historialesPrevios[i] && _historialesPrevios[i].length){
+      a.historial_mensual = _historialesPrevios[i];
+    }
+  });
+  modifiedFields.clear();
+  clearLocalStorage();
+  lastSavedAt = null;
+  render();
+  updateBadge();
+  setAutosaveStatus('', 'Listo');
+  toast('Se volvió al estado inicial');
+}
+
+function cargarDesdeArchivo(){
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = 'application/json,.json';
+  inp.style.display = 'none';
+  document.body.appendChild(inp);
+  inp.addEventListener('change', async (e) => {
+    const f = e.target.files[0];
+    if(!f) { document.body.removeChild(inp); return; }
+    try {
+      const txt = await f.text();
+      const json = JSON.parse(txt);
+      // Validar mínimo: que sea el mismo tablero
+      if(!json.meta || json.meta.id_tablero !== ORIGINAL.meta.id_tablero){
+        toast('El JSON no corresponde a este tablero (' + ORIGINAL.meta.id_tablero + ')', 'error');
+        document.body.removeChild(inp);
+        return;
+      }
+      if(!confirm('¿Reemplazar el trabajo actual con el JSON cargado?\nVersión actual: v' + DATA.meta.version + '\nVersión del archivo: v' + json.meta.version)) {
+        document.body.removeChild(inp);
+        return;
+      }
+      // Fusionar línea base cargada con el histórico existente — el JSON antiguo NO se borra
+      if(window.Gauges && window.Gauges.mergeBaseline){
+        DATA = window.Gauges.mergeBaseline(DATA, json);
+        toast('Línea base fusionada · ' + (DATA.acciones && DATA.acciones[0] && DATA.acciones[0].historial_mensual ? DATA.acciones[0].historial_mensual.length : 0) + ' mes(es) en histórico', 'success');
+      } else {
+        DATA = json;
+      }
+      modifiedFields.clear();
+      render();
+      saveToLocalStorage();
+      updateBadge();
+      toast('JSON cargado: v' + json.meta.version + ' · ' + (json.meta.fecha_corte||''), 'success');
+    } catch(err){
+      toast('Error leyendo el archivo: ' + err.message, 'error');
+    }
+    document.body.removeChild(inp);
+  });
+  inp.click();
+}
+
+$('#btn-export').addEventListener('click', exportarJSON);
+$('#btn-export2').addEventListener('click', exportarJSON);
+$('#btn-reset').addEventListener('click', resetear);
+$('#btn-reset2').addEventListener('click', resetear);
+$('#btn-load').addEventListener('click', cargarDesdeArchivo);
+$('#btn-load2').addEventListener('click', cargarDesdeArchivo);
+
+window.addEventListener('beforeunload',(e)=>{
+  // Solo advertir si hay cambios SIN guardar en localStorage (caso raro: cierre durante debounce)
+  if(modifiedFields.size > 0 && autosaveTimer){
+    // Forzar guardado inmediato antes de cerrar
+    clearTimeout(autosaveTimer);
+    saveToLocalStorage();
+  }
+});
+
+
+// === Re-render del resumen visual + evolución sin perder foco de edición ===
+function rerenderResumen(){
+  if(!window.Gauges) return;
+  // Resumen visual
+  const oldR = document.querySelector('section.g-resumen-visual');
+  if(oldR){
+    const tmp = document.createElement('div');
+    tmp.innerHTML = window.Gauges.renderResumenVisualEditor(DATA);
+    const fresh = tmp.firstElementChild;
+    if(fresh) oldR.replaceWith(fresh);
+  }
+  // Evolución
+  const oldE = document.querySelector('section.g-evolucion');
+  if(oldE){
+    const tmp = document.createElement('div');
+    tmp.innerHTML = window.Gauges.renderEvolucionEditor(DATA);
+    const fresh = tmp.firstElementChild;
+    if(fresh) oldE.replaceWith(fresh);
+    else oldE.remove();
+  }
+}
+
+// Exponer hooks para testing/debugging
+window.__editor = {
+  get DATA(){ return DATA; },
+  set DATA(v){ DATA = v; },
+  render: () => render(),
+  rerenderResumen: () => rerenderResumen(),
+  saveToLocalStorage: () => saveToLocalStorage(),
+  STORAGE_KEY: STORAGE_KEY
+};
+
+// === RESTAURAR desde localStorage al iniciar ===
+(function initRestore(){
+  const saved = tryRestoreFromLocalStorage();
+  if(saved && saved.data){
+    // Verificar coherencia de versión base
+    if(saved.baseVersion === ORIGINAL.meta.version){
+      // Mismo base — restaurar silenciosamente
+      DATA = saved.data;
+      lastSavedAt = saved.savedAt;
+      modifiedFields = new Set(saved.modifiedFields || []);
+      setAutosaveStatus('saved', `Restaurado · ${formatTime(lastSavedAt)}`);
+      // Mostrar banner informativo
+      setTimeout(() => {
+        const main = document.getElementById('main');
+        if(main){
+          const banner = document.createElement('div');
+          banner.className = 'restore-banner';
+          banner.innerHTML = `
+            <div class="info">↻ <strong>Trabajo restaurado</strong> desde guardado automático del ${formatTime(lastSavedAt)}. Versión actual: v${DATA.meta.version}. Sus cambios están preservados.</div>
+            <button class="btn btn-secondary" onclick="this.parentElement.remove()">Cerrar aviso</button>
+          `;
+          main.insertBefore(banner, main.firstChild);
+        }
+      }, 100);
+    } else {
+      // Mismatch de versión base — preguntar al usuario
+      const usar = confirm(
+        'Se encontró trabajo guardado anteriormente:\n' +
+        '  · Guardado el: ' + formatTime(saved.savedAt) + '\n' +
+        '  · Basado en versión: v' + saved.baseVersion + '\n' +
+        '  · Versión actual del tablero: v' + ORIGINAL.meta.version + '\n\n' +
+        '¿Usar el trabajo guardado? (Cancelar = empezar desde v' + ORIGINAL.meta.version + ')'
+      );
+      if(usar){
+        DATA = saved.data;
+        lastSavedAt = saved.savedAt;
+        modifiedFields = new Set(saved.modifiedFields || []);
+        setAutosaveStatus('saved', `Restaurado · ${formatTime(lastSavedAt)}`);
+      } else {
+        clearLocalStorage();
+        setAutosaveStatus('', 'Listo');
+      }
+    }
+  } else {
+    setAutosaveStatus('', 'Listo');
+  }
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tablero Gerencial — Transformación Integra 2026–2030</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1f2e;--ink-soft:#3a4255;--ink-mute:#6b7280;
+  --cream:#f4efe6;--cream-soft:#faf6ee;--paper:#fffdf7;
+  --rule:#d9d2c4;--rule-soft:#e8e2d4;
+  --accent:#b85a1f;--accent-deep:#7a3a14;--accent-soft:#fbe9d8;
+  --verde:#3d7a52;--verde-bg:#e3eee6;
+  --amarillo:#b58a26;--amarillo-bg:#f5ecd4;
+  --rojo:#a33636;--rojo-bg:#f0dada;
+  --gris:#8a8579;--gris-bg:#ece8de;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'IBM Plex Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{display:flex;min-height:100vh}
+
+nav.sidebar{width:280px;flex-shrink:0;background:var(--ink);color:var(--cream-soft);padding:32px 0 24px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{padding:0 28px 28px;border-bottom:1px solid rgba(244,239,230,0.12)}
+.brand .mark{font-family:var(--serif);font-size:28px;font-weight:600;letter-spacing:-0.02em;line-height:1}
+.brand .mark em{font-style:italic;color:var(--accent)}
+.brand .sub{font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:rgba(244,239,230,0.55);margin-top:10px}
+.brand .ver{font-family:var(--mono);font-size:10px;color:rgba(244,239,230,0.4);margin-top:14px}
+.nav-section{padding:18px 0 4px}
+.nav-section h4{font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(244,239,230,0.45);padding:0 28px 8px;font-weight:500}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 28px;color:rgba(244,239,230,0.78);cursor:pointer;font-size:14px;border-left:3px solid transparent;transition:all 0.15s}
+.nav-item:hover{background:rgba(244,239,230,0.04);color:var(--cream-soft)}
+.nav-item.active{border-left-color:var(--accent);background:rgba(184,90,31,0.12);color:var(--cream-soft);font-weight:500}
+.nav-item .id{font-family:var(--mono);font-size:11px;color:rgba(244,239,230,0.5);min-width:30px}
+.nav-item.active .id{color:var(--accent)}
+.nav-item .upd-dot{display:none;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:auto}
+.nav-item.has-update .upd-dot{display:block}
+
+main{flex:1;padding:56px 64px 96px;max-width:1480px;min-width:0}
+@media (max-width:1200px){main{padding:48px 40px 80px}}
+
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--rule);padding-bottom:24px;margin-bottom:36px;gap:32px;flex-wrap:wrap}
+.page-head .titles h1{font-family:var(--serif);font-weight:500;font-size:42px;line-height:1.1;letter-spacing:-0.015em}
+.page-head .titles .kicker{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);font-weight:600;margin-bottom:10px}
+.page-head .titles .lede{margin-top:10px;font-size:16px;color:var(--ink-soft);max-width:680px;line-height:1.5}
+.page-head .meta-block{text-align:right;font-size:12px;color:var(--ink-mute);min-width:200px}
+.page-head .meta-block .k{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em}
+.page-head .meta-block .v{color:var(--ink);font-weight:500;margin-bottom:8px}
+
+.sem{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:2px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em}
+.sem .dot{width:8px;height:8px;border-radius:50%}
+.sem.verde{background:var(--verde-bg);color:var(--verde)}.sem.verde .dot{background:var(--verde)}
+.sem.amarillo{background:var(--amarillo-bg);color:var(--amarillo)}.sem.amarillo .dot{background:var(--amarillo)}
+.sem.rojo{background:var(--rojo-bg);color:var(--rojo)}.sem.rojo .dot{background:var(--rojo)}
+.sem.gris{background:var(--gris-bg);color:var(--gris)}.sem.gris .dot{background:var(--gris)}
+
+section.block{margin:42px 0}
+section.block > h2{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:-0.01em;margin-bottom:6px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+section.block > .desc{font-size:13px;color:var(--ink-mute);margin-bottom:22px;font-style:italic}
+
+.grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.grid.cols-5{grid-template-columns:repeat(5,1fr)}
+@media (max-width:1100px){.grid.cols-4,.grid.cols-5{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.grid.cols-2,.grid.cols-3,.grid.cols-4,.grid.cols-5{grid-template-columns:1fr}}
+.card{background:var(--paper);padding:20px 22px}
+.card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:4px;line-height:1.25}
+.card .num{font-family:var(--serif);font-size:42px;font-weight:500;line-height:1;margin:4px 0 4px;letter-spacing:-0.02em}
+.card .num.small{font-size:32px}
+.card .label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:2px;font-weight:600}
+.card .footer{font-size:12px;color:var(--ink-mute);margin-top:10px;line-height:1.4}
+.card .id-tag{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:1px;margin-bottom:8px;letter-spacing:0.04em}
+
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);background:var(--paper)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{text-align:left;padding:12px 14px;background:var(--cream-soft);border-bottom:1px solid var(--rule);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);font-weight:600;white-space:nowrap}
+tbody td{padding:12px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--cream-soft)}
+td.id-cell{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;font-weight:500}
+td.name-cell{font-weight:500;color:var(--ink);min-width:280px}
+td.resp-cell{color:var(--ink-soft);white-space:nowrap;font-size:12px}
+td.h-cell{font-family:var(--mono);font-size:11px;color:var(--ink-soft);white-space:nowrap}
+
+.h-tag{display:inline-block;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:1px;letter-spacing:0.05em;font-weight:500}
+.h-tag.H1{background:#dde7ee;color:#2a4a63}
+.h-tag.H2{background:#f3e7d4;color:#7a5418}
+.h-tag.H3{background:#e3ddec;color:#523f73}
+.h-tag.ACEL{background:#f5dada;color:#7a2828}
+
+.estado-tag{display:inline-block;font-size:10px;padding:3px 8px;border-radius:1px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;white-space:nowrap}
+.estado-tag.no_iniciada{background:var(--gris-bg);color:var(--gris)}
+.estado-tag.iniciada{background:#dbe6f5;color:#2a4a8e}
+.estado-tag.en_curso{background:var(--verde-bg);color:var(--verde)}
+.estado-tag.cerrada{background:#1a1f2e;color:var(--cream-soft)}
+.estado-tag.pendiente{background:var(--amarillo-bg);color:var(--amarillo)}
+.estado-tag.desviada{background:var(--rojo-bg);color:var(--rojo)}
+
+.hitos-list{display:flex;flex-direction:column;border:1px solid var(--rule);background:var(--paper)}
+.hito{display:grid;grid-template-columns:120px 90px 1fr 180px;gap:18px;align-items:start;padding:14px 18px;border-bottom:1px solid var(--rule-soft)}
+.hito:last-child{border-bottom:none}
+.hito .fecha{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:500}
+.hito .hito-name{font-weight:500;color:var(--ink);font-size:14px}
+.hito .resp{font-size:12px;color:var(--ink-mute)}
+
+.decision{padding:16px 18px;border:1px solid var(--rule);background:var(--paper);margin-bottom:10px}
+.decision .top{display:flex;gap:14px;align-items:baseline;margin-bottom:6px;flex-wrap:wrap}
+.decision .id{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:600;letter-spacing:0.05em}
+.decision .fl{font-family:var(--mono);font-size:11px;color:var(--rojo);font-weight:500;background:var(--rojo-bg);padding:2px 8px;border-radius:1px}
+.decision .name{font-weight:600;font-size:15px;color:var(--ink);margin:4px 0}
+.decision .body{font-size:13px;color:var(--ink-soft);line-height:1.55}
+.decision .meta{font-size:11px;color:var(--ink-mute);margin-top:6px;font-family:var(--mono)}
+.decision .resp-comite{margin-top:10px;padding:8px 12px;background:var(--verde-bg);border-left:3px solid var(--verde);font-size:12px;color:var(--verde)}
+
+.vision{padding:36px 40px;background:var(--ink);color:var(--cream-soft);position:relative;overflow:hidden}
+.vision::before{content:"";position:absolute;top:0;right:0;width:280px;height:100%;background:radial-gradient(circle at 100% 50%, rgba(184,90,31,0.18), transparent 60%)}
+.vision .kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.22em;color:var(--accent);font-weight:600;margin-bottom:14px}
+.vision .text{font-family:var(--serif);font-size:24px;font-weight:400;line-height:1.4;letter-spacing:-0.005em;font-style:italic;max-width:1000px;position:relative;z-index:1}
+
+.bloque-head{margin:18px 0 10px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent-deep);padding:8px 14px;background:var(--accent-soft);display:inline-block;border-radius:1px;font-weight:600}
+
+.obs{padding:18px 22px;background:var(--amarillo-bg);border:1px solid #ddc580;border-left:4px solid var(--amarillo);margin-bottom:12px}
+.obs .id{font-family:var(--mono);font-size:11px;color:var(--amarillo);font-weight:700;letter-spacing:0.08em}
+.obs h4{font-weight:600;margin:4px 0 8px;color:var(--ink)}
+.obs .text{font-size:13px;color:var(--ink-soft);line-height:1.55}
+.obs .text strong{color:var(--ink)}
+
+.compromiso{padding:18px 22px;border:1px solid var(--rule);background:var(--paper);margin-bottom:10px;display:grid;grid-template-columns:50px 1fr 140px;gap:18px;align-items:start}
+.compromiso .num{font-family:var(--serif);font-size:28px;font-weight:500;color:var(--accent);line-height:1}
+.compromiso .body h4{font-weight:600;margin-bottom:4px}
+.compromiso .body p{font-size:13px;color:var(--ink-soft)}
+.compromiso .deadline{font-family:var(--mono);font-size:11px;color:var(--rojo);font-weight:500;text-align:right}
+
+.muted{color:var(--ink-mute)}
+.tiny{font-size:11px}
+.kpi-mini{display:flex;gap:24px;flex-wrap:wrap;padding:14px 0}
+.kpi-mini .k{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600}
+.kpi-mini .v{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500;line-height:1}
+
+/* === Cargador de JSONs === */
+.uploader-banner{background:var(--paper);border:1px solid var(--rule);border-left:4px solid var(--accent);padding:18px 22px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.uploader-banner .info{flex:1;min-width:300px}
+.uploader-banner h3{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:4px}
+.uploader-banner p{font-size:12px;color:var(--ink-mute)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--ink);color:var(--cream-soft);border:none;border-radius:2px;font-family:var(--sans);font-weight:500;font-size:13px;cursor:pointer;letter-spacing:0.02em;transition:all 0.15s}
+.btn:hover{background:var(--accent)}
+.btn.btn-secondary{background:var(--paper);color:var(--ink);border:1px solid var(--rule)}
+.btn.btn-secondary:hover{background:var(--cream-soft);border-color:var(--ink)}
+
+.import-log{margin-top:14px;font-size:12px;font-family:var(--mono);color:var(--ink-soft);max-height:200px;overflow-y:auto;padding:10px 14px;background:var(--cream-soft);border:1px solid var(--rule-soft);display:none}
+.import-log.visible{display:block}
+.import-log .ok{color:var(--verde)}
+.import-log .err{color:var(--rojo)}
+.import-log .warn{color:var(--amarillo)}
+
+.autosave-status{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-mute);font-family:var(--mono);margin-right:12px}
+.autosave-status .dot{width:7px;height:7px;border-radius:50%;background:var(--gris);transition:background 0.2s}
+.autosave-status.saved .dot{background:var(--verde)}
+.autosave-status.saving .dot{background:var(--amarillo)}
+.autosave-status.error .dot{background:var(--rojo)}
+.restore-banner{background:var(--amarillo-bg);border:1px solid #ddc580;border-left:4px solid var(--amarillo);padding:14px 20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.restore-banner .info{flex:1;min-width:280px;font-size:13px;color:var(--ink)}
+.restore-banner .info strong{color:var(--ink)}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--cream-soft);padding:14px 20px;border-radius:3px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,0.18);transform:translateY(120%);transition:transform 0.3s;z-index:1000;max-width:400px}
+.toast.show{transform:translateY(0)}
+.toast.success{background:var(--verde)}
+.toast.error{background:var(--rojo)}
+
+input[type=file]{display:none}
+
+@media print{nav.sidebar,.uploader-banner,.toast{display:none}main{padding:20px}}
+/* ============ ESTILOS DE EVOLUCIÓN MENSUAL ============ */
+.g-evolucion{margin:32px 0}
+.g-evolucion h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.005em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.g-no-history{padding:24px;background:var(--cream-soft);border:1px dashed var(--rule);color:var(--ink-mute);font-style:italic;text-align:center;font-size:13px}
+
+.g-evol-row{display:grid;grid-template-columns:1.8fr 1fr;gap:24px;align-items:center;background:var(--paper);border:1px solid var(--rule);padding:18px 22px;margin-bottom:14px}
+@media (max-width:800px){.g-evol-row{grid-template-columns:1fr}}
+.g-evol-spark{display:flex;justify-content:center}
+.g-evol-spark svg{max-width:480px;width:100%;height:auto}
+.g-evol-trend{padding:8px 0;text-align:center;border-left:1px solid var(--rule-soft)}
+@media (max-width:800px){.g-evol-trend{border-left:none;border-top:1px solid var(--rule-soft);padding-top:14px}}
+.g-trend-label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);font-weight:600;margin-bottom:8px}
+.g-trend-value{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1;letter-spacing:-0.02em}
+.g-trend-value.g-trend-verde{color:var(--verde)}
+.g-trend-value.g-trend-rojo{color:var(--rojo)}
+.g-trend-value.g-trend-gris{color:var(--ink-mute)}
+.g-trend-sub{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-top:6px}
+
+.g-meses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.g-mes-cell{background:var(--paper);padding:14px 14px 18px;display:flex;flex-direction:column;align-items:center}
+.g-mes-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);font-weight:600;margin-bottom:8px}
+.g-mes-cell svg{max-width:160px;height:auto}
+
+/* Mini sparkline en celdas de tabla de acciones */
+.g-mini-histo{display:inline-block;vertical-align:middle;margin-top:3px;max-width:120px}
+td .g-mini-histo{margin-left:6px}
+.g-cell-bullet-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+
+/* Evolución del Maestro */
+.g-evolucion-maestro{margin:32px 0}
+.g-evolucion-maestro h2{font-family:var(--serif);font-size:24px;font-weight:600}
+.g-evol-meses-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:24px}
+.g-mes-dial{background:var(--paper);padding:18px 14px;display:flex;flex-direction:column;align-items:center}
+.g-mes-dial svg{max-width:200px;height:auto}
+.g-mes-dial .g-mes-label{margin-bottom:10px}
+
+.g-comp-title{font-family:var(--serif);font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--ink)}
+.g-comp-table{background:var(--paper);border:1px solid var(--rule)}
+.g-comp-row{display:grid;grid-template-columns:50px 1.5fr 2fr 90px 70px;gap:14px;padding:12px 18px;align-items:center;border-bottom:1px solid var(--rule-soft);font-size:13px}
+.g-comp-row:last-child{border-bottom:none}
+.g-comp-row.g-comp-head{background:var(--cream-soft);font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);font-weight:600;padding-top:10px;padding-bottom:10px}
+.g-comp-id{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;background:var(--accent-soft);padding:3px 8px;border-radius:1px;text-align:center}
+.g-comp-row.g-comp-head .g-comp-id{background:transparent;color:var(--ink-soft);font-size:9.5px;font-family:var(--sans);font-weight:600;padding:0}
+.g-comp-name{font-family:var(--sans);color:var(--ink);font-weight:500}
+.g-comp-spark{display:flex;justify-content:center}
+.g-comp-spark svg{max-width:300px;height:auto}
+.g-comp-current{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);text-align:right;letter-spacing:-0.02em}
+.g-comp-current .g-comp-pct{font-size:14px;color:var(--ink-mute);font-weight:400}
+.g-comp-row.g-comp-head .g-comp-current{font-family:var(--sans);font-size:9.5px;font-weight:600;color:var(--ink-soft)}
+.g-comp-trend{font-weight:700;font-size:14px;text-align:center;font-family:var(--sans)}
+.g-comp-row.g-comp-head .g-comp-trend{color:var(--ink-soft);font-size:9.5px}
+
+/* Mini-sparkline en tarjetas de pilar del maestro */
+.g-pilar-spark{display:flex;flex-direction:column;align-items:center;gap:4px}
+.g-pilar-spark-label{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-mute);font-weight:600}
+.g-pilar-spark svg{max-width:140px;height:auto}
+
+/* ============ ESTILOS DE GAUGES — coherente con paleta tablero ============ */
+.g-resumen-visual{margin:24px 0 32px}
+.g-resumen-visual h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-0.005em;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.g-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:var(--rule);border:1px solid var(--rule);padding:1px}
+@media (max-width:1100px){.g-grid-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.g-grid-4{grid-template-columns:1fr}}
+.g-cell{background:var(--paper);padding:22px 18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px}
+.g-gauge{display:block;width:100%;height:auto;max-width:240px}
+.g-bullet-wrap{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.g-bullet-label{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-mute);font-weight:600;font-family:var(--sans)}
+.g-bullet-sub{font-size:11px;color:var(--ink-mute);font-family:var(--mono)}
+.g-bullet-wrap .g-bullet{max-width:280px}
+
+/* Gauges en celdas de tabla (acciones) */
+.g-cell-bullet{display:block;width:100%;max-width:140px;height:18px}
+td .g-cell-bullet{margin-top:4px}
+
+/* Tarjetas de pilar en el maestro */
+.g-pilar-card{background:var(--paper);border:1px solid var(--rule);padding:18px 22px;margin-bottom:14px;border-left:3px solid var(--rule);transition:border-color 0.15s}
+.g-pilar-card.loaded{border-left-color:var(--accent)}
+.g-pilar-card.pending{border-left-color:var(--rule);opacity:0.78}
+.g-pilar-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--rule-soft)}
+.g-pilar-id{font-family:var(--mono);font-size:11px;color:var(--accent);font-weight:700;letter-spacing:0.05em;background:var(--accent-soft);padding:3px 8px;border-radius:1px}
+.g-pilar-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);flex:1;min-width:200px}
+.g-pilar-status{font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:0.05em}
+.g-pilar-gauges{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:18px;align-items:center}
+@media (max-width:1000px){.g-pilar-gauges{grid-template-columns:1fr 1fr;gap:14px}}
+@media (max-width:600px){.g-pilar-gauges{grid-template-columns:1fr;gap:8px}}
+.g-pilar-gauges > div{display:flex;justify-content:center}
+.g-pilar-empty{padding:24px;text-align:center;color:var(--ink-mute);font-style:italic;font-size:13px}
+
+/* Consolidado global */
+.g-consolidado-global{margin:32px 0}
+.g-consolidado-row{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding:32px;background:var(--paper);border:1px solid var(--rule);border-top:3px solid var(--accent)}
+@media (max-width:900px){.g-consolidado-row{grid-template-columns:1fr;gap:24px;padding:20px}}
+.g-dial-main{display:flex;justify-content:center}
+.g-dial-main svg{max-width:340px}
+.g-consolidado-side{display:flex;flex-direction:column;gap:18px}
+.g-side-stat{padding:12px 16px;background:var(--cream-soft);border-left:2px solid var(--accent)}
+.g-side-label{font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-mute);font-weight:600;margin-bottom:8px}
+.g-side-gauge{margin-bottom:6px}
+.g-side-sub{font-size:11px;color:var(--ink-mute);font-family:var(--mono);text-align:right}
+.g-side-big{font-family:var(--serif);font-size:36px;font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1}
+.g-side-of{font-size:18px;color:var(--ink-mute);font-weight:400}
+.g-empty-global{padding:48px 24px;text-align:center;color:var(--ink-mute);font-style:italic;font-family:var(--serif);font-size:16px;background:var(--paper);border:1px dashed var(--rule)}
+
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="brand">
+    <div class="mark">Integra<em>·</em></div>
+    <div class="sub">Tablero Gerencial 2026–2030</div>
+    <div class="ver" id="ver-stamp"></div>
+  </div>
+  <div class="nav-section">
+    <h4>Vista Maestra</h4>
+    <div class="nav-item active" data-view="maestro"><span class="id">M</span><span>Tablero Maestro</span><span class="upd-dot"></span></div>
+  </div>
+  <div class="nav-section">
+    <h4>Pilares Estratégicos</h4>
+    <div class="nav-item" data-view="pilar_1"><span class="id">P1</span><span>Talento y Cultura</span><span class="upd-dot"></span></div>
+    <div class="nav-item" data-view="pilar_2"><span class="id">P2</span><span>Integración y Eficiencia</span><span class="upd-dot"></span></div>
+    <div class="nav-item" data-view="pilar_3"><span class="id">P3</span><span>Tecnología e IA</span><span class="upd-dot"></span></div>
+    <div class="nav-item" data-view="pilar_4"><span class="id">P4</span><span>Ecosistema y Reputación</span><span class="upd-dot"></span></div>
+    <div class="nav-item" data-view="pilar_5"><span class="id">P5</span><span>Sostenibilidad Financiera</span><span class="upd-dot"></span></div>
+  </div>
+  <div class="nav-section">
+    <h4>Sub-Planes Operativos</h4>
+    <div class="nav-item" data-view="patios"><span class="id">SP1</span><span>Patios IMPULXA</span><span class="upd-dot"></span></div>
+    <div class="nav-item" data-view="sc"><span class="id">SP2</span><span>Servicios Compartidos</span><span class="upd-dot"></span></div>
+  </div>
+  <div class="nav-section">
+    <h4>Rol Transversal</h4>
+    <div class="nav-item" data-view="concertador"><span class="id">C</span><span>Concertador</span></div>
+  </div>
+</nav>
+
+<main id="main"></main>
+
+<input type="file" id="file-input" multiple accept="application/json,.json">
+<div class="toast" id="toast"></div>
+
+<script id="data" type="application/json">{"maestro": {"meta": {"id_tablero": "TG-00-MAESTRO", "nombre": "Tablero Gerencial Maestro — Transformación 2026-2030", "tipo": "maestro", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerente General + Junta Directiva", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual (Comité de Transformación) · Trimestral (Junta)", "documento_fuente": "Informe Estratégico v3.0 + Plan de Acción v3.0", "color_primario": "#1F4E79", "color_acento": "#2E75B6"}, "vision_2030": "Integra S.A. será un grupo empresarial regente, proveedor estratégico de energía y articulador tecnológico de movilidad sostenible. Operará como holding inteligente que provee servicios compartidos a sus empresas controladas, comercializa soluciones energéticas y digitales más allá del grupo, y proyecta su modelo a otros mercados regionales. La inteligencia artificial será la capa transversal de gestión; la sostenibilidad, el principio rector.", "estado_general": {"semaforo": "verde", "resumen": "Plan aprobado en versión 3.0. Concertador designado. Sesión Gerencial 2 pendiente de convocatoria (T2 2026). Granjas solares en ruta crítica para operación dic-2026.", "porcentaje_acciones_iniciadas": 18, "porcentaje_acciones_cerradas": 4, "porcentaje_acciones_desviadas": 0, "big_bets_en_ejecucion": 1, "big_bets_limite": 3, "acciones_total_plan": 46, "acciones_por_horizonte_plan": {"H1": 16, "H2": 19, "H3": 11}}, "pilares": [{"id": "P1", "nombre": "Talento, Cultura y Conocimiento", "acciones_total": 12, "acciones_h1": 5, "acciones_h2": 5, "acciones_h3": 2, "dueno": "Talento Humano + Concertador", "semaforo": "amarillo", "comentario_estrategico": "Pilar fundacional. ~50 cargos en transición. Diagnóstico personalizado en T2 2026 es el primer hito crítico."}, {"id": "P2", "nombre": "Integración y Eficiencia del Grupo", "acciones_total": 9, "acciones_h1": 3, "acciones_h2": 4, "acciones_h3": 2, "dueno": "Gerencia Financiera", "semaforo": "amarillo", "comentario_estrategico": "Pilar con mayor potencial de retorno rápido. Sub-Plan Servicios Compartidos lo materializa con 24 acciones específicas."}, {"id": "P3", "nombre": "Capacidades Tecnológicas e IA", "acciones_total": 7, "acciones_h1": 2, "acciones_h2": 3, "acciones_h3": 2, "dueno": "Gerencia I+D+i + TIC", "semaforo": "amarillo", "comentario_estrategico": "Pilar de menor densidad en sesión 1 — señal de oportunidad. Grupo TransFórmate A1 y doctorados ER son ventaja sostenible."}, {"id": "P4", "nombre": "Ecosistema Externo y Reputación", "acciones_total": 8, "acciones_h1": 3, "acciones_h2": 3, "acciones_h3": 2, "dueno": "Gerencia General + I+D+i + Comunicaciones", "semaforo": "amarillo", "comentario_estrategico": "Capital reputacional es activo crítico. Transición laboral del Contrato 02 debe conducirse como caso ejemplar."}, {"id": "P5", "nombre": "Sostenibilidad Financiera y Modelo de Negocio", "acciones_total": 10, "acciones_h1": 3, "acciones_h2": 4, "acciones_h3": 3, "dueno": "Gerencia Financiera", "semaforo": "amarillo", "comentario_estrategico": "Meta: ≥35% EBITDA no-transporte al 2030. Granjas solares (A5.4-A5.6) en ruta crítica con operación dic-2026."}], "horizontes": [{"id": "H1", "nombre": "Defender", "rango_temporal": "2026-2027", "porcentaje_recursos": 70, "logica_gestion": "Ejecución disciplinada. Cierre ordenado del Contrato 02/2004. Cumplimiento contractual.", "acciones_asociadas": 16, "metrica_dominante": "KPIs operacionales y financieros tradicionales"}, {"id": "H2", "nombre": "Escalar", "rango_temporal": "2027-2029", "porcentaje_recursos": 20, "logica_gestion": "Inversión para escalar el nuevo modelo. Granjas solares, servicios compartidos, IA, formación.", "acciones_asociadas": 19, "metrica_dominante": "Crecimiento + viabilidad de nuevos negocios"}, {"id": "H3", "nombre": "Transformar", "rango_temporal": "2029-2030+", "porcentaje_recursos": 10, "logica_gestion": "Experimentación con presupuestos pequeños. Consultoría, productos digitales, internacionalización.", "acciones_asociadas": 15, "metrica_dominante": "Hipótesis validadas y aprendizaje"}], "palancas_estrategicas": [{"id": "L1", "nombre": "Ambidextría organizacional formalizada", "acciones": 8, "dueno": "GG + Concertador", "estado": "diseno"}, {"id": "L2", "nombre": "Servicios compartidos como vehículo de integración", "acciones": 10, "dueno": "Gerencia Financiera", "estado": "diseno_avanzado"}, {"id": "L3", "nombre": "Capitalización del Grupo TransFórmate", "acciones": 8, "dueno": "Gerencia I+D+i", "estado": "operativa"}, {"id": "L4", "nombre": "Talento doctoral y reputación científica", "acciones": 9, "dueno": "Gerencia I+D+i + GG", "estado": "operativa"}, {"id": "L5", "nombre": "3 granjas solares como demostrador comercial", "acciones": 4, "dueno": "Gerencia I+D+i + Operaciones", "estado": "prefactibilidad"}, {"id": "L6", "nombre": "Gobernanza del cambio (Concertador empoderado)", "acciones": 7, "dueno": "Concertador", "estado": "formalizacion_pendiente"}], "kpis_top_estrategicos": [{"id": "K01", "nombre": "% EBITDA no-transporte", "pilar": "P5", "linea_base": "~5%", "meta_2030": "≥35%", "valor_actual": "5%", "unidad": "%", "frecuencia": "Trimestral", "semaforo": "amarillo", "tendencia": "=", "responsable": "Gerencia Financiera"}, {"id": "K02", "nombre": "% planes personales de transición firmados", "pilar": "P1", "linea_base": "0%", "meta_2030": "100% antes de oct 2026", "valor_actual": "0%", "unidad": "%", "frecuencia": "Mensual", "semaforo": "rojo", "tendencia": "=", "responsable": "Talento Humano"}, {"id": "K03", "nombre": "Categoría Minciencias Grupo TransFórmate", "pilar": "P4", "linea_base": "A1", "meta_2030": "A1 sostenido o ascenso a A", "valor_actual": "A1", "unidad": "categoria", "frecuencia": "Anual", "semaforo": "verde", "tendencia": "=", "responsable": "Gerencia I+D+i"}, {"id": "K04", "nombre": "MWh propios generados/año (granjas solares)", "pilar": "P5", "linea_base": "0", "meta_2030": "Por dimensionar post-prefactibilidad", "valor_actual": "0", "unidad": "MWh/año", "frecuencia": "Mensual desde 2027", "semaforo": "amarillo", "tendencia": "=", "responsable": "Operaciones + I+D+i"}, {"id": "K05", "nombre": "% reducción costo administrativo por SC", "pilar": "P2", "linea_base": "0%", "meta_2030": "≥15%", "valor_actual": "0%", "unidad": "%", "frecuencia": "Trimestral", "semaforo": "verde", "tendencia": "=", "responsable": "Gerencia Financiera"}, {"id": "K06", "nombre": "% colaboradores con certificación IA nivel 1", "pilar": "P3", "linea_base": "0%", "meta_2030": "≥70%", "valor_actual": "0%", "unidad": "%", "frecuencia": "Trimestral", "semaforo": "amarillo", "tendencia": "=", "responsable": "I+D+i + Talento Humano"}, {"id": "K07", "nombre": "# clientes externos del modelo SC", "pilar": "P2", "linea_base": "0", "meta_2030": "≥3 a 2030", "valor_actual": "0", "unidad": "clientes", "frecuencia": "Anual", "semaforo": "verde", "tendencia": "=", "responsable": "Gerencia General"}, {"id": "K08", "nombre": "Contratos internacionales firmados", "pilar": "P4", "linea_base": "0", "meta_2030": "≥1 a 2029", "valor_actual": "0", "unidad": "contratos", "frecuencia": "Anual", "semaforo": "verde", "tendencia": "=", "responsable": "Gerencia General"}, {"id": "K09", "nombre": "% indicadores contractuales en verde con Megabús", "pilar": "P4", "linea_base": "Por establecer", "meta_2030": "≥95%", "valor_actual": "Por medir", "unidad": "%", "frecuencia": "Mensual", "semaforo": "amarillo", "tendencia": "=", "responsable": "Operaciones"}, {"id": "K10", "nombre": "Pulso de clima organizacional", "pilar": "P1", "linea_base": "Por establecer T2 2026", "meta_2030": "≥7/10 sostenido", "valor_actual": "Por medir", "unidad": "puntos/10", "frecuencia": "Bimestral", "semaforo": "amarillo", "tendencia": "=", "responsable": "Talento Humano + Comunicaciones"}, {"id": "K11", "nombre": "% asistencia de gerencias al Comité Transformación", "pilar": "P2", "linea_base": "Por establecer", "meta_2030": "≥90%", "valor_actual": "Por medir", "unidad": "%", "frecuencia": "Mensual", "semaforo": "verde", "tendencia": "=", "responsable": "Concertador"}, {"id": "K12", "nombre": "ROI granja solar 1 (años hasta payback)", "pilar": "P5", "linea_base": "En diseño", "meta_2030": "≤7 años", "valor_actual": "Pendiente prefactibilidad", "unidad": "años", "frecuencia": "Tras puesta en marcha", "semaforo": "amarillo", "tendencia": "=", "responsable": "Gerencia Financiera + I+D+i"}], "hitos_criticos_12_meses": [{"fecha": "2026-06-15", "hito": "Sesión Gerencial 2 ejecutada con productos firmados (visión 2030, X-Matrix, gobernanza)", "trimestre": "T2 2026", "criticidad": "alta", "estado": "planificado"}, {"fecha": "2026-05-31", "hito": "Entrega de planos EFEN para diseño eléctrico de patios", "trimestre": "T2 2026", "criticidad": "critica", "estado": "en_curso"}, {"fecha": "2026-06-04", "hito": "Entrega a MEGABÚS de diseños de adecuación eléctrica (cronograma contractual)", "trimestre": "T2 2026", "criticidad": "critica", "estado": "en_curso"}, {"fecha": "2026-10-31", "hito": "Entrega formal de Fase 5 a Megabús (adecuación de patios)", "trimestre": "T4 2026", "criticidad": "critica", "estado": "planificado"}, {"fecha": "2026-10-31", "hito": "100% planes personales de transición laboral firmados (A1.2)", "trimestre": "T4 2026", "criticidad": "alta", "estado": "planificado"}, {"fecha": "2026-12-31", "hito": "3 granjas solares construidas, conectadas y produciendo para Impulxa", "trimestre": "T4 2026", "criticidad": "critica", "estado": "planificado"}, {"fecha": "2027-02-23", "hito": "HITO CRÍTICO — Cierre operativo del Contrato 02/2004", "trimestre": "T1 2027", "criticidad": "critica", "estado": "planificado"}, {"fecha": "2027-02-24", "hito": "Go-live operativo de IMPULXA (Etapa Preoperativa Contrato 048)", "trimestre": "T1 2027", "criticidad": "critica", "estado": "planificado"}, {"fecha": "2027-03-30", "hito": "Acta de inicio formal de O&M (Cláusula 6.1 Contrato 048)", "trimestre": "T1 2027", "criticidad": "critica", "estado": "planificado"}], "riesgos_estrategicos": [{"id": "R1", "nombre": "Demoras transición contractual cuenca DQS", "probabilidad": "Media", "impacto": "Alto", "estado": "monitoreo"}, {"id": "R2", "nombre": "Fallas operacionales arranque Impulxa flota 100% eléctrica", "probabilidad": "Media", "impacto": "Crítico", "estado": "monitoreo"}, {"id": "R3", "nombre": "Resistencia al cambio del talento humano", "probabilidad": "Alta", "impacto": "Alto", "estado": "activo"}, {"id": "R4", "nombre": "Subcapitalización inversiones H2/H3", "probabilidad": "Alta", "impacto": "Crítico", "estado": "activo"}, {"id": "R5", "nombre": "Cambio regulatorio adverso transición energética", "probabilidad": "Media", "impacto": "Alto", "estado": "monitoreo"}, {"id": "R6", "nombre": "Captura del cambio por inercias funcionales", "probabilidad": "Alta", "impacto": "Alto", "estado": "activo"}, {"id": "R7", "nombre": "Dispersión estratégica (todo simultáneo)", "probabilidad": "Alta", "impacto": "Alto", "estado": "activo"}, {"id": "R8", "nombre": "Riesgo reputacional cierre laboral", "probabilidad": "Media", "impacto": "Alto", "estado": "monitoreo"}], "decisiones_pendientes_gerencia": [{"id": "D1", "tema": "Formalización del mandato del Concertador", "instancia_decisora": "Junta Directiva", "fecha_limite": "2026-06-30", "criticidad": "alta", "opciones": ["Acta de Junta con mandato explícito", "Resolución de Gerencia General", "Mandato tácito (NO recomendado)"], "recomendacion_concertador": "Acta de Junta con publicación al Comité Directivo"}, {"id": "D2", "tema": "Forma jurídica del modelo de Servicios Compartidos (ASC.1)", "instancia_decisora": "Comité Directivo", "fecha_limite": "2026-06-15", "criticidad": "alta", "opciones": ["Opción 1: Sociedad nueva independiente", "Opción 2: Transformación de Integra a prestadora", "Opción 3: Modelo híbrido transitorio con re-evaluación a 18 meses"], "recomendacion_concertador": "Opción 3 con arquitectura preparada para migrar a Opción 2 en 2028"}, {"id": "D3", "tema": "Alternativa técnica para cierre de tanques diésel (Patios)", "instancia_decisora": "Comité Directivo + Operaciones", "fecha_limite": "2026-06-15", "criticidad": "alta", "opciones": ["Alt 1: Extracción y disposición", "Alt 2: Llenado con arena", "Alt 3: Llenado con CLSM", "Alt 4: Llenado con espuma de poliuretano"], "recomendacion_concertador": "Decisión técnica diferida a evaluación de costos comparativos del Sub-Plan Patios"}, {"id": "D4", "tema": "Asignación nominal de responsables a las 50 acciones del Plan", "instancia_decisora": "Sesión Gerencial 2", "fecha_limite": "2026-06-30", "criticidad": "critica", "opciones": ["Asignar persona física a cada acción", "Mantener responsables genéricos por cargo (NO recomendado)"], "recomendacion_concertador": "El plan no se considera vigente hasta que cada acción tenga nombre propio asociado"}, {"id": "D5", "tema": "Decisión EPC pendiente sobre EFEN (Patios IMPULXA)", "instancia_decisora": "MEGABÚS + Gerencia General", "fecha_limite": "2026-07-31", "criticidad": "alta", "opciones": ["EFEN asume EPC eléctrico completo", "Licitación competitiva del EPC", "Esquema mixto"], "recomendacion_concertador": "Pendiente de definición externa. Plan de contingencia activo en Sub-Plan Patios."}], "gobernanza_proceso": {"comites": [{"nombre": "Comité de Transformación", "frecuencia": "Mensual", "convoca": "Gerente General", "presencia_requerida": "≥90%"}, {"nombre": "Comité H3 (apuestas exploratorias)", "frecuencia": "Bimestral", "convoca": "Concertador + GG", "presencia_requerida": "≥80%"}, {"nombre": "Sesión de OKRs trimestral", "frecuencia": "Trimestral", "convoca": "Concertador", "presencia_requerida": "100%"}, {"nombre": "Revisión trimestral con Junta", "frecuencia": "Trimestral", "convoca": "GG", "presencia_requerida": "100%"}, {"nombre": "Sesión anual de planeación", "frecuencia": "Anual (T4)", "convoca": "GG + Concertador", "presencia_requerida": "100%"}], "compromisos_firmes_solicitados_al_comite": 10, "compromisos_aceptados": 0, "mandato_concertador_formalizado": false}, "lectura_concertador": "La transformación de Integra no es un proyecto de planeación estratégica convencional, sino una transición estratégica deliberada que gestiona simultáneamente el cierre ordenado de un modelo (H1), el escalamiento de un modelo controlado vía IMPULXA (H2) y la creación de un modelo emergente energético-tecnológico (H3). La metodología debe ser diseñada para esa triple condición. La velocidad de ejecución es, en este punto, más importante que la perfección del plan.", "observaciones_documentales_para_v3_1": [{"id": "OBS-01", "ubicacion": "Plan de Accion v3.0 Seccion 1.1", "texto_original": "El plan contiene 50 acciones formales (A1.1 a A5.10)", "inconsistencia": "Suma real es 46 (12+9+7+8+10), no 50", "correccion_recomendada": "Reemplazar 50 por 46 en v3.1 del Plan", "responsable_correccion": "Concertador", "fecha_limite": "2026-06-30"}]}, "pilar_1": {"meta": {"id_tablero": "TG-P1-TALENTO", "nombre": "Tablero Pilar I — Talento, Cultura y Conocimiento", "tipo": "pilar", "pilar_id": "P1", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia de Talento Humano + Concertador", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar I", "tablero_padre": "TG-00-MAESTRO"}, "declaracion_pilar": "El talento humano es el sustrato de toda la transformación. Sin un equipo cohesionado, fidelizado, formado en las nuevas capacidades y motivado por una cultura de innovación y excelencia, ningún pilar restante es viable.", "objetivos_2030": ["Constituir una cultura organizacional consolidada, identificada por sus colaboradores y reconocida por su entorno", "Sostener un equipo de alto desempeño con tasa anual de retención superior al 90% en cargos críticos", "Tener al 100% del equipo gerencial certificado en uso productivo de IA", "Conservar y transferir el conocimiento crítico a Impulxa y al resto del grupo"], "lectura_directiva": "El cierre del Contrato 02 de 2004 implica una transición laboral de aproximadamente 50 personas en cargos directamente afectados. El éxito o fracaso de este pilar se mide por una sola pregunta: ¿logramos que cada persona afectada por la transición tenga un nuevo lugar digno (dentro o fuera del grupo) y que el conocimiento crítico viaje con ellas o quede documentado?", "estado_general": {"semaforo": "amarillo", "resumen": "Pilar fundacional con mayor concentración de Quick Wins. Diagnóstico de los ~50 cargos en transición es la urgencia operativa de junio-julio 2026.", "acciones_total": 12, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 12}, "capacidades_a_construir": ["Diseño de experiencia del colaborador (employee experience)", "Gestión del conocimiento", "Analítica de talento (people analytics)"], "acciones": [{"id": "A1.1", "nombre": "Diagnóstico personalizado de los cargos en transición", "horizonte": "H1", "responsable": "Talento Humano", "apoyos": ["Concertador", "Jurídica"], "inicio": "2026-06", "fin": "2026-07", "palanca": "L1", "kpi_principal": "% personas con diagnóstico cerrado", "meta_kpi": "100%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Documento por persona: perfil, antigüedad, posibilidades de recolocación interna o digna salida, intereses formativos"}, {"id": "A1.2", "nombre": "Plan personal de transición laboral por persona", "horizonte": "H1", "responsable": "Talento Humano", "apoyos": ["Gerencia General", "Concertador"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L1", "kpi_principal": "% planes personales firmados", "meta_kpi": "100% antes de oct 2026", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Carta firmada por colaborador y empresa con ruta acordada (recolocación / formación / transición digna)"}, {"id": "A1.3", "nombre": "Programa de comunicación interna estructurada del proceso", "horizonte": "H1", "responsable": "Comunicaciones", "apoyos": ["Gerencia General", "Concertador"], "inicio": "2026-06", "fin": "continuo", "palanca": "L6", "kpi_principal": "Pulso de clima organizacional", "meta_kpi": "≥7/10 sostenido", "valor_actual": "Por medir", "estado": "no_iniciada", "producto_entregable": "Calendario mensual de comunicaciones, canales activos, FAQ permanente, encuesta de pulso bimestral"}, {"id": "A1.4", "nombre": "Identificación y formalización de guardianes del conocimiento", "horizonte": "H1", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano", "Operaciones"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L3", "kpi_principal": "# guardianes formalizados con plan activo", "meta_kpi": "≥15", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Lista priorizada de personas con conocimiento crítico no documentado, con plan de retención y/o documentación"}, {"id": "A1.5", "nombre": "Documentación del know-how operacional crítico", "horizonte": "H1", "responsable": "Operaciones", "apoyos": ["Gerencia I+D+i", "TIC"], "inicio": "2026-08", "fin": "2027-01", "palanca": "L3", "kpi_principal": "% procesos críticos documentados", "meta_kpi": "90%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Manuales operativos, videos de procedimiento y wiki interna del cierre del contrato y la operación base"}, {"id": "A1.6", "nombre": "Diseño y lanzamiento piloto de la Escuela Corporativa Integra", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Gerencia I+D+i", "Gerencia General"], "inicio": "2026-09", "fin": "2027-09", "palanca": "L1", "kpi_principal": "# personas formadas en primera cohorte", "meta_kpi": "≥50", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Modelo pedagógico, alianzas universitarias, primera cohorte (energía + IA + servicio)"}, {"id": "A1.7", "nombre": "Programa de formación masiva en IA aplicada", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano", "TIC"], "inicio": "2027-01", "fin": "2028-06", "palanca": "L1", "kpi_principal": "% colaboradores con certificación nivel 1", "meta_kpi": "≥70%", "valor_actual": "0%", "estado": "no_iniciada", "producto_entregable": "Currículo modular para tres niveles (básico, aplicado, especializado) con certificación verificable"}, {"id": "A1.8", "nombre": "Programa de formación en energía renovable y electromovilidad", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Operaciones", "Impulxa"], "inicio": "2027-01", "fin": "2027-12", "palanca": "L1", "kpi_principal": "# técnicos certificados en flota eléctrica", "meta_kpi": "≥30", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Currículo enfocado en operación y mantenimiento de flota eléctrica y de granjas solares"}, {"id": "A1.9", "nombre": "Revisión y rediseño de la escala salarial corporativa", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Financiera", "Gerencia General"], "inicio": "2027-03", "fin": "2027-12", "palanca": "L1", "kpi_principal": "Nueva política aprobada y comunicada", "meta_kpi": "SÍ", "valor_actual": "NO", "estado": "no_iniciada", "producto_entregable": "Nueva política salarial aprobada por Gerencia General, con bandas competitivas y lógica de progresión por capacidades"}, {"id": "A1.10", "nombre": "Programa de bienestar ajustado a realidades operativas", "horizonte": "H2", "responsable": "Talento Humano", "apoyos": ["Comunicaciones"], "inicio": "2026-09", "fin": "2027-03", "palanca": "L1", "kpi_principal": "Satisfacción con plan de bienestar", "meta_kpi": "≥7,5/10", "valor_actual": "Por medir", "estado": "no_iniciada", "producto_entregable": "Plan diferenciado por turno (administrativo, conductor, técnico) con beneficios verificables y medición trimestral"}, {"id": "A1.11", "nombre": "Atracción de talento exponencial (energía, IA, consultoría)", "horizonte": "H3", "responsable": "Talento Humano", "apoyos": ["Gerencia General", "Gerencia I+D+i"], "inicio": "2028-01", "fin": "continuo", "palanca": "L4", "kpi_principal": "# contrataciones de perfiles MSc/PhD/año", "meta_kpi": "≥3", "valor_actual": "0", "estado": "no_iniciada", "producto_entregable": "Programa de marca empleadora dirigido a perfiles MSc/PhD en ER e IA, con propuesta de valor diferenciada"}, {"id": "A1.12", "nombre": "Retención del talento doctoral y posdoctoral", "horizonte": "H3", "responsable": "Gerencia I+D+i", "apoyos": ["Talento Humano"], "inicio": "2027-01", "fin": "continuo", "palanca": "L4", "kpi_principal": "Tasa de retención del talento doctoral", "meta_kpi": "≥90% anual", "valor_actual": "Por establecer", "estado": "no_iniciada", "producto_entregable": "Esquema de incentivos a publicación, propiedad intelectual compartida, sabáticos y rotaciones internacionales"}], "kpis_del_pilar": [{"id": "K-P1-01", "nombre": "% planes personales de transición firmados", "linea_base": "0%", "meta_2030": "100% antes oct 2026", "frecuencia": "Mensual"}, {"id": "K-P1-02", "nombre": "Pulso de clima organizacional", "linea_base": "Por establecer T2 2026", "meta_2030": "≥7/10 sostenido", "frecuencia": "Bimestral"}, {"id": "K-P1-03", "nombre": "% colaboradores con certificación IA nivel 1", "linea_base": "0%", "meta_2030": "≥70%", "frecuencia": "Trimestral"}, {"id": "K-P1-04", "nombre": "# técnicos certificados en flota eléctrica", "linea_base": "0", "meta_2030": "≥30", "frecuencia": "Semestral"}, {"id": "K-P1-05", "nombre": "Tasa de retención del talento doctoral", "linea_base": "Por establecer", "meta_2030": "≥90% anual", "frecuencia": "Anual"}], "riesgos_del_pilar": [{"id": "R3", "nombre": "Resistencia al cambio del talento humano", "probabilidad": "Alta", "impacto": "Alto", "mitigacion": "Plan de comunicación interna estructurado. Programa formal de transición laboral. Diagnóstico de clima trimestral. Escuela corporativa abierta a empleados en transición."}, {"id": "R8", "nombre": "Riesgo reputacional asociado al cierre laboral", "probabilidad": "Media", "impacto": "Alto", "mitigacion": "Cierre laboral conducido como caso ejemplar de transición justa. Comunicación proactiva. Documentación pública del programa de recolocación."}]}, "pilar_2": {"meta": {"id_tablero": "TG-P2-INTEGRACION", "nombre": "Tablero Pilar II — Integración y Eficiencia del Grupo", "tipo": "pilar", "pilar_id": "P2", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia Financiera + Concertador", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar II", "tablero_padre": "TG-00-MAESTRO", "sub_plan_asociado": "TG-SP-SERVICIOS-COMPARTIDOS"}, "declaracion_pilar": "Integra debe operar como grupo integrado y no como suma de empresas yuxtapuestas. La administración compartida, la consolidación de procesos, las compras unificadas y la racionalización de la flota colectiva son las palancas de eficiencia inmediata.", "objetivos_2030": ["Consolidar al menos cinco servicios compartidos formalizados (administración, contabilidad, jurídica, mantenimiento, central de compras)", "Lograr ahorros del 15-20% sobre la línea base mediante compras consolidadas", "Implementar un único modelo de gobernanza para sociedades S.A., S.A.S. y Cooperativa", "Tener la flota de transporte colectivo óptimamente dimensionada y con plan de reposición financiado"], "lectura_directiva": "Los servicios compartidos son a la vez una palanca de eficiencia interna y la matriz del primer producto comercializable hacia el exterior. Cada decisión de diseño (quién manda, cómo se cobra, qué se mide) es a la vez una decisión operativa y una decisión estratégica sobre el negocio H3.", "estado_general": {"semaforo": "amarillo", "resumen": "Pilar con mayor potencial de retorno rápido. Sub-Plan Servicios Compartidos lo materializa con 24 acciones específicas. Decisión jurídica clave (ASC.1) pendiente para junio 2026.", "acciones_total": 9, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 9}, "capacidades_a_construir": ["Gobernanza multi-figura (S.A., S.A.S., Cooperativa)", "Contabilidad de grupo", "Control de gestión integrado", "Gestión estratégica de proveedores"], "acciones": [{"id": "A2.1", "nombre": "Diagnóstico de actividades duplicadas en el grupo", "horizonte": "H1", "responsable": "Concertador", "apoyos": ["Financiera", "Gerencia General"], "inicio": "2026-06", "fin": "2026-08", "palanca": "L2", "kpi_principal": "Costo administrativo redundante identificado ($MM)", "estado": "no_iniciada"}, {"id": "A2.2", "nombre": "Diseño del primer servicio compartido (contabilidad/jurídico)", "horizonte": "H1", "responsable": "Financiera", "apoyos": ["Jurídica", "Concertador"], "inicio": "2026-07", "fin": "2026-10", "palanca": "L2", "kpi_principal": "Modelo aprobado por Gerencia General (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A2.3", "nombre": "Comité conjunto operativo Integra-Impulxa", "horizonte": "H1", "responsable": "Operaciones", "apoyos": ["Impulxa", "Concertador"], "inicio": "2026-06", "fin": "continuo", "palanca": "L2", "kpi_principal": "% asistencia de gerencias al comité (≥90%)", "estado": "no_iniciada"}, {"id": "A2.4", "nombre": "Implementación del primer servicio compartido", "horizonte": "H2", "responsable": "Financiera", "apoyos": ["Jurídica"], "inicio": "2026-11", "fin": "2027-04", "palanca": "L2", "kpi_principal": "% reducción costo administrativo combinado (≥8%)", "estado": "no_iniciada"}, {"id": "A2.5", "nombre": "Bolsa $/km centralizada y central de compras del grupo", "horizonte": "H2", "responsable": "Financiera", "apoyos": ["Operaciones", "Impulxa"], "inicio": "2027-01", "fin": "2027-12", "palanca": "L2", "kpi_principal": "Ahorros por consolidación de compras ($MM/año)", "estado": "no_iniciada"}, {"id": "A2.6", "nombre": "Gobierno corporativo unificado del grupo", "horizonte": "H2", "responsable": "Gerencia General", "apoyos": ["Jurídica", "Concertador"], "inicio": "2027-03", "fin": "2027-12", "palanca": "L1", "kpi_principal": "# políticas unificadas aprobadas (≥6)", "estado": "no_iniciada"}, {"id": "A2.7", "nombre": "Servicios compartidos extendidos a TIC, RRHH, Mantenimiento", "horizonte": "H2", "responsable": "Concertador", "apoyos": ["TIC", "THU", "Operaciones"], "inicio": "2027-07", "fin": "2028-12", "palanca": "L2", "kpi_principal": "% costos del grupo cubiertos por SC (≥25%)", "estado": "no_iniciada"}, {"id": "A2.8", "nombre": "Comercialización de servicios compartidos a empresas externas", "horizonte": "H3", "responsable": "Gerencia General", "apoyos": ["Concertador", "Comunicaciones"], "inicio": "2029-01", "fin": "2029-12", "palanca": "L2", "kpi_principal": "# clientes externos del modelo SC (≥1)", "estado": "no_iniciada"}, {"id": "A2.9", "nombre": "Constitución formal de Integra Consulting", "horizonte": "H3", "responsable": "Jurídica", "apoyos": ["Gerencia General", "Financiera"], "inicio": "2028-07", "fin": "2029-06", "palanca": "L4", "kpi_principal": "Unidad constituida y operando (SÍ/NO)", "estado": "no_iniciada"}], "kpis_del_pilar": [{"id": "K-P2-01", "nombre": "% reducción del costo administrativo combinado por SC", "linea_base": "0%", "meta_2030": "≥15%", "frecuencia": "Trimestral"}, {"id": "K-P2-02", "nombre": "Ahorros por consolidación de compras ($MM/año)", "linea_base": "0", "meta_2030": "Por dimensionar T1 2027", "frecuencia": "Trimestral"}, {"id": "K-P2-03", "nombre": "# políticas corporativas unificadas en el grupo", "linea_base": "0", "meta_2030": "≥6", "frecuencia": "Semestral"}, {"id": "K-P2-04", "nombre": "# clientes externos del modelo de SC", "linea_base": "0", "meta_2030": "≥3 a 2030", "frecuencia": "Anual"}], "riesgos_del_pilar": [{"id": "R6", "nombre": "Captura de la transformación por inercias funcionales", "probabilidad": "Alta", "impacto": "Alto", "mitigacion": "Concertador empoderado con mandato de Junta. Comités separados para H2 y H3. Indicadores estratégicos atados a compensación del equipo directivo."}, {"id": "R7", "nombre": "Dispersión estratégica (intentar todo simultáneamente)", "probabilidad": "Alta", "impacto": "Alto", "mitigacion": "Regla 70-20-10 con disciplina mensual. Máximo 3 Big Bets simultáneas. X-Matrix anual aprobada por Junta."}], "decisiones_pendientes": [{"id": "D2", "tema": "Forma jurídica del modelo SC (Opción 1, 2 o 3)", "fecha_limite": "2026-06-15", "criticidad": "alta"}]}, "pilar_3": {"meta": {"id_tablero": "TG-P3-TECNOLOGIA-IA", "nombre": "Tablero Pilar III — Capacidades Tecnológicas e Inteligencia Artificial", "tipo": "pilar", "pilar_id": "P3", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia I+D+i + TIC", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar III", "tablero_padre": "TG-00-MAESTRO"}, "declaracion_pilar": "La IA y las plataformas digitales son el habilitador exponencial que multiplica el valor de los demás pilares. No es un área más; es la capa transversal que diferenciará al Integra del 2030 del Integra del 2025.", "objetivos_2030": ["Tener IA al 100% como soporte de la gestión en procesos críticos", "Constituir una plataforma de gestión del conocimiento integrada de uso del grupo", "Generar al menos dos productos digitales propios comercializables", "Certificar al 100% del personal directivo en uso productivo de IA"], "lectura_directiva": "El Grupo TransFórmate (categoría A1, top 15% nacional) y los doctorados en Energías Renovables convierten a Integra en una de las pocas empresas del sector con capacidad real de I+D+i propio en estos dominios. La pregunta estratégica no es '¿qué IA compramos?' sino '¿qué IA construimos para vender?'", "estado_general": {"semaforo": "amarillo", "resumen": "Pilar con menor densidad de ideas en sesión 1 — señal de oportunidad. Concentra la mayor parte de iniciativas H3 (apuestas exploratorias).", "acciones_total": 7, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 7}, "capacidades_a_construir": ["Ingeniería de datos", "MLOps", "Gestión de productos digitales", "Diseño de servicios IA-aumentados"], "acciones": [{"id": "A3.1", "nombre": "Centralización del CRM y digitalización del cierre", "horizonte": "H1", "responsable": "TIC", "apoyos": ["Operaciones", "Concertador"], "inicio": "2026-07", "fin": "2026-12", "palanca": "L3", "kpi_principal": "% procesos críticos del cierre digitalizados (meta 100%)", "estado": "no_iniciada"}, {"id": "A3.2", "nombre": "Inventario de activos digitales y mapa de capacidades IA", "horizonte": "H1", "responsable": "Gerencia I+D+i", "apoyos": ["TIC"], "inicio": "2026-06", "fin": "2026-08", "palanca": "L3", "kpi_principal": "Inventario y mapa entregados (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A3.3", "nombre": "Plataforma corporativa de gestión del conocimiento", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["TIC"], "inicio": "2027-01", "fin": "2027-12", "palanca": "L3", "kpi_principal": "# usuarios activos / mes (meta ≥100)", "estado": "no_iniciada"}, {"id": "A3.4", "nombre": "Implementación de IA en operaciones", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Operaciones", "Impulxa"], "inicio": "2027-03", "fin": "2028-06", "palanca": "L3", "kpi_principal": "% reducción de paradas no programadas (meta ≥15%)", "estado": "no_iniciada"}, {"id": "A3.5", "nombre": "Dashboard estratégico unificado para Gerencia General", "horizonte": "H2", "responsable": "Concertador", "apoyos": ["I+D+i", "TIC"], "inicio": "2026-09", "fin": "2027-06", "palanca": "L6", "kpi_principal": "Dashboard operativo y revisado mensualmente (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A3.6", "nombre": "Productos digitales propios de Integra", "horizonte": "H3", "responsable": "Gerencia I+D+i", "apoyos": ["Gerencia General", "Comunicaciones"], "inicio": "2028-07", "fin": "2029-12", "palanca": "L4", "kpi_principal": "Ingresos por producto digital ($MM/año)", "estado": "no_iniciada"}, {"id": "A3.7", "nombre": "Servicios de IA para terceros (consultoría)", "horizonte": "H3", "responsable": "Gerencia I+D+i", "apoyos": ["Gerencia General"], "inicio": "2029-01", "fin": "2030-12", "palanca": "L4", "kpi_principal": "# proyectos de IA externos firmados (meta ≥3)", "estado": "no_iniciada"}], "kpis_del_pilar": [{"id": "K-P3-01", "nombre": "% procesos críticos digitalizados", "linea_base": "Por establecer T2 2026", "meta_2030": "100%", "frecuencia": "Trimestral"}, {"id": "K-P3-02", "nombre": "# usuarios activos plataforma de conocimiento", "linea_base": "0", "meta_2030": "≥100/mes a 2028", "frecuencia": "Mensual"}, {"id": "K-P3-03", "nombre": "% reducción de paradas no programadas (IA mant. predictivo)", "linea_base": "Por establecer T1 2027", "meta_2030": "≥15%", "frecuencia": "Mensual"}, {"id": "K-P3-04", "nombre": "Ingresos por productos digitales propios ($MM/año)", "linea_base": "0", "meta_2030": "Por dimensionar T2 2028", "frecuencia": "Trimestral"}], "riesgos_del_pilar": [{"id": "R4", "nombre": "Subcapitalización para inversiones H2/H3", "probabilidad": "Alta", "impacto": "Crítico", "mitigacion": "Diversificación de fuentes (FINDETER, SECO, BID-MIF, fondos de impacto, BT-CTeI). Estructuración de financiamiento estructurado."}]}, "pilar_4": {"meta": {"id_tablero": "TG-P4-ECOSISTEMA", "nombre": "Tablero Pilar IV — Ecosistema Externo y Reputación", "tipo": "pilar", "pilar_id": "P4", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia General + I+D+i + Comunicaciones", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar IV", "tablero_padre": "TG-00-MAESTRO"}, "declaracion_pilar": "Integra no compite ni transforma sola; lo hace inserta en una red de relaciones con el sector público, la academia, sus pares industriales y la sociedad civil. Esta red es un activo estratégico que debe gestionarse explícitamente.", "objetivos_2030": ["Mantener al Grupo TransFórmate en categoría A1", "Sostener el reconocimiento de la Unidad de I+D+i ante Minciencias", "Firmar al menos cinco alianzas universidad-empresa con resultados medibles", "Consolidar a Integra como referente nacional en transición energética del transporte", "Reducir la dependencia regulatoria del estado mediante diversificación de clientes"], "lectura_directiva": "La reputación es el único activo que tarda décadas en construirse y semanas en perderse. La transición del Contrato 02 de 2004 será observada por reguladores, sindicatos, gremios, prensa y la propia comunidad de Pereira-Dosquebradas. Conducir esa transición como un caso ejemplar de transición justa y técnicamente sólida es, por sí solo, una de las palancas comerciales más valiosas del nuevo Integra.", "estado_general": {"semaforo": "amarillo", "resumen": "Activos reputacionales sólidos: Grupo TransFórmate A1 (top 15% nacional), tres investigadores reconocidos, formación doctoral en ER. Capital intangible insuficientemente capitalizado en el discurso estratégico.", "acciones_total": 8, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 8}, "activos_reputacionales_actuales": ["Grupo de Investigación TransFórmate — Categoría A1 (cuartil Q1, top 15% nacional)", "Investigador Sénior: César Augusto Marín Moreno (Gerente I+D+i)", "Investigador Asociado: Rubén Iván Bolaños (Coord. de Investigación)", "Investigadora Junior: Andrea Valentina García Moreno (Coordinadora del área)", "Beneficios tributarios CTeI acumulados: $6.477 millones", "Formación doctoral en Energías Renovables (Marín Moreno, Bolaños)"], "capacidades_a_construir": ["Gestión de stakeholders", "Asuntos públicos y regulatorios", "Gestión de marca corporativa", "Gestión de propiedad intelectual"], "acciones": [{"id": "A4.1", "nombre": "Plan de comunicación de la transición con stakeholders clave", "horizonte": "H1", "responsable": "Comunicaciones", "apoyos": ["Gerencia General", "Jurídica"], "inicio": "2026-06", "fin": "2026-08", "palanca": "L6", "kpi_principal": "% audiencias cubiertas con plan activo (meta 100%)", "estado": "no_iniciada"}, {"id": "A4.2", "nombre": "Mapeo de stakeholders externos del proceso de transformación", "horizonte": "H1", "responsable": "Concertador", "apoyos": ["Comunicaciones", "Gerencia General"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L6", "kpi_principal": "Matriz revisada cada trimestre (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A4.3", "nombre": "Cumplimiento contractual y reporte ejemplar a Megabús", "horizonte": "H1", "responsable": "Operaciones", "apoyos": ["Jurídica", "Gerencia General"], "inicio": "2026-06", "fin": "2027-02", "palanca": "L6", "kpi_principal": "% indicadores contractuales en verde (meta ≥95%)", "estado": "no_iniciada"}, {"id": "A4.4", "nombre": "Mantenimiento de la clasificación A1 del Grupo TransFórmate", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Gerencia General"], "inicio": "2027-01", "fin": "continuo", "palanca": "L3", "kpi_principal": "Categoría Minciencias (A1 sostenido o ascenso a A)", "estado": "no_iniciada"}, {"id": "A4.5", "nombre": "Programa de publicaciones y conferencias del equipo doctoral", "horizonte": "H2", "responsable": "Gerencia I+D+i", "apoyos": ["Comunicaciones"], "inicio": "2027-01", "fin": "continuo", "palanca": "L4", "kpi_principal": "# publicaciones Q1-Q2 + ponencias internacionales/año", "estado": "no_iniciada"}, {"id": "A4.6", "nombre": "Estrategia de relacionamiento institucional", "horizonte": "H2", "responsable": "Gerencia General", "apoyos": ["I+D+i", "Comunicaciones"], "inicio": "2027-03", "fin": "2027-12", "palanca": "L6", "kpi_principal": "# espacios institucionales con presencia activa (≥6)", "estado": "no_iniciada"}, {"id": "A4.7", "nombre": "Posicionamiento como referente energía-transporte en Colombia", "horizonte": "H3", "responsable": "Comunicaciones", "apoyos": ["Gerencia General", "I+D+i"], "inicio": "2028-01", "fin": "2029-12", "palanca": "L4", "kpi_principal": "Índice de menciones cualificadas en prensa especializada", "estado": "no_iniciada"}, {"id": "A4.8", "nombre": "Primer proyecto de internacionalización (Perú o Ecuador)", "horizonte": "H3", "responsable": "Gerencia General", "apoyos": ["Jurídica", "I+D+i"], "inicio": "2028-07", "fin": "2029-12", "palanca": "L4", "kpi_principal": "Contrato internacional firmado (SÍ/NO) y monto", "estado": "no_iniciada"}], "kpis_del_pilar": [{"id": "K-P4-01", "nombre": "Categoría Minciencias del Grupo TransFórmate", "linea_base": "A1 (2025)", "meta_2030": "A1 sostenido", "frecuencia": "Anual"}, {"id": "K-P4-02", "nombre": "# publicaciones Q1-Q2 + ponencias internacionales/año", "linea_base": "Por establecer 2026", "meta_2030": "≥5/año", "frecuencia": "Anual"}, {"id": "K-P4-03", "nombre": "# espacios institucionales con presencia activa", "linea_base": "Por establecer", "meta_2030": "≥6", "frecuencia": "Semestral"}, {"id": "K-P4-04", "nombre": "Contratos internacionales firmados", "linea_base": "0", "meta_2030": "≥1 a 2029", "frecuencia": "Anual"}], "riesgos_del_pilar": [{"id": "R5", "nombre": "Cambio regulatorio adverso en transición energética o tarifas", "probabilidad": "Media", "impacto": "Alto", "mitigacion": "Vigilancia regulatoria sistemática (CREG, MinTransporte, MinEnergía). Participación en gremios (ANDESCO, Andi-Cámara de Energía). Capacidad de lobby técnico mediante publicaciones del Grupo TransFórmate."}, {"id": "R8", "nombre": "Riesgo reputacional asociado al cierre laboral", "probabilidad": "Media", "impacto": "Alto", "mitigacion": "Cierre laboral conducido como caso ejemplar. Comunicación proactiva con sindicatos, autoridades y medios."}]}, "pilar_5": {"meta": {"id_tablero": "TG-P5-FINANCIERO", "nombre": "Tablero Pilar V — Sostenibilidad Financiera y Modelo de Negocio", "tipo": "pilar", "pilar_id": "P5", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Gerencia Financiera + Gerencia General", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Plan de Acción v3.0 — Sección Pilar V", "tablero_padre": "TG-00-MAESTRO"}, "declaracion_pilar": "El cambio de modelo de negocio exige rediseñar la lógica de creación y captura de valor. Integra pasará de un modelo de ingresos por concesión a un modelo de múltiples líneas (energía, servicios compartidos, consultoría, soluciones B2C, internacionalización) que requiere una nueva arquitectura financiera y comercial.", "objetivos_2030": ["Tener al menos tres líneas de ingreso material y diversificada con peso individual mayor al 15%", "Sostener un margen EBITDA del grupo competitivo en su sector", "Acceder a fuentes de financiación verde (líneas temáticas de banca de desarrollo, bonos verdes, fondos climáticos)", "Abrir al menos un mercado externo (Perú u otro)", "Contar con un Triple Layer Business Model formalizado, revisado anualmente"], "lectura_directiva": "La trampa clásica de las transformaciones es esperar a que aparezca 'el financiamiento' antes de actuar. La realidad es la inversa: las fuentes de financiamiento aparecen cuando el proyecto está estructurado al nivel técnico y de gobernanza que un financiador serio puede evaluar. El trabajo crítico de los primeros 12 meses no es 'conseguir plata'; es preparar los proyectos para que la plata sea fungible cuando la conversación empiece.", "estado_general": {"semaforo": "amarillo", "resumen": "Pilar con ruta crítica de granjas solares. Meta agresiva: 3 granjas operativas en diciembre 2026. Cierre financiero del Contrato 02 simultáneo en T1 2027.", "acciones_total": 10, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 0, "acciones_en_curso": 0, "acciones_no_iniciadas": 10}, "capacidades_a_construir": ["Planeación financiera por línea de negocio", "Valoración de proyectos energéticos", "Estructuración de financiación verde", "Internacionalización empresarial", "Gestión del riesgo"], "acciones": [{"id": "A5.1", "nombre": "Plan financiero del cierre del Contrato 02 de 2004", "horizonte": "H1", "responsable": "Financiera", "apoyos": ["Operaciones", "Jurídica"], "inicio": "2026-06", "fin": "2026-08", "palanca": "L6", "kpi_principal": "Modelo financiero del cierre vigente y revisado mensualmente", "estado": "no_iniciada"}, {"id": "A5.2", "nombre": "Estructura financiera de proveeduría a Impulxa", "horizonte": "H1", "responsable": "Financiera", "apoyos": ["Jurídica", "Impulxa"], "inicio": "2026-07", "fin": "2026-10", "palanca": "L2", "kpi_principal": "Modelo de proveeduría aprobado por ambas Gerencias Generales (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A5.3", "nombre": "Diagnóstico de fuentes de financiamiento verde aplicables", "horizonte": "H1", "responsable": "Gerencia I+D+i", "apoyos": ["Financiera"], "inicio": "2026-07", "fin": "2026-09", "palanca": "L5", "kpi_principal": "Mapa con ≥6 fuentes priorizadas y contactos iniciados", "estado": "no_iniciada"}, {"id": "A5.4", "nombre": "Estudio de prefactibilidad de las primeras 3 granjas solares", "horizonte": "ACELERACION-2026", "responsable": "Gerencia I+D+i", "apoyos": ["Operaciones", "Financiera"], "inicio": "2026-05", "fin": "2026-06", "palanca": "L5", "kpi_principal": "Prefactibilidad aprobada por Gerencia General (SÍ/NO)", "estado": "no_iniciada"}, {"id": "A5.5", "nombre": "Estructuración financiera de las primeras 3 granjas solares", "horizonte": "ACELERACION-2026", "responsable": "Financiera", "apoyos": ["I+D+i", "Jurídica"], "inicio": "2026-06", "fin": "2026-06", "palanca": "L5", "kpi_principal": "Cierre financiero firmado (fecha y monto)", "estado": "no_iniciada"}, {"id": "A5.6", "nombre": "Construcción y operación de las primeras 3 granjas solares", "horizonte": "ACELERACION-2026", "responsable": "Operaciones", "apoyos": ["I+D+i", "Impulxa"], "inicio": "2026-06", "fin": "2026-12", "palanca": "L5", "kpi_principal": "MWh generados / año vs. diseño (meta ≥95%, agregado de 3 granjas)", "estado": "no_iniciada"}, {"id": "A5.7", "nombre": "Diversificación de líneas de ingreso del grupo", "horizonte": "H2", "responsable": "Financiera", "apoyos": ["Concertador"], "inicio": "2027-01", "fin": "continuo", "palanca": "L2", "kpi_principal": "% EBITDA no-transporte (meta progresiva: 10% / 20% / 35%)", "estado": "no_iniciada"}, {"id": "A5.8", "nombre": "Apertura del mercado peruano (primer cliente comercial)", "horizonte": "H3", "responsable": "Gerencia General", "apoyos": ["Jurídica", "I+D+i"], "inicio": "2029-01", "fin": "2029-12", "palanca": "L4", "kpi_principal": "Ingresos internacionales ($MM) acumulados a 2030", "estado": "no_iniciada"}, {"id": "A5.9", "nombre": "Triple Layer Canvas H3 con métricas ESG", "horizonte": "H3", "responsable": "Gerencia I+D+i", "apoyos": ["Financiera", "Comunicaciones"], "inicio": "2028-01", "fin": "2028-06", "palanca": "L3", "kpi_principal": "Canvas H3 aprobado y con KPIs medidos trimestralmente", "estado": "no_iniciada"}, {"id": "A5.10", "nombre": "Modelo financiero diversificado validado", "horizonte": "H3", "responsable": "Financiera", "apoyos": ["Gerencia General"], "inicio": "2030-01", "fin": "2030-12", "palanca": "L2", "kpi_principal": "% EBITDA no-transporte (meta ≥35%)", "estado": "no_iniciada"}], "kpis_del_pilar": [{"id": "K-P5-01", "nombre": "EBITDA del cierre del Contrato 02 (vs. plan)", "linea_base": "Plan en construcción", "meta_2030": "Cumplimiento ≥95%", "frecuencia": "Mensual"}, {"id": "K-P5-02", "nombre": "MWh propios generados / año (granjas solares)", "linea_base": "0", "meta_2030": "Por dimensionar tras prefactibilidad", "frecuencia": "Mensual desde 2027"}, {"id": "K-P5-03", "nombre": "% EBITDA no-transporte", "linea_base": "Por establecer (~5%)", "meta_2030": "≥35% a 2030", "frecuencia": "Trimestral"}, {"id": "K-P5-04", "nombre": "ROI granja solar 1 (años hasta payback)", "linea_base": "En diseño", "meta_2030": "≤7 años", "frecuencia": "Tras puesta en marcha"}], "riesgos_del_pilar": [{"id": "R2", "nombre": "Fallas operacionales o financieras en el arranque de Impulxa", "probabilidad": "Media", "impacto": "Crítico", "mitigacion": "Acompañamiento técnico Integra. Acuerdos de nivel de servicio con OEM. Stock de baterías y partes críticas. Simulacros operacionales pre-arranque."}, {"id": "R4", "nombre": "Subcapitalización para inversiones H2 (granjas) y H3", "probabilidad": "Alta", "impacto": "Crítico", "mitigacion": "Diversificación de fuentes (FINDETER líneas verdes, SECO, BID-MIF, fondos de impacto, BT-CTeI). Estructuración de PPA o financiamiento estructurado para granjas."}, {"id": "R1", "nombre": "Demoras transición contractual con cuenca DQS", "probabilidad": "Media", "impacto": "Alto", "mitigacion": "Plan de transición contractual con hitos verificables. Comité conjunto Integra-Impulxa-Megabús."}], "decisiones_pendientes": [{"id": "D-P5-01", "tema": "Cierre financiero de las 3 granjas solares (A5.5)", "fecha_limite": "2026-06-30", "criticidad": "critica", "opciones": ["PPA con contraparte", "Financiamiento estructurado bancario", "Mix con BT-CTeI"]}, {"id": "D-P5-02", "tema": "Dimensionamiento definitivo de las granjas (post-prefactibilidad)", "fecha_limite": "2026-06-30", "criticidad": "alta"}]}, "patios": {"meta": {"id_tablero": "TG-SP-PATIOS-IMPULXA", "nombre": "Tablero Sub-Plan Operativo de Adecuación de Patios IMPULXA", "tipo": "sub_plan", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Jefe de Patios + Concertador + Gerencia General", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Quincenal hasta dic 2026, mensual luego", "documento_fuente": "Sub-Plan Operativo Patios IMPULXA v3.0", "tablero_padre": "TG-00-MAESTRO", "palanca_principal": "L5"}, "resumen_ejecutivo": "Versión 3.0 del Sub-Plan operativiza la adecuación de patios para flota 100% eléctrica de IMPULXA. Incluye 18 acciones operativas más AP.0 (designación del Jefe de Patios), en 4 bloques: A (cierre operación diésel), B (articulación EFEN/Megabús), C (adecuación civil con tercero), D (montaje eléctrico con tercero). Ventana de ejecución: mayo 2026 — enero 2027.", "hitos_clave": {"go_live_operativo_impulxa": "2027-02-24", "cierre_contrato_02_2004": "2027-02-23", "acta_inicio_om_clausula_6_1": "2027-03-30", "entrega_efen_planos": "2026-05-31", "entrega_megabus_disenos": "2026-06-04", "entrega_fase_5_megabus": "2026-10-31"}, "estado_general": {"semaforo": "amarillo", "resumen": "Ruta crítica con hitos contractuales vinculantes. Decisión EPC sobre EFEN pendiente. Jefe de Patios por designar.", "acciones_total": 19, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "presupuesto_estimado_estado": "validacion_pendiente_AP_10", "acciones_pendientes": 2, "acciones_en_curso": 0, "acciones_no_iniciadas": 17}, "decisiones_gerenciales_estructurales": ["Eliminar refuerzos estructurales del alcance (cargas no aumentan vs. diésel)", "Reasignar espacio liberado: trasladar oficinas administrativas al sótano + aprovechamiento del frente del predio", "Externalizar montaje eléctrico (subestación, transformadores, electrobarras, cargadores) y obra civil a dos contratistas terceros", "Designar formalmente Jefe de Patios como dueño operativo único en sitio, con reporte al Concertador"], "estructura_gobernanza": {"decisiones_gerenciales": "Gerencia General", "concertador": "Gerencia de I+D+i — diseño, supervisión, articulación EFEN/Megabús", "jefe_patios": "Rol nuevo — dueño operativo único en sitio, reporta al Concertador", "areas_funcionales": ["Operaciones", "Mantenimiento", "Talento Humano", "Jurídica", "Financiera"]}, "bloques": [{"id": "A", "nombre": "Cierre de la operación diésel", "acciones_count": 6, "estado": "preparacion", "decision_critica": "Alternativa técnica para paso 8 (cierre de tanques) — primera quincena de junio 2026", "alternativas_tecnicas": [{"id": "Alt1", "nombre": "Extracción y disposición", "descripcion": "Retiro físico de tanques con disposición controlada"}, {"id": "Alt2", "nombre": "Llenado con arena", "descripcion": "Llenado in-situ con arena tras limpieza"}, {"id": "Alt3", "nombre": "Llenado con CLSM", "descripcion": "Material auto-nivelante de baja densidad"}, {"id": "Alt4", "nombre": "Llenado con espuma de poliuretano", "descripcion": "Espuma estructural"}]}, {"id": "B", "nombre": "Articulación con EFEN y Megabús", "acciones_count": 5, "estado": "iniciado", "hito_critico": "Entrega de planos EFEN el 31 de mayo de 2026", "decision_pendiente_EPC": "EFEN asume EPC completo vs. licitación competitiva vs. esquema mixto"}, {"id": "C", "nombre": "Adecuación civil del patio con tercero", "acciones_count": 3, "estado": "diseno", "frentes_simultaneos": ["Demoliciones controladas", "Traslado oficinas administrativas al sótano", "Habilitación frente del predio para área operativa"], "modelo_contratacion": "Contratista tercero único — supervisión por Jefe de Patios"}, {"id": "D", "nombre": "Montaje eléctrico con tercero", "acciones_count": 4, "estado": "diseno", "alcance": "Subestación, transformadores, electrobarras, cargadores", "anclaje_tecnico": "Planos EFEN", "certificaciones_requeridas": ["Pruebas SAT", "Certificación RETIE"]}], "acciones": [{"id": "AP.0", "nombre": "Designación del Jefe de Patios", "responsable": "Gerencia General", "criticidad": "critica", "estado": "no_iniciada"}, {"id": "AP.1", "nombre": "Decisión gerencial sobre método de cierre de tanques", "responsable": "Gerencia General + Operaciones", "fecha_limite": "2026-06-15", "estado": "pendiente"}, {"id": "AP.2", "nombre": "Levantamiento técnico de tanques diésel existentes", "responsable": "Operaciones", "estado": "no_iniciada"}, {"id": "AP.3", "nombre": "Procedimiento de limpieza y caracterización ambiental de tanques", "responsable": "Operaciones + I+D+i", "estado": "no_iniciada"}, {"id": "AP.4", "nombre": "Ejecución del método elegido para cierre de tanques", "responsable": "Contratista civil + Jefe Patios", "estado": "no_iniciada"}, {"id": "AP.5", "nombre": "Certificación ambiental del cierre", "responsable": "I+D+i + Jurídica", "estado": "no_iniciada"}, {"id": "AP.6", "nombre": "Entrega de planos EFEN para diseño eléctrico", "responsable": "EFEN (contraparte)", "fecha_limite": "2026-05-31", "estado": "no_iniciada"}, {"id": "AP.7", "nombre": "Entrega a MEGABÚS de los diseños de adecuación eléctrica", "responsable": "I+D+i + Concertador", "fecha_limite": "2026-06-04", "estado": "no_iniciada"}, {"id": "AP.8", "nombre": "Articulación de hitos con EFEN", "responsable": "Concertador", "estado": "no_iniciada"}, {"id": "AP.9", "nombre": "Esquema EPC sobre EFEN (decisión pendiente)", "responsable": "Gerencia General + Megabús", "estado": "pendiente"}, {"id": "AP.10", "nombre": "Entrega de Fase 4 ante Megabús (validación financiera)", "responsable": "Concertador + Financiera", "fecha_limite": "2026-08-31", "estado": "no_iniciada"}, {"id": "AP.11", "nombre": "Especificación técnica para licitación civil", "responsable": "I+D+i", "estado": "no_iniciada"}, {"id": "AP.12", "nombre": "Adjudicación contratista civil", "responsable": "Jurídica + Financiera", "estado": "no_iniciada"}, {"id": "AP.13", "nombre": "Ejecución obras civiles (incluye traslado oficinas al sótano)", "responsable": "Contratista + Jefe Patios", "estado": "no_iniciada"}, {"id": "AP.14", "nombre": "Especificación técnica para licitación eléctrica", "responsable": "I+D+i", "estado": "no_iniciada"}, {"id": "AP.15", "nombre": "Adjudicación contratista eléctrico", "responsable": "Jurídica + Financiera", "estado": "no_iniciada"}, {"id": "AP.16", "nombre": "Montaje eléctrico (subestación, transformadores, electrobarras, cargadores)", "responsable": "Contratista eléctrico + Jefe Patios", "estado": "no_iniciada"}, {"id": "AP.17", "nombre": "Pruebas SAT y certificación RETIE", "responsable": "I+D+i + Contratista", "estado": "no_iniciada"}, {"id": "AP.18", "nombre": "Entrega formal de Fase 5 a Megabús", "responsable": "Concertador", "fecha_limite": "2026-10-31", "estado": "no_iniciada"}], "matriz_riesgos": [{"id": "RP.1", "nombre": "Contaminación del suelo en cierre de tanques", "probabilidad": "Media", "impacto": "Alto", "severidad": "alta"}, {"id": "RP.2", "nombre": "Atraso en avales de Megabús", "probabilidad": "Media", "impacto": "Alto", "severidad": "alta"}, {"id": "RP.3", "nombre": "Pérdida de personal clave", "probabilidad": "Media", "impacto": "Medio", "severidad": "media"}, {"id": "RP.4", "nombre": "Capacidad eléctrica insuficiente (mitigación parcial por EFEN)", "probabilidad": "Baja", "impacto": "Crítico", "severidad": "media"}, {"id": "RP.5", "nombre": "Sobrecosto civil por traslado en lugar de refuerzos", "probabilidad": "Media", "impacto": "Medio", "severidad": "media"}, {"id": "RP.6", "nombre": "Incompatibilidad cargadores-buses bajo el EPC", "probabilidad": "Media", "impacto": "Alto", "severidad": "alta_aumentada"}, {"id": "RP.7", "nombre": "Atraso de EFEN (nuevo riesgo)", "probabilidad": "Media", "impacto": "Crítico", "severidad": "critica"}, {"id": "RP.8", "nombre": "Falla de coordinación entre los dos contratistas en paralelo", "probabilidad": "Media", "impacto": "Alto", "severidad": "alta"}, {"id": "RP.9", "nombre": "Go-live sin piloto previo", "probabilidad": "Alta", "impacto": "Alto", "severidad": "alta"}], "indicadores_seguimiento": [{"id": "IP-01", "nombre": "% avance del cronograma maestro vs. plan", "meta": "≥95% en cada hito vinculante"}, {"id": "IP-02", "nombre": "% indicadores contractuales en verde con Megabús", "meta": "≥95% mensual"}, {"id": "IP-03", "nombre": "Disponibilidad técnica de flota eléctrica (durante Etapa Preoperativa)", "meta": "≥95% por semana"}, {"id": "IP-04", "nombre": "# días de atraso acumulado vs. cronograma EFEN", "meta": "≤7 días"}, {"id": "IP-05", "nombre": "Avance presupuestal vs. plan (consumo por bloque)", "meta": "±10% del plan"}], "compromisos_firmes_concertador": ["Reportar quincenalmente al Comité de Transformación durante mayo-diciembre 2026", "Custodiar la articulación con EFEN y Megabús como punto único de contacto", "Garantizar trazabilidad documental de todas las decisiones del Sub-Plan", "Escalar a Gerencia General cualquier desvío material >5 días en hito vinculante", "Sostener la disciplina de supervisión cruzada entre los dos contratistas (civil y eléctrico)"]}, "sc": {"meta": {"id_tablero": "TG-SP-SERVICIOS-COMPARTIDOS", "nombre": "Tablero Sub-Plan Operativo de Servicios Compartidos del Conglomerado", "tipo": "sub_plan", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Director del Sub-Plan + Gerencia Financiera + Concertador", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Mensual", "documento_fuente": "Sub-Plan Operativo Servicios Compartidos v3.0", "tablero_padre": "TG-00-MAESTRO", "palanca_principal": "L2", "horizonte_documento": "Junio 2026 — Junio 2028 (24 meses) + consolidación 2028-2030"}, "resumen_ejecutivo": "Sub-Plan que materializa la palanca L2 con 24 acciones (ASC.0 a ASC.23). Adelanta a Horizonte 1 lo que el Plan original ubicaba en Horizonte 2. Diseña un modelo de 8 unidades de servicio que atienden a 3 empresas del clúster nuclear y, en H2, a 5 empresas externas. La decisión jurídica del modelo (Opción 1, 2 o 3) se toma en junio 2026 con re-evaluación obligatoria a 18 meses (ASC.22).", "estado_general": {"semaforo": "amarillo", "resumen": "Sub-Plan listo para arranque. Decisión jurídica pendiente (ASC.1) para Comité Directivo de junio 2026. U-CON definida como unidad piloto.", "acciones_total": 24, "acciones_iniciadas": 0, "acciones_cerradas": 0, "acciones_desviadas": 0, "acciones_pendientes": 3, "acciones_no_iniciadas": 21, "acciones_en_curso": 0}, "alternativas_juridicas": [{"id": "Opcion1", "nombre": "Sociedad de servicios independiente", "descripcion": "Nueva sociedad con personería propia, capital aportado por clúster nuclear, gobierno corporativo independiente, NIT propio", "ventajas": ["Estructura limpia", "Facturación a terceros sin restricciones", "Gobernanza dedicada", "Marca diferenciada"], "desventajas": ["Requiere capitalización", "3-6 meses de constitución", "Fragmentación de marca Integra", "Posible duplicación de costos"]}, {"id": "Opcion2", "nombre": "Transformación de Integra de operadora a prestadora de servicios", "descripcion": "Tras cierre del Contrato 02 el 23-feb-2027, Integra modifica objeto social y estructura para convertirse en la prestadora de servicios al conglomerado", "ventajas": ["Aprovecha 22 años de historia corporativa", "No requiere nueva capitalización", "Capitaliza reputación científica", "Da propósito renovado a Integra"], "desventajas": ["Entrelaza dos transiciones simultáneas", "Requiere reforma estatutaria", "Demanda comunicación cuidadosa con stakeholders"]}, {"id": "Opcion3", "nombre": "Modelo híbrido transitorio", "descripcion": "Unidades arrancan como áreas internas de Integra durante 2026-2027 bajo marco jurídico provisional. A los 18 meses (ASC.22) el Comité decide formalización", "ventajas": ["Arranque inmediato sin esperar estatutos", "Decisión basada en datos operativos reales", "Derisking jurídico", "Opcionalidad estratégica preservada"], "desventajas": ["Posible percepción de indecisión", "Riesgo de quedarse en estado intermedio", "Complejidad tributaria intermedia"]}], "recomendacion_concertador": "Arrancar bajo Opción 3 con la arquitectura, procesos, tarifas y contratos diseñados desde el día 1 para soportar la migración a Opción 2 como estado final probable hacia 2028-2029. Lo que se construya en H1 sirve para cualquiera de los tres caminos. La Gerencia decide en marzo de 2028 (ASC.22) cuál se formaliza.", "unidades_de_servicio": [{"codigo": "U-CON", "nombre": "Gestión Contable", "alcance": "Cierre contable mensual y anual, cuentas por pagar/cobrar, conciliaciones, tributación, reporte financiero a juntas, auditoría interna", "universo_clientes": "8 empresas (3 nuclear + 5 externas)", "arranque": "Servicio piloto. Primer cliente del clúster nuclear (decisión gerencial)", "dimensionamiento_preliminar": "4-6 personas en arranque, crece a 8-12 con clientes externos", "estado": "diseno"}, {"codigo": "U-JUR", "nombre": "Gestión Jurídica", "alcance": "Contratación, litigios, cumplimiento normativo, gobierno corporativo, soporte transaccional, propiedad intelectual", "universo_clientes": "Clúster nuclear (3) + Attep en H2", "arranque": "Diseño en H1. Arranque en febrero 2027", "dimensionamiento_preliminar": "3-4 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-THO", "nombre": "Gestión del Talento Humano y Organizacional", "alcance": "Reclutamiento, nómina, formación, desempeño, bienestar, clima, escala salarial común", "universo_clientes": "Clúster nuclear (3) + Attep en H2", "arranque": "Diseño en H1. Arranque febrero 2027", "dimensionamiento_preliminar": "4-5 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-MTO", "nombre": "Gestión de Mantenimiento", "alcance": "Mantenimiento preventivo/correctivo de flota (diésel, eléctrica), infraestructura, inventarios, taller común, plataforma de gestión de activos", "universo_clientes": "Clúster nuclear (3). Impulxa prioritario por flota eléctrica", "arranque": "Diseño en H1. Arranque marzo 2027", "dimensionamiento_preliminar": "6-10 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-OPE", "nombre": "Gestión de la Operación", "alcance": "Planeación operativa, programación de rutas, supervisión, atención de incidentes, ITS, reporte contractual a interventorías", "universo_clientes": "Clúster nuclear (3 operadores)", "arranque": "Diseño en H1. Arranque marzo 2027", "dimensionamiento_preliminar": "5-8 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-COM", "nombre": "Gestión de las Comunicaciones", "alcance": "Comunicación interna/externa, vocería, relaciones con medios, redes sociales, contenidos, eventos, gestión de crisis", "universo_clientes": "Clúster nuclear (3)", "arranque": "Diseño en H1. Arranque abril 2027", "dimensionamiento_preliminar": "3-4 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-ENE", "nombre": "Gestión Energética", "alcance": "Planeación energética para flotas eléctricas, gestión de granjas solares, optimización de demanda, contratos PPA, certificaciones ambientales", "universo_clientes": "Impulxa en H1 (granjas solares). Clúster nuclear en H2", "arranque": "Diseño en H1. Arranque pleno abril 2027", "dimensionamiento_preliminar": "3-5 personas en arranque", "estado": "diseno_pendiente"}, {"codigo": "U-TIC", "nombre": "Gestión de las TIC e Implementación Tecnológica", "alcance": "Infraestructura tecnológica, plataformas corporativas (ERP, HCM, CMMS, CRM), integración de sistemas, gobierno de datos, ciberseguridad, implementación de iniciativas IA", "universo_clientes": "Clúster nuclear (3) + 5 externas (vía ERP contable)", "arranque": "Diseño en H1 paralelo a U-CON. Primera plataforma productiva octubre 2026", "dimensionamiento_preliminar": "5-7 personas en arranque, crece a 8-10 en H2", "estado": "diseno"}], "empresas_cliente": {"cluster_nuclear": [{"nombre": "Cooperativa San Fernando", "horizonte_incorporacion": "H1", "unidades_demandadas": 7}, {"nombre": "Superbuses", "horizonte_incorporacion": "H1", "unidades_demandadas": 7}, {"nombre": "Impulxa S.A.S.", "horizonte_incorporacion": "H1", "unidades_demandadas": 8}], "cluster_externo": [{"nombre": "Attep S.A.S.", "horizonte_incorporacion": "H2", "unidades_demandadas": 3}, {"nombre": "SITE S.A.S.", "horizonte_incorporacion": "H2", "unidades_demandadas": 1}, {"nombre": "Contribuir Empresarial", "horizonte_incorporacion": "H2", "unidades_demandadas": 1}, {"nombre": "Sinergia 5", "horizonte_incorporacion": "H2", "unidades_demandadas": 1}, {"nombre": "Vemar", "horizonte_incorporacion": "H2", "unidades_demandadas": 1}]}, "bloques_accion": [{"id": "T", "nombre": "Transversal y gobernanza", "acciones": "ASC.0 a ASC.5", "estado": "iniciado"}, {"id": "A", "nombre": "Diagnóstico y diseño", "acciones": "ASC.6 a ASC.10", "estado": "diseno"}, {"id": "B", "nombre": "Piloto del primer servicio (U-CON)", "acciones": "ASC.11 a ASC.13", "estado": "no_iniciado"}, {"id": "C", "nombre": "Escalamiento a las siete unidades restantes", "acciones": "ASC.14 a ASC.19", "estado": "no_iniciado"}, {"id": "D", "nombre": "Comercialización a clientes externos", "acciones": "ASC.20 a ASC.21", "estado": "no_iniciado"}, {"id": "E", "nombre": "Consolidación y modelo definitivo", "acciones": "ASC.22 a ASC.23", "estado": "no_iniciado"}], "decisiones_pendientes": [{"id": "ASC.1", "tema": "Decisión jurídica del modelo (Opción 1, 2 o 3)", "instancia": "Comité Directivo", "fecha_limite": "2026-06-15", "criticidad": "critica"}, {"id": "ASC.22", "tema": "Re-evaluación a 18 meses de la Opción jurídica", "instancia": "Comité Directivo", "fecha_limite": "2028-01-31", "criticidad": "alta"}], "kpis_sub_plan": [{"id": "KSC-01", "nombre": "% reducción costo administrativo combinado por SC", "linea_base": "0%", "meta": "≥8% en T1 2027, ≥15% en 2030", "frecuencia": "Trimestral"}, {"id": "KSC-02", "nombre": "% costos del grupo cubiertos por SC", "linea_base": "0%", "meta": "≥25% al cierre 2028", "frecuencia": "Trimestral"}, {"id": "KSC-03", "nombre": "# unidades operativas con SLA documentado", "linea_base": "0", "meta": "8 unidades al cierre H2", "frecuencia": "Semestral"}, {"id": "KSC-04", "nombre": "# clientes externos del modelo SC", "linea_base": "0", "meta": "≥1 en 2029, ≥3 en 2030", "frecuencia": "Anual"}, {"id": "KSC-05", "nombre": "Cumplimiento SLA de la unidad piloto U-CON", "linea_base": "Por establecer", "meta": "≥95%", "frecuencia": "Mensual"}], "riesgos_sub_plan": [{"id": "RSC-1", "nombre": "Decisión jurídica postergada más allá de junio 2026", "probabilidad": "Media", "impacto": "Alto"}, {"id": "RSC-2", "nombre": "Resistencia de empresas-cliente a migrar (especialmente Cooperativa San Fernando)", "probabilidad": "Media", "impacto": "Alto"}, {"id": "RSC-3", "nombre": "Doble facturación prolongada en la transición", "probabilidad": "Media", "impacto": "Medio"}, {"id": "RSC-4", "nombre": "Pérdida de talento clave durante diseño de unidades", "probabilidad": "Media", "impacto": "Alto"}, {"id": "RSC-5", "nombre": "Tarifas internas mal calibradas (subsidios cruzados ocultos)", "probabilidad": "Alta", "impacto": "Medio"}], "filosofia_operativa": ["Una unidad piloto (U-CON) antes que ocho unidades en paralelo", "Clúster nuclear antes que clientes externos", "Plan de transición firmado por empresa-cliente (ASC.6)", "Doble facturación posible durante transición (hasta 60 días paralelos por servicio)"], "acciones": [{"id": "ASC.0", "nombre": "Designacion del Director del Sub-Plan", "bloque": "T", "responsable": "Gerencia General", "apoyos": ["Concertador"], "estado": "pendiente"}, {"id": "ASC.1", "nombre": "Decision gerencial de forma juridica del modelo (Opcion 1, 2 o 3)", "bloque": "T", "responsable": "Comite Directivo", "fecha_limite": "2026-06-15", "estado": "pendiente"}, {"id": "ASC.2", "nombre": "Dimensionamiento definitivo de cada unidad", "bloque": "T", "responsable": "Director Sub-Plan", "apoyos": ["Talento Humano", "Financiera"], "estado": "no_iniciada"}, {"id": "ASC.3", "nombre": "Diagnostico de actividades duplicadas en el grupo", "bloque": "A", "responsable": "Concertador", "apoyos": ["Financiera"], "estado": "no_iniciada"}, {"id": "ASC.4", "nombre": "Diseno del modelo operativo comun de las unidades", "bloque": "A", "responsable": "Financiera", "apoyos": ["Juridica", "Concertador"], "estado": "no_iniciada"}, {"id": "ASC.5", "nombre": "Marco juridico provisional para facturacion intercompania", "bloque": "A", "responsable": "Juridica", "apoyos": ["Financiera"], "estado": "no_iniciada"}, {"id": "ASC.6", "nombre": "Plan de transicion firmado por cada empresa-cliente", "bloque": "A", "responsable": "Director Sub-Plan", "apoyos": ["Gerencia General"], "estado": "no_iniciada"}, {"id": "ASC.7", "nombre": "Tarifas internas iniciales por unidad", "bloque": "A", "responsable": "Financiera", "apoyos": ["Director Sub-Plan"], "estado": "no_iniciada"}, {"id": "ASC.8", "nombre": "SLA modelo y plantilla replicable", "bloque": "A", "responsable": "Director Sub-Plan", "apoyos": ["TIC"], "estado": "no_iniciada"}, {"id": "ASC.9", "nombre": "Plantilla operativa replicable", "bloque": "A", "responsable": "Director Sub-Plan", "apoyos": [], "estado": "no_iniciada"}, {"id": "ASC.10", "nombre": "Definicion de plataforma tecnologica (ERP, HCM, CMMS)", "bloque": "A", "responsable": "TIC", "apoyos": ["Director Sub-Plan"], "estado": "no_iniciada"}, {"id": "ASC.11", "nombre": "Diseno detallado de U-CON (unidad piloto)", "bloque": "B", "responsable": "Director Sub-Plan", "apoyos": ["Financiera"], "estado": "no_iniciada"}, {"id": "ASC.12", "nombre": "Implementacion de U-CON con primer cliente nuclear", "bloque": "B", "responsable": "Director Sub-Plan", "apoyos": ["Financiera", "TIC"], "estado": "no_iniciada"}, {"id": "ASC.13", "nombre": "Lecciones aprendidas del piloto U-CON", "bloque": "B", "responsable": "Concertador", "apoyos": ["Director Sub-Plan"], "estado": "no_iniciada"}, {"id": "ASC.14", "nombre": "Diseno e implementacion de U-JUR", "bloque": "C", "responsable": "Director Sub-Plan", "apoyos": ["Juridica"], "estado": "no_iniciada"}, {"id": "ASC.15", "nombre": "Diseno e implementacion de U-THO", "bloque": "C", "responsable": "Director Sub-Plan", "apoyos": ["Talento Humano"], "estado": "no_iniciada"}, {"id": "ASC.16", "nombre": "Diseno e implementacion de U-MTO", "bloque": "C", "responsable": "Director Sub-Plan", "apoyos": ["Operaciones", "Impulxa"], "estado": "no_iniciada"}, {"id": "ASC.17", "nombre": "Diseno e implementacion de U-OPE", "bloque": "C", "responsable": "Director Sub-Plan", "apoyos": ["Operaciones"], "estado": "no_iniciada"}, {"id": "ASC.18", "nombre": "Diseno e implementacion de U-COM y U-ENE", "bloque": "C", "responsable": "Director Sub-Plan", "apoyos": ["Comunicaciones", "Gerencia I+D+i"], "estado": "no_iniciada"}, {"id": "ASC.19", "nombre": "Diseno e implementacion plena de U-TIC", "bloque": "C", "responsable": "TIC", "apoyos": ["Director Sub-Plan"], "estado": "no_iniciada"}, {"id": "ASC.20", "nombre": "Incorporacion de clientes externos al servicio U-CON", "bloque": "D", "responsable": "Director Sub-Plan", "apoyos": ["Comunicaciones"], "estado": "no_iniciada"}, {"id": "ASC.21", "nombre": "Comercializacion ampliada a clientes externos selectos", "bloque": "D", "responsable": "Gerencia General", "apoyos": ["Director Sub-Plan", "Comunicaciones"], "estado": "no_iniciada"}, {"id": "ASC.22", "nombre": "Re-evaluacion a 18 meses de la Opcion juridica", "bloque": "E", "responsable": "Comite Directivo", "fecha_limite": "2028-01-31", "estado": "pendiente"}, {"id": "ASC.23", "nombre": "Formalizacion del modelo definitivo", "bloque": "E", "responsable": "Gerencia General", "apoyos": ["Juridica"], "estado": "no_iniciada"}]}, "concertador": {"meta": {"id_tablero": "TG-CONCERTADOR", "nombre": "Tablero del Concertador — Gobernanza del Proceso de Transformación", "tipo": "concertador", "version": "3.0", "fecha_corte": "2026-05-01", "audiencia_principal": "Concertador (Gerencia I+D+i) + Gerencia General", "custodio": "Gerencia de I+D+i (Concertador)", "cadencia_actualizacion": "Semanal (Sala de control I+D+i) · Mensual (reporte a GG)", "documento_fuente": "Informe Estratégico v3.0 — Sección 8", "tablero_padre": "TG-00-MAESTRO"}, "proposito": "Este tablero rastrea el proceso de transformación en sí mismo, no sus contenidos. Mide la disciplina de ejecución, la cadencia de los comités, el cumplimiento de los compromisos del Comité Directivo y la salud de la gobernanza. Es el meta-instrumento que protege el diseño estratégico de la captura por inercias funcionales.", "estado_general": {"semaforo": "amarillo", "resumen": "Concertador con mandato pendiente de formalización por Acta de Junta. Sesión Gerencial 2 por convocar. Compromisos firmes del Comité Directivo aún no aceptados formalmente.", "mandato_concertador_formalizado": false, "comite_transformacion_activo": false, "comite_h3_activo": false, "sala_control_idi_activa": true}, "rol_concertador": {"definicion": "Rol que diseña, conduce y custodia el proceso de planeación y transformación estratégica, sin ser el dueño de las decisiones. Combina facilitación, custodia metodológica y articulación interfuncional.", "principio_central": "Concertar no es concentrar. El Concertador no decide en lugar del Comité Directivo: facilita las decisiones, las documenta, vela porque sean coherentes y construye los instrumentos para ejecutarlas. La autoridad de decisión permanece con la Gerencia General y la Junta.", "funciones_operativas": [{"id": "F1", "nombre": "Curaduría metodológica", "instrumento": "Guía metodológica viva (Informe Estratégico v3.0)", "estado": "activa"}, {"id": "F2", "nombre": "Facilitación de sesiones", "instrumento": "Agenda detallada por sesión y memoria sistematizada", "estado": "activa"}, {"id": "F3", "nombre": "Custodia de los compromisos", "instrumento": "Tablero de compromisos vivo + reporte mensual al Gerente General", "estado": "en_diseno"}, {"id": "F4", "nombre": "Articulación interfuncional", "instrumento": "Mapas de interdependencias, mediación bilateral, reuniones tripartitas", "estado": "iniciada"}, {"id": "F5", "nombre": "Vigilancia estratégica externa", "instrumento": "Boletín de vigilancia estratégica mensual + tableros prospectivos", "estado": "en_diseno"}, {"id": "F6", "nombre": "Reporte a Junta y al accionista", "instrumento": "Informe trimestral a Junta + informe anual al Accionista", "estado": "en_diseno"}]}, "mandato_requerido": {"acceso_transversal": {"descripcion": "Autorización para convocar a cualquier gerencia, solicitar información y participar en cualquier comité directivo del grupo en condición de observador o facilitador", "estado": "pendiente_formalizacion"}, "cadencia_reporte_directo": {"descripcion": "Espacio reservado para informe del Concertador (15 minutos) sobre el estado del proceso de transformación en cada Junta Directiva", "estado": "pendiente_formalizacion"}, "capacidad_elevar_puntos_criticos": {"descripcion": "Facultad explícita de escalar a Junta, sin necesidad de filtro previo, situaciones que en su criterio profesional pongan en riesgo el avance de la transformación", "estado": "pendiente_formalizacion"}, "via_formal_recomendada": "Acta de Junta Directiva con publicación al Comité de Dirección"}, "cadencia_comites": [{"instancia": "Sala de control I+D+i", "frecuencia": "Semanal", "convoca": "Concertador", "proposito": "Coordinación interna del equipo I+D+i. Actualización del tablero de avance del plan. Identificación de riesgos emergentes", "estado_activacion": "activa", "ultima_sesion": "2026-05-08", "asistencia_promedio": null}, {"instancia": "Comité de Transformación", "frecuencia": "Mensual", "convoca": "Gerente General", "proposito": "Revisión de avance del plan por pilar. Decisión sobre desvíos. Aprobación de ajustes. Revisión de KPIs", "estado_activacion": "pendiente_constitucion", "primera_sesion_objetivo": "2026-06-30", "asistencia_requerida": "≥90%"}, {"instancia": "Comité H3 (apuestas exploratorias)", "frecuencia": "Bimestral", "convoca": "Concertador + GG", "proposito": "Espacio dedicado a iniciativas de Horizonte 3. Reglas distintas: métricas de aprendizaje, no de eficiencia. Decisión go/no-go por experimento", "estado_activacion": "pendiente_constitucion", "primera_sesion_objetivo": "2026-07-31"}, {"instancia": "Sesión de OKRs trimestral", "frecuencia": "Trimestral", "convoca": "Concertador", "proposito": "Cierre de OKRs del trimestre saliente y formulación de OKRs del entrante. Catchball entre Comité Directivo y Áreas", "estado_activacion": "pendiente_constitucion", "primera_sesion_objetivo": "2026-09-30"}, {"instancia": "Revisión trimestral con Junta", "frecuencia": "Trimestral", "convoca": "Gerente General", "proposito": "Revisión estratégica con Junta Directiva. Cierre OKRs trimestrales y apertura del siguiente. Revisión de cartera de iniciativas", "estado_activacion": "pendiente_constitucion"}, {"instancia": "Sesión anual de planeación", "frecuencia": "Anual (T4)", "convoca": "GG + Concertador", "proposito": "Renovación del Hoshin Kanri X-Matrix. Revisión de pilares. Actualización de escenarios prospectivos", "estado_activacion": "planificada"}], "compromisos_firmes_solicitados_al_comite_directivo": [{"id": "C1", "compromiso": "Asignar responsable nominal (no sólo cargo) a cada una de las 50 acciones del plan en la Sesión Gerencial 2", "estado": "pendiente"}, {"id": "C2", "compromiso": "Asistir personalmente al menos al 90% de los Comités de Transformación mensuales", "estado": "pendiente"}, {"id": "C3", "compromiso": "Reservar como mínimo el 15% del tiempo gerencial mensual al avance del plan estratégico", "estado": "pendiente"}, {"id": "C4", "compromiso": "Aceptar que las metas y avance del plan estratégico formarán parte de la evaluación de desempeño anual del Comité Directivo a partir de 2027", "estado": "pendiente"}, {"id": "C5", "compromiso": "Mantener confidencialidad sobre detalles tecnológicos y comerciales del plan que constituyan ventaja competitiva", "estado": "pendiente"}, {"id": "C6", "compromiso": "Compartir abiertamente errores y desvíos en los Comités de Transformación", "estado": "pendiente"}, {"id": "C7", "compromiso": "Defender el rol del Concertador frente a presiones funcionales", "estado": "pendiente"}, {"id": "C8", "compromiso": "Respetar la regla del máximo de tres Big Bets en ejecución simultánea", "estado": "pendiente"}, {"id": "C9", "compromiso": "Reportar trimestralmente a la Gerencia General de manera honesta el avance, los desvíos y los aprendizajes", "estado": "pendiente"}, {"id": "C10", "compromiso": "Asumir que el plan es un documento vivo: se ajusta cada trimestre y se renueva cada año, sin abandonar el rumbo de fondo", "estado": "pendiente"}], "riesgos_del_rol": [{"id": "RC1", "nombre": "Burocratización", "descripcion": "Que el rol degenere en una capa de reportes, comités y formularios que multiplican el trabajo sin acelerar las decisiones", "mitigacion": "Cada instrumento debe responder a una pregunta de decisión concreta; si no la responde, se elimina", "estado": "monitoreo"}, {"id": "RC2", "nombre": "Captura de la decisión", "descripcion": "Que por proximidad metodológica el Concertador termine decidiendo de facto en lugar del Comité Directivo", "mitigacion": "Regla explícita: el Concertador propone, el Comité decide, la Junta valida", "estado": "monitoreo"}, {"id": "RC3", "nombre": "Soledad técnica", "descripcion": "Que el Concertador asuma la carga metódica de un proceso de gran escala con una sola persona", "mitigacion": "Equipo de apoyo de la Gerencia I+D+i (al menos un profesional dedicado a sistematización y dos practicantes académicos rotatorios)", "estado": "activo"}], "instrumentos_gestion_concertador": [{"id": "I1", "nombre": "Tablero de avance del plan", "descripcion": "Matriz viva con las 50 acciones, su estado, % de avance y próximo hito", "estado": "operacional"}, {"id": "I2", "nombre": "Dashboard maestro de KPIs", "descripcion": "Tablero ejecutivo con los 20 KPIs estratégicos del plan, semaforizados y con tendencia", "estado": "en_diseno"}, {"id": "I3", "nombre": "Bitácora de decisiones del Comité", "descripcion": "Registro acumulativo de las decisiones tomadas en cada Comité de Transformación y Comité H3", "estado": "preparacion"}, {"id": "I4", "nombre": "Boletín mensual de vigilancia estratégica", "descripcion": "Documento de 4-6 páginas con señales del entorno que pueden afectar al plan", "estado": "preparacion"}, {"id": "I5", "nombre": "Reporte mensual del Concertador al GG", "descripcion": "Estado general, avance por pilar, decisiones requeridas, riesgos, señales del entorno, reconocimientos", "estado": "preparacion"}], "agenda_proxima_sesion_gerencial_2": {"objetivos": ["Validar (o ajustar) los cinco pilares estratégicos propuestos", "Aprobar declaración de Visión 2030 destilada (máx. 60 palabras)", "Construir un primer Hoshin Kanri X-Matrix anual (2026-2027)", "Acordar la cadencia de gobernanza del proceso de transformación"], "fecha_propuesta": "T2 2026", "modalidad": "Sesión intensiva de un día (8 horas) en sede externa", "pre_trabajo_requerido": ["Lectura completa y anotada del informe estratégico (5 días antes)", "Mapa personal de stakeholders críticos del área (3 días antes)", "Declaración de Quick Wins y Big Bets considerados por cada directivo (3 días antes)", "Borrador de 3 KPIs para la X-Matrix anual (2 días antes)"], "productos_esperados": ["5 pilares validados", "Visión 2030 firmada", "X-Matrix 2026-2027 construida en papelógrafo + digitalizada", "Mapa de gobernanza con comités, dueños, frecuencias", "Lista de compromisos personales para los próximos 90 días"]}, "vigilancia_estrategica_actual": {"frentes_monitoreados": ["Regulación CREG, UPME, MinTransporte, MinEnergía", "Tendencias tecnológicas en electromovilidad y generación solar", "Competidores en proveeduría energética B2B en el Eje Cafetero y a nivel nacional", "Movimientos del sector en Colombia y Latinoamérica (especialmente Perú)", "Convocatorias de cofinanciación CTeI y fondos de impacto"], "boletin_mensual_estado": "preparacion_primera_edicion", "primera_edicion_objetivo": "2026-06-30"}, "lectura_concertador": "El proceso que aquí se delinea no es un proyecto que se concluye. Es una nueva forma de operar la empresa. Si dentro de cuatro años Integra es estratégicamente irreconocible respecto a hoy, el plan habrá funcionado. Si dentro de cuatro años Integra es 'la misma de siempre con algunos paneles solares', habremos fracasado en lo único que importa."}}</script>
+<script>
+// ============ LIBRERÍA DE GAUGES — TransFórmate v1.0 ============
+// 4 tipos de gauge en SVG puro, sin dependencias externas
+// Paleta y tipografías coherentes con los tableros institucionales
+(function(){
+  const GC = {
+    bg: '#e8e2d4', rojo: '#a33636', amarillo: '#b58a26', verde: '#3d7a52',
+    accent: '#b85a1f', ink: '#1a1f2e', inkSoft: '#3a4255', inkMute: '#6b7280',
+    paper: '#fffdf7', creamSoft: '#faf6ee', rule: '#d9d2c4'
+  };
+
+  function colorByPct(pct){
+    if(pct >= 67) return GC.verde;
+    if(pct >= 34) return GC.amarillo;
+    return GC.rojo;
+  }
+
+  function clamp(v, max=100){
+    v = Number(v); if(!isFinite(v)) v = 0;
+    return Math.max(0, Math.min(max, v));
+  }
+
+  // Parser tolerante: convierte "75%", "75", "0,75", "≥7/10", etc. a número 0-100
+  function parseToPct(value, maxHint=100){
+    if(value == null) return null;
+    if(typeof value === 'number') return clamp(value, 100);
+    let s = String(value).trim();
+    if(!s || /^(por\s+(medir|establecer|dimensionar|definir)|pendiente|n\/a|—|-)$/i.test(s)) return null;
+    if(/^SÍ$/i.test(s) || /^SI$/i.test(s)) return 100;
+    if(/^NO$/i.test(s)) return 0;
+    s = s.replace(',', '.').replace(/[≥≤<>]/g, '').replace(/[$]/g,'').trim();
+    const m = s.match(/(-?\d+(?:\.\d+)?)/);
+    if(!m) return null;
+    let n = parseFloat(m[1]);
+    if(s.includes('%')) return clamp(n, 100);
+    if(s.includes('/10')) return clamp(n * 10, 100);
+    if(s.includes('/')) { const m2 = s.match(/(-?\d+(?:\.\d+)?)\s*\/\s*(-?\d+(?:\.\d+)?)/); if(m2) return clamp((+m2[1]/+m2[2])*100, 100); }
+    // Si parece un % implícito (0-100), usar como pct
+    if(n >= 0 && n <= 100) return clamp(n, 100);
+    return null;
+  }
+
+  // ============ 1. SEMICIRCULAR (medidor radial 180°) ============
+  // Uso: resumen por pilar — gauge grande, vistoso
+  function semicircular({value=0, max=100, label='', sub='', size=200}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size*0.68, r = size*0.4, sw = size*0.08;
+    const angle = (pct/100) * 180;
+    const endRad = (180 - angle) * Math.PI / 180;
+    const endX = cx + r * Math.cos(Math.PI - angle*Math.PI/180);
+    const endY = cy - r * Math.sin(angle * Math.PI / 180);
+    const color = colorByPct(pct);
+    const bgPath = `M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${cx+r} ${cy}`;
+    const valPath = pct > 0 ? `M ${cx-r} ${cy} A ${r} ${r} 0 ${angle>180?1:0} 1 ${endX} ${endY}` : '';
+    return `<svg viewBox="0 0 ${size} ${size*0.88}" class="g-gauge g-semi" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <path d="${bgPath}" stroke="${GC.bg}" stroke-width="${sw}" fill="none" stroke-linecap="butt"/>
+  ${valPath?`<path d="${valPath}" stroke="${color}" stroke-width="${sw}" fill="none" stroke-linecap="round"/>`:''}
+  <text x="${cx}" y="${cy-r*0.18}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${size*0.24}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${size*0.14}" fill="${GC.inkMute}">%</tspan></text>
+  ${sub?`<text x="${cx}" y="${cy+size*0.04}" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="${size*0.06}" fill="${GC.inkMute}">${sub}</text>`:''}
+  ${label?`<text x="${cx}" y="${size*0.84}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${size*0.065}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.1em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 2. CIRCULAR (radial completo 360°) ============
+  // Uso: KPIs individuales
+  function circular({value=0, max=100, label='', size=120}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size/2, r = size*0.38, sw = size*0.08;
+    const circ = 2 * Math.PI * r;
+    const offset = circ * (1 - pct/100);
+    const color = colorByPct(pct);
+    return `<svg viewBox="0 0 ${size} ${size*1.12}" class="g-gauge g-circ" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${GC.bg}" stroke-width="${sw}"/>
+  ${pct>0?`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-dasharray="${circ.toFixed(2)}" stroke-dashoffset="${offset.toFixed(2)}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>`:''}
+  <text x="${cx}" y="${cy+size*0.08}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${size*0.28}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${size*0.15}" fill="${GC.inkMute}">%</tspan></text>
+  ${label?`<text x="${cx}" y="${size*1.07}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${size*0.08}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.08em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 3. BULLET (barra horizontal con umbrales) ============
+  // Uso: % avance por acción en tabla
+  function bullet({value=0, max=100, target=null, label='', width=180, height=22, showText=true}){
+    const pct = clamp((value/max)*100);
+    const targetPct = target != null ? clamp((target/max)*100) : null;
+    const w = width, h = height;
+    const color = colorByPct(pct);
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-bullet" preserveAspectRatio="none" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <rect x="0" y="0" width="${(w*0.33).toFixed(1)}" height="${h}" fill="#f0dada" opacity="0.55"/>
+  <rect x="${(w*0.33).toFixed(1)}" y="0" width="${(w*0.33).toFixed(1)}" height="${h}" fill="#f5ecd4" opacity="0.55"/>
+  <rect x="${(w*0.66).toFixed(1)}" y="0" width="${(w*0.34).toFixed(1)}" height="${h}" fill="#e3eee6" opacity="0.55"/>
+  <rect x="0" y="${(h*0.28).toFixed(1)}" width="${(w*pct/100).toFixed(2)}" height="${(h*0.44).toFixed(1)}" fill="${color}"/>
+  ${targetPct!==null?`<line x1="${(w*targetPct/100).toFixed(2)}" y1="${(h*0.1).toFixed(1)}" x2="${(w*targetPct/100).toFixed(2)}" y2="${(h*0.9).toFixed(1)}" stroke="${GC.ink}" stroke-width="2"/>`:''}
+  ${showText?`<text x="${w-5}" y="${(h*0.72).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="${(h*0.5).toFixed(1)}" font-weight="600" fill="${GC.ink}">${pct.toFixed(0)}%</text>`:''}
+</svg>`;
+  }
+
+  // ============ 4. DIAL (medidor con aguja) ============
+  // Uso: gauge maestro consolidado
+  function dial({value=0, max=100, label='', size=240}){
+    const pct = clamp((value/max)*100);
+    const cx = size/2, cy = size*0.7, r = size*0.4, sw = size*0.07;
+    const needleLen = r * 0.88;
+    const angle = -180 + (pct/100) * 180;
+    const needleX = cx + needleLen * Math.cos(angle * Math.PI / 180);
+    const needleY = cy + needleLen * Math.sin(angle * Math.PI / 180);
+    function bandPath(pStart, pEnd){
+      const a1 = -180 + (pStart/100)*180;
+      const a2 = -180 + (pEnd/100)*180;
+      const x1 = cx + r * Math.cos(a1 * Math.PI / 180);
+      const y1 = cy + r * Math.sin(a1 * Math.PI / 180);
+      const x2 = cx + r * Math.cos(a2 * Math.PI / 180);
+      const y2 = cy + r * Math.sin(a2 * Math.PI / 180);
+      return `M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`;
+    }
+    // tick marks
+    let ticks = '';
+    for(let p=0; p<=100; p+=10){
+      const a = -180 + (p/100)*180;
+      const x1 = cx + (r-sw*0.6) * Math.cos(a * Math.PI / 180);
+      const y1 = cy + (r-sw*0.6) * Math.sin(a * Math.PI / 180);
+      const x2 = cx + (r+sw*0.15) * Math.cos(a * Math.PI / 180);
+      const y2 = cy + (r+sw*0.15) * Math.sin(a * Math.PI / 180);
+      ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${GC.inkMute}" stroke-width="${p%50===0?2:1}" opacity="${p%50===0?0.7:0.35}"/>`;
+    }
+    return `<svg viewBox="0 0 ${size} ${size*0.92}" class="g-gauge g-dial" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: ${pct.toFixed(0)}%">
+  <path d="${bandPath(0,33)}" stroke="${GC.rojo}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  <path d="${bandPath(33,67)}" stroke="${GC.amarillo}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  <path d="${bandPath(67,100)}" stroke="${GC.verde}" stroke-width="${sw}" fill="none" stroke-linecap="butt" opacity="0.85"/>
+  ${ticks}
+  <line x1="${cx}" y1="${cy}" x2="${needleX.toFixed(2)}" y2="${needleY.toFixed(2)}" stroke="${GC.ink}" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="${cx}" cy="${cy}" r="${(size*0.045).toFixed(2)}" fill="${GC.ink}"/>
+  <text x="${cx}" y="${(cy-r*0.5).toFixed(1)}" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="${(size*0.18).toFixed(1)}" font-weight="500" fill="${GC.ink}" letter-spacing="-0.02em">${pct.toFixed(0)}<tspan font-size="${(size*0.10).toFixed(1)}" fill="${GC.inkMute}">%</tspan></text>
+  ${label?`<text x="${cx}" y="${(size*0.88).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="${(size*0.06).toFixed(1)}" font-weight="600" fill="${GC.inkSoft}" letter-spacing="0.12em" style="text-transform:uppercase">${label}</text>`:''}
+</svg>`;
+  }
+
+  // ============ 5. HISTÓRICO (sparkline + valor actual) ============
+  // Uso: evolución a lo largo de meses
+  function historico({history=[], label='', sub='', width=280, height=120, max=100, showLabels=true}){
+    const w = width, h = height;
+    const padL = 38, padR = 18, padT = 18, padB = showLabels ? 26 : 10;
+    const innerW = w - padL - padR;
+    const innerH = h - padT - padB;
+    if(!history.length){
+      return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-historico" preserveAspectRatio="xMidYMid meet">
+  <rect x="0" y="0" width="${w}" height="${h}" fill="${GC.creamSoft}" stroke="${GC.rule}"/>
+  <text x="${w/2}" y="${h/2}" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="${GC.inkMute}" font-style="italic">Sin historial disponible</text>
+</svg>`;
+    }
+    const n = history.length;
+    const xAt = i => padL + (n>1 ? (i*innerW/(n-1)) : innerW/2);
+    const yAt = v => padT + innerH * (1 - clamp(v)/100);
+    // Background grid lines at 0/50/100
+    let grid = '';
+    [0, 50, 100].forEach(v => {
+      grid += `<line x1="${padL}" y1="${yAt(v).toFixed(1)}" x2="${(w-padR).toFixed(1)}" y2="${yAt(v).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.6"/>`;
+      grid += `<text x="${padL-6}" y="${(yAt(v)+3).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono" font-size="9" fill="${GC.inkMute}">${v}</text>`;
+    });
+    // Area path
+    let areaPath = '';
+    history.forEach((p, i) => {
+      const x = xAt(i).toFixed(2), y = yAt(p.value).toFixed(2);
+      areaPath += (i===0 ? `M ${x} ${(padT+innerH).toFixed(1)} L ${x} ${y}` : ` L ${x} ${y}`);
+    });
+    areaPath += ` L ${xAt(n-1).toFixed(2)} ${(padT+innerH).toFixed(1)} Z`;
+    // Line path
+    let linePath = '';
+    history.forEach((p, i) => {
+      linePath += (i===0?'M':' L') + ' ' + xAt(i).toFixed(2) + ' ' + yAt(p.value).toFixed(2);
+    });
+    // Last point + dot
+    const last = history[n-1];
+    const lastX = xAt(n-1), lastY = yAt(last.value);
+    const lastColor = colorByPct(last.value);
+    // Points
+    let points = '';
+    history.forEach((p, i) => {
+      const x = xAt(i), y = yAt(p.value);
+      const c = colorByPct(p.value);
+      points += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${i===n-1?5:3.5}" fill="${c}" stroke="${GC.paper}" stroke-width="${i===n-1?2:1.5}"/>`;
+    });
+    // X labels
+    let xLabels = '';
+    if(showLabels){
+      history.forEach((p, i) => {
+        const lbl = p.label || p.mes || '';
+        xLabels += `<text x="${xAt(i).toFixed(2)}" y="${(h-8).toFixed(1)}" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="${GC.inkMute}">${lbl}</text>`;
+      });
+    }
+    // Trend arrow + delta
+    const first = history[0];
+    const delta = last.value - first.value;
+    const arrow = n < 2 ? '' : (delta > 5 ? '↑' : delta < -5 ? '↓' : '→');
+    const arrowColor = delta > 5 ? GC.verde : delta < -5 ? GC.rojo : GC.inkMute;
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-historico" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${label}: evolución de ${n} puntos">
+  ${grid}
+  <path d="${areaPath}" fill="${lastColor}" opacity="0.12"/>
+  <path d="${linePath}" stroke="${lastColor}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+  ${points}
+  ${xLabels}
+  <text x="${(lastX+8).toFixed(1)}" y="${(lastY-8).toFixed(1)}" text-anchor="start" font-family="Newsreader, serif" font-size="14" font-weight="600" fill="${lastColor}">${last.value.toFixed(0)}%</text>
+  ${arrow?`<text x="${(w-padR).toFixed(1)}" y="${(padT+10).toFixed(1)}" text-anchor="end" font-family="IBM Plex Sans" font-size="14" font-weight="700" fill="${arrowColor}">${arrow} ${delta>0?'+':''}${delta.toFixed(0)}pp</text>`:''}
+</svg>`;
+  }
+
+  // Mini-sparkline para tabla (sin labels, compacto)
+  function miniHistorico({history=[], width=120, height=24}){
+    if(!history || !history.length) return '';
+    const w = width, h = height;
+    const n = history.length;
+    const xAt = i => 2 + (n>1 ? (i*(w-4)/(n-1)) : (w-4)/2);
+    const yAt = v => 2 + (h-4) * (1 - clamp(v)/100);
+    let linePath = '';
+    history.forEach((p, i) => {
+      linePath += (i===0?'M':' L') + ' ' + xAt(i).toFixed(2) + ' ' + yAt(p.value).toFixed(2);
+    });
+    let points = '';
+    history.forEach((p, i) => {
+      const x = xAt(i), y = yAt(p.value);
+      const c = colorByPct(p.value);
+      points += `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${i===n-1?2.5:1.6}" fill="${c}"/>`;
+    });
+    const last = history[n-1];
+    const lastColor = colorByPct(last.value);
+    return `<svg viewBox="0 0 ${w} ${h}" class="g-gauge g-mini-histo" preserveAspectRatio="none">
+  <line x1="2" y1="${yAt(0).toFixed(1)}" x2="${(w-2).toFixed(1)}" y2="${yAt(0).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" opacity="0.6"/>
+  <line x1="2" y1="${yAt(100).toFixed(1)}" x2="${(w-2).toFixed(1)}" y2="${yAt(100).toFixed(1)}" stroke="${GC.rule}" stroke-width="0.5" opacity="0.6"/>
+  <path d="${linePath}" stroke="${lastColor}" stroke-width="1.5" fill="none"/>
+  ${points}
+</svg>`;
+  }
+
+  // ============ Cálculos derivados ============
+  // % avance del pilar = promedio de porcentaje_avance de acciones (default 0 si null)
+  function pctAvancePilar(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    const vals = acciones.map(a => {
+      if(a.porcentaje_avance != null && !isNaN(+a.porcentaje_avance)) return +a.porcentaje_avance;
+      // Inferir desde valor_actual si parece numérico vs meta
+      const p = parseToPct(a.valor_actual);
+      return p != null ? p : 0;
+    });
+    return vals.reduce((s,v)=>s+v, 0) / vals.length;
+  }
+
+  // Extrae la serie de meses agregada del pilar a partir del historial de las acciones
+  // Retorna [{mes, label, value, cerradas, total}, ...] ordenado cronológicamente
+  function historialPilar(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return [];
+    // Recolectar todos los meses únicos de los historiales
+    const mesesSet = new Set();
+    acciones.forEach(a => {
+      (a.historial_mensual || []).forEach(h => { if(h.mes) mesesSet.add(h.mes); });
+    });
+    const meses = Array.from(mesesSet).sort();
+    if(!meses.length) return [];
+    return meses.map(mesId => {
+      // Para cada acción, encontrar su valor en ese mes (o 0 si no tiene)
+      const vals = acciones.map(a => {
+        const h = (a.historial_mensual || []).find(x => x.mes === mesId);
+        return h ? (+h.porcentaje_avance || 0) : 0;
+      });
+      const cerradas = acciones.filter(a => {
+        const h = (a.historial_mensual || []).find(x => x.mes === mesId);
+        return h && h.estado === 'cerrada';
+      }).length;
+      const avg = vals.reduce((s,v)=>s+v, 0) / vals.length;
+      // Label legible: "Mar", "Abr", "May", etc.
+      const m = mesId.match(/^(\d{4})-(\d{2})$/);
+      let label = mesId;
+      if(m){
+        const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        label = M[(+m[2])-1] || mesId;
+      }
+      return { mes: mesId, label, value: avg, cerradas, total: acciones.length };
+    });
+  }
+
+  // Devuelve los puntos del historial de una acción individual: [{mes, label, value}]
+  function historialAccion(accion){
+    if(!accion || !accion.historial_mensual || !accion.historial_mensual.length) return [];
+    return accion.historial_mensual.map(h => {
+      const m = h.mes.match(/^(\d{4})-(\d{2})$/);
+      const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      const label = m ? (M[(+m[2])-1] || h.mes) : h.mes;
+      return { mes: h.mes, label, value: +h.porcentaje_avance || 0, estado: h.estado };
+    });
+  }
+
+  // ============ FUSIÓN DE LÍNEAS BASE ============
+  // Fusiona el JSON antiguo con el nuevo, acumulando el historial_mensual.
+  // - Para cada acción, combina los historiales por clave "mes" (deduplicación).
+  // - Cuando hay conflicto en el mismo mes, gana el del JSON nuevo (corrección del custodio).
+  // - El valor actual (porcentaje_avance, estado) se toma del mes MÁS RECIENTE del historial fusionado.
+  // - meta.fecha_corte y meta.version se toman del JSON más reciente cronológicamente.
+  function mergeBaseline(oldData, newData){
+    // Caso base: si no hay viejo, devolvemos el nuevo directamente (asegurando que tenga historial inicial)
+    if(!oldData || !oldData.acciones) return _ensureBaselineSelf(newData);
+    if(!newData || !newData.acciones) return oldData;
+
+    // Verificación de coherencia: mismo id_tablero
+    const oldId = oldData.meta && oldData.meta.id_tablero;
+    const newId = newData.meta && newData.meta.id_tablero;
+    if(oldId && newId && oldId !== newId) {
+      console.warn('mergeBaseline: id_tablero distinto (' + oldId + ' vs ' + newId + '), usando nuevo');
+      return _ensureBaselineSelf(newData);
+    }
+
+    // Deep clone del nuevo para no mutar el original
+    const merged = JSON.parse(JSON.stringify(newData));
+
+    // Asegurar que el JSON nuevo tenga su propio mes en historial (snapshot del export actual)
+    _ensureBaselineSelf(merged);
+
+    // Construir un mapa de oldAcciones por id para lookup eficiente
+    const oldById = {};
+    (oldData.acciones || []).forEach((a, i) => {
+      if(a && a.id) oldById[a.id] = a;
+      else oldById['__idx_'+i] = a;
+    });
+
+    // Mes más reciente entre todos para determinar valor "actual"
+    let maxMes = null;
+    function trackMes(m){ if(m && (!maxMes || m > maxMes)) maxMes = m; }
+
+    (merged.acciones || []).forEach((a, i) => {
+      const oldA = oldById[a.id] || oldById['__idx_'+i];
+      const newHist = a.historial_mensual || [];
+      const oldHist = (oldA && oldA.historial_mensual) || [];
+
+      // Merge por mes (nuevo gana en conflicto)
+      const byMes = {};
+      oldHist.forEach(h => { if(h && h.mes) byMes[h.mes] = h; });
+      newHist.forEach(h => { if(h && h.mes) byMes[h.mes] = h; });
+
+      // Sort cronológico
+      const sortedMeses = Object.keys(byMes).sort();
+      a.historial_mensual = sortedMeses.map(m => byMes[m]);
+
+      // Actualizar valor actual al MÁS RECIENTE del historial fusionado
+      if(sortedMeses.length){
+        const latestMes = sortedMeses[sortedMeses.length-1];
+        const latestEntry = byMes[latestMes];
+        a.porcentaje_avance = latestEntry.porcentaje_avance;
+        a.estado = latestEntry.estado;
+        trackMes(latestMes);
+      }
+    });
+
+    // Actualizar meta del JSON fusionado para reflejar el mes más reciente
+    if(maxMes){
+      merged.meta = merged.meta || {};
+      // Si el meta original tenía mes_id y fecha_corte para el más reciente, los conservamos
+      const newMes = newData.meta && newData.meta.mes_id;
+      const oldMes = oldData.meta && oldData.meta.mes_id;
+      if(newMes === maxMes){
+        // Ya está bien
+      } else if(oldMes === maxMes){
+        merged.meta.mes_id = oldData.meta.mes_id;
+        merged.meta.fecha_corte = oldData.meta.fecha_corte;
+        merged.meta.version = oldData.meta.version;
+      } else {
+        merged.meta.mes_id = maxMes;
+      }
+    }
+    return merged;
+  }
+
+  // Garantiza que un JSON tenga al menos su propio mes en historial_mensual
+  function _ensureBaselineSelf(data){
+    if(!data || !data.acciones || !data.meta) return data;
+    const mesId = data.meta.mes_id || (data.meta.fecha_corte ? data.meta.fecha_corte.slice(0,7) : null);
+    if(!mesId) return data;
+    data.acciones.forEach(a => {
+      if(!a) return;
+      a.historial_mensual = a.historial_mensual || [];
+      // Si no hay entrada para este mes, agregarla desde los valores actuales
+      const has = a.historial_mensual.find(h => h && h.mes === mesId);
+      if(!has && a.porcentaje_avance != null){
+        a.historial_mensual.push({
+          mes: mesId,
+          fecha_corte: data.meta.fecha_corte || null,
+          porcentaje_avance: +a.porcentaje_avance || 0,
+          estado: a.estado || 'no_iniciada'
+        });
+        a.historial_mensual.sort((x,y) => x.mes < y.mes ? -1 : 1);
+      }
+    });
+    return data;
+  }
+
+  // % cerradas
+  function pctCerradas(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    return (acciones.filter(a => a.estado === 'cerrada').length / acciones.length) * 100;
+  }
+
+  // % iniciadas o más avanzadas
+  function pctActivas(data){
+    const acciones = (data && data.acciones) || [];
+    if(!acciones.length) return 0;
+    return (acciones.filter(a => a.estado && a.estado !== 'no_iniciada').length / acciones.length) * 100;
+  }
+
+  // % por horizonte
+  function pctPorHorizonte(data, h){
+    const acciones = (data && data.acciones || []).filter(a => a.horizonte === h);
+    if(!acciones.length) return null;
+    const vals = acciones.map(a => +(a.porcentaje_avance) || 0);
+    return vals.reduce((s,v)=>s+v, 0) / vals.length;
+  }
+
+  // Bloque visual de resumen (4 gauges) para los EDITORS
+  function renderResumenVisualEditor(data){
+    const pAvance = pctAvancePilar(data);
+    const pActivas = pctActivas(data);
+    const pCerradas = pctCerradas(data);
+    const totalAcc = (data.acciones||[]).length;
+    return `<section class="block g-resumen-visual">
+  <h2>Resumen Visual del Avance</h2>
+  <div class="desc">Cuatro vistas del estado del tablero: avance promedio de acciones (semicircular), acciones activas (circular), acciones cerradas (bullet) y consolidado (dial).</div>
+  <div class="g-grid-4">
+    <div class="g-cell">${semicircular({value: pAvance, label: 'Avance Promedio', sub: `${totalAcc} acciones`, size: 200})}</div>
+    <div class="g-cell">${circular({value: pActivas, label: 'Acciones Activas', size: 140})}</div>
+    <div class="g-cell">
+      <div class="g-bullet-wrap">
+        <div class="g-bullet-label">Acciones Cerradas</div>
+        ${bullet({value: pCerradas, label: 'Cerradas', width: 240, height: 26})}
+        <div class="g-bullet-sub">${(data.acciones||[]).filter(a=>a.estado==='cerrada').length} de ${totalAcc}</div>
+      </div>
+    </div>
+    <div class="g-cell">${dial({value: pAvance, label: 'Consolidado Pilar', size: 200})}</div>
+  </div>
+</section>`;
+  }
+
+  // Bloque de evolución mensual para los EDITORS — visible solo si hay historial
+  function renderEvolucionEditor(data){
+    const hist = historialPilar(data);
+    if(!hist.length){
+      // Si no hay historial pero hay datos, mostrar mensaje informativo
+      const totalAcc = (data && data.acciones || []).length;
+      if(!totalAcc) return '';
+      return `<section class="block g-evolucion">
+  <h2>Evolución Mensual del Pilar</h2>
+  <div class="desc">No hay historial mensual registrado todavía. Esta sección aparecerá cuando exporte el JSON del pilar mes a mes y se acumule la serie temporal.</div>
+  <div class="g-no-history">↻ Aún sin datos históricos. La serie temporal se construye a medida que se exportan los JSON mensuales.</div>
+</section>`;
+    }
+    // Semicirculares mes a mes
+    const gridSemi = hist.map(p =>
+      `<div class="g-mes-cell">
+        <div class="g-mes-label">${p.label}</div>
+        ${semicircular({value: p.value, sub: `${p.cerradas} cerradas`, size: 140})}
+      </div>`
+    ).join('');
+    const lastVal = hist[hist.length-1].value;
+    const firstVal = hist[0].value;
+    const delta = lastVal - firstVal;
+    const tendencia = hist.length < 2 ? '—' : (delta > 5 ? `↑ +${delta.toFixed(0)}pp` : delta < -5 ? `↓ ${delta.toFixed(0)}pp` : '→ estable');
+    const tendColor = delta > 5 ? 'verde' : delta < -5 ? 'rojo' : 'gris';
+    return `<section class="block g-evolucion">
+  <h2>Evolución Mensual del Pilar</h2>
+  <div class="desc">Serie temporal del avance del pilar a lo largo de los meses reportados. Cada punto del sparkline representa el cierre de un mes; los semicirculares muestran el detalle mes a mes.</div>
+  <div class="g-evol-row">
+    <div class="g-evol-spark">${historico({history: hist, label: 'Avance pilar', width: 420, height: 160})}</div>
+    <div class="g-evol-trend">
+      <div class="g-trend-label">Tendencia</div>
+      <div class="g-trend-value g-trend-${tendColor}">${tendencia}</div>
+      <div class="g-trend-sub">${hist.length} mes${hist.length>1?'es':''} reportado${hist.length>1?'s':''}</div>
+    </div>
+  </div>
+  <div class="g-meses-grid">${gridSemi}</div>
+</section>`;
+  }
+
+  // Bloque para el maestro: una fila por pilar/subplan con gauge
+  function renderTarjetaPilarMaestro({id, nombre, dueno, data, color}){
+    const pAvance = data ? pctAvancePilar(data) : 0;
+    const pActivas = data ? pctActivas(data) : 0;
+    const pCerradas = data ? pctCerradas(data) : 0;
+    const totalAcc = data && data.acciones ? data.acciones.length : 0;
+    const cargado = !!data;
+    const hist = cargado ? historialPilar(data) : [];
+    const sparkline = hist.length > 1 ? miniHistorico({history: hist, width: 130, height: 36}) : '';
+    return `<div class="g-pilar-card ${cargado?'loaded':'pending'}">
+  <div class="g-pilar-head">
+    <span class="g-pilar-id">${id}</span>
+    <span class="g-pilar-name">${nombre}</span>
+    <span class="g-pilar-status">${cargado?`v${data.meta.version||'?'} · ${data.meta.fecha_corte||''}`:'JSON no cargado'}</span>
+  </div>
+  ${cargado ? `
+  <div class="g-pilar-gauges">
+    <div>${semicircular({value: pAvance, label: 'Avance', sub: `${totalAcc} acc.`, size: 170})}</div>
+    <div>${circular({value: pActivas, label: 'Activas', size: 110})}</div>
+    <div>${circular({value: pCerradas, label: 'Cerradas', size: 110})}</div>
+    ${sparkline ? `<div class="g-pilar-spark"><div class="g-pilar-spark-label">${hist.length} meses</div>${sparkline}</div>` : ''}
+  </div>` : `
+  <div class="g-pilar-empty">Esperando carga del JSON exportado por el custodio.</div>`}
+</div>`;
+  }
+
+  // Bloque consolidado global con DIAL
+  function renderConsolidadoGlobal(pilaresData){
+    const cargados = pilaresData.filter(p => p.data);
+    if(!cargados.length){
+      return `<section class="block">
+  <h2>Consolidado Global del Plan</h2>
+  <div class="g-empty-global">Cargue al menos un JSON para ver el consolidado.</div>
+</section>`;
+    }
+    const avances = cargados.map(p => pctAvancePilar(p.data));
+    const promedioGlobal = avances.reduce((s,v)=>s+v, 0) / avances.length;
+    const totalAcciones = cargados.reduce((s,p)=>s+(p.data.acciones||[]).length, 0);
+    const cerradasGlobales = cargados.reduce((s,p)=>s+(p.data.acciones||[]).filter(a=>a.estado==='cerrada').length, 0);
+    const activasGlobales = cargados.reduce((s,p)=>s+(p.data.acciones||[]).filter(a=>a.estado && a.estado!=='no_iniciada').length, 0);
+    const pctCerradasG = totalAcciones ? (cerradasGlobales/totalAcciones)*100 : 0;
+    const pctActivasG = totalAcciones ? (activasGlobales/totalAcciones)*100 : 0;
+    return `<section class="block g-consolidado-global">
+  <h2>Consolidado Global del Plan</h2>
+  <div class="desc">Vista agregada de los ${cargados.length} tableros cargados — ${totalAcciones} acciones totales.</div>
+  <div class="g-consolidado-row">
+    <div class="g-dial-main">${dial({value: promedioGlobal, label: 'Avance Global', size: 280})}</div>
+    <div class="g-consolidado-side">
+      <div class="g-side-stat">
+        <div class="g-side-label">Acciones activas</div>
+        <div class="g-side-gauge">${bullet({value: pctActivasG, width: 240, height: 22})}</div>
+        <div class="g-side-sub">${activasGlobales} de ${totalAcciones}</div>
+      </div>
+      <div class="g-side-stat">
+        <div class="g-side-label">Acciones cerradas</div>
+        <div class="g-side-gauge">${bullet({value: pctCerradasG, width: 240, height: 22})}</div>
+        <div class="g-side-sub">${cerradasGlobales} de ${totalAcciones}</div>
+      </div>
+      <div class="g-side-stat">
+        <div class="g-side-label">Tableros consolidados</div>
+        <div class="g-side-big">${cargados.length}<span class="g-side-of">/${pilaresData.length}</span></div>
+      </div>
+    </div>
+  </div>
+</section>`;
+  }
+
+  // Bloque de evolución global para el MAESTRO
+  function renderEvolucionMaestro(pilaresData){
+    const cargados = pilaresData.filter(p => p.data);
+    if(!cargados.length) return '';
+    // Recolectar todos los meses únicos de todos los tableros cargados
+    const mesesSet = new Set();
+    cargados.forEach(p => historialPilar(p.data).forEach(h => mesesSet.add(h.mes)));
+    const meses = Array.from(mesesSet).sort();
+    if(!meses.length){
+      return `<section class="block g-evolucion-maestro">
+  <h2>Evolución del Plan</h2>
+  <div class="g-no-history">↻ Los JSON cargados no incluyen historial mensual aún. La serie temporal aparecerá cuando los custodios exporten JSONs mes a mes.</div>
+</section>`;
+    }
+    // Calcular avance global por mes
+    const serieGlobal = meses.map(mesId => {
+      let sumAvg = 0, n = 0;
+      cargados.forEach(p => {
+        const hist = historialPilar(p.data);
+        const point = hist.find(h => h.mes === mesId);
+        if(point){ sumAvg += point.value; n++; }
+      });
+      const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      const m = mesId.match(/^(\d{4})-(\d{2})$/);
+      const label = m ? (M[(+m[2])-1] || mesId) : mesId;
+      return { mes: mesId, label, value: n ? sumAvg/n : 0 };
+    });
+
+    // Diales por mes
+    const dialsHTML = serieGlobal.map(p =>
+      `<div class="g-mes-dial">
+        <div class="g-mes-label">${p.label}</div>
+        ${dial({value: p.value, size: 180})}
+      </div>`
+    ).join('');
+
+    // Comparativa entre pilares: una fila por pilar con su sparkline
+    const filasComparativa = cargados.map(p => {
+      const hist = historialPilar(p.data);
+      const lastVal = hist.length ? hist[hist.length-1].value : 0;
+      const firstVal = hist.length ? hist[0].value : 0;
+      const delta = lastVal - firstVal;
+      const arrowColor = delta > 5 ? GC.verde : delta < -5 ? GC.rojo : GC.inkMute;
+      const arrow = hist.length < 2 ? '—' : (delta > 5 ? `↑ +${delta.toFixed(0)}` : delta < -5 ? `↓ ${delta.toFixed(0)}` : '→');
+      return `<div class="g-comp-row">
+        <div class="g-comp-id">${p.id}</div>
+        <div class="g-comp-name">${p.nombre}</div>
+        <div class="g-comp-spark">${historico({history: hist, width: 280, height: 60, showLabels: false})}</div>
+        <div class="g-comp-current">${lastVal.toFixed(0)}<span class="g-comp-pct">%</span></div>
+        <div class="g-comp-trend" style="color:${arrowColor}">${arrow}</div>
+      </div>`;
+    }).join('');
+
+    return `<section class="block g-evolucion-maestro">
+  <h2>Evolución del Plan</h2>
+  <div class="desc">Avance global de la transformación a lo largo de los ${meses.length} mes${meses.length>1?'es':''} reportado${meses.length>1?'s':''}. Cada dial es el promedio de los ${cargados.length} tableros del grupo en ese mes.</div>
+  <div class="g-evol-meses-row">${dialsHTML}</div>
+  <h3 class="g-comp-title">Comparativa por Pilar</h3>
+  <div class="g-comp-table">
+    <div class="g-comp-row g-comp-head">
+      <div class="g-comp-id">ID</div>
+      <div class="g-comp-name">Pilar / Subplan</div>
+      <div class="g-comp-spark">Evolución</div>
+      <div class="g-comp-current">Actual</div>
+      <div class="g-comp-trend">Δ</div>
+    </div>
+    ${filasComparativa}
+  </div>
+</section>`;
+  }
+
+  // ============ EXPORTACIÓN ============
+  window.Gauges = {
+    semicircular, circular, bullet, dial, historico, miniHistorico,
+    parseToPct, colorByPct, clamp,
+    pctAvancePilar, pctCerradas, pctActivas, pctPorHorizonte,
+    historialPilar, historialAccion,
+    mergeBaseline, _ensureBaselineSelf,
+    renderResumenVisualEditor, renderEvolucionEditor,
+    renderTarjetaPilarMaestro, renderConsolidadoGlobal, renderEvolucionMaestro,
+    COLORS: GC
+  };
+})();
+
+const EMBEDDED = JSON.parse(document.getElementById('data').textContent);
+let DATA = JSON.parse(JSON.stringify(EMBEDDED));
+// Exponer DATA para overlay de gauges (lectura/escritura controlada)
+window.__maestro = window.__maestro || {};
+window.__maestro.getData = function(){ return DATA; };
+window.__maestro.setData = function(d){ DATA = d; };
+window.__maestro.getEmbedded = function(){ return EMBEDDED; };
+
+const STORAGE_KEY = 'integra_gerencial';
+let autosaveTimer = null;
+let lastSavedAt = null;
+
+function saveToLocalStorage(){
+  try {
+    const payload = { data: DATA, savedAt: new Date().toISOString(), baseVersion: EMBEDDED.maestro.meta.version };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    lastSavedAt = payload.savedAt;
+    setAutosaveStatus('saved', `Guardado · ${formatTime(lastSavedAt)}`);
+  } catch(e){
+    setAutosaveStatus('error', 'Error al guardar localmente');
+  }
+}
+function debouncedSave(){
+  setAutosaveStatus('saving', 'Guardando...');
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(saveToLocalStorage, 600);
+}
+function tryRestoreFromLocalStorage(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e){ return null; }
+}
+function clearLocalStorage(){ try { localStorage.removeItem(STORAGE_KEY); } catch(e){} }
+function formatTime(iso){
+  if(!iso) return '';
+  const d = new Date(iso); const now = new Date();
+  const dh = d.toLocaleDateString('es-CO', {day:'2-digit', month:'short'});
+  const hm = d.toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit'});
+  return d.toDateString() === now.toDateString() ? `hoy ${hm}` : `${dh} ${hm}`;
+}
+function setAutosaveStatus(klass, msg){
+  const el = document.getElementById('autosave-status');
+  if(!el) return;
+  el.className = 'autosave-status ' + klass;
+  const m = el.querySelector('.msg');
+  if(m) m.textContent = msg;
+}
+function resetearGerencial(){
+  if(!confirm('¿Volver al estado inicial v' + EMBEDDED.maestro.meta.version + '?\nEsto borra todos los JSON cargados de los articuladores que están guardados localmente.')) return;
+  DATA = JSON.parse(JSON.stringify(EMBEDDED));
+  clearLocalStorage();
+  lastSavedAt = null;
+  setAutosaveStatus('', 'Listo');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('has-update'));
+  document.getElementById('ver-stamp').textContent = `v${DATA.maestro.meta.version} · corte ${DATA.maestro.meta.fecha_corte}`;
+  const current = document.querySelector('.nav-item.active')?.dataset.view || 'maestro';
+  window.navigate(current);
+  toast('Se volvió al estado inicial', 'success');
+}
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const sem = (s)=>`<span class="sem ${s||'gris'}"><span class="dot"></span>${s||'-'}</span>`;
+const estado = (e)=>`<span class="estado-tag ${e||'no_iniciada'}">${(e||'-').replace('_',' ')}</span>`;
+const horizonteTag = (h)=>{
+  if(!h) return '';
+  if(h==='ACELERACION-2026') return `<span class="h-tag ACEL">ACEL 2026</span>`;
+  return `<span class="h-tag ${h}">${h}</span>`;
+};
+
+document.getElementById('ver-stamp').textContent = `v${DATA.maestro.meta.version} · corte ${DATA.maestro.meta.fecha_corte}`;
+
+function toast(msg, kind=''){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.className = `toast show ${kind}`;
+  setTimeout(()=>t.classList.remove('show'), 4000);
+}
+
+// ====== Mapeo id_tablero → clave interna ======
+function detectTableroKey(jsonData){
+  const meta = jsonData.meta || {};
+  const tid = meta.id_tablero || '';
+  const pid = meta.pilar_id;
+  if(meta.tipo === 'maestro') return 'maestro';
+  if(meta.tipo === 'concertador') return 'concertador';
+  if(meta.tipo === 'pilar' && pid){
+    return {'P1':'pilar_1','P2':'pilar_2','P3':'pilar_3','P4':'pilar_4','P5':'pilar_5'}[pid];
+  }
+  if(meta.tipo === 'sub_plan'){
+    if(/pati|impulxa/i.test(meta.nombre||'')) return 'patios';
+    if(/servic|comparti/i.test(meta.nombre||'')) return 'sc';
+  }
+  // Fallback: por id_tablero literal
+  const byId = {'TG-00-MAESTRO':'maestro','TG-P1-TALENTO':'pilar_1','TG-P2-INTEGRACION':'pilar_2','TG-P3-TECNOLOGIA-IA':'pilar_3','TG-P4-ECOSISTEMA':'pilar_4','TG-P5-FINANCIERO':'pilar_5','TG-SP-PATIOS-IMPULXA':'patios','TG-SP-SERVICIOS-COMPARTIDOS':'sc','TG-CONCERTADOR':'concertador'};
+  return byId[tid] || null;
+}
+
+// ====== Validación mínima ======
+function validateImport(jsonData){
+  const errors = [];
+  if(!jsonData.meta) errors.push("falta meta");
+  else {
+    if(!jsonData.meta.tipo) errors.push("falta meta.tipo");
+    if(!jsonData.meta.id_tablero) errors.push("falta meta.id_tablero");
+    if(!jsonData.meta.fecha_corte) errors.push("falta meta.fecha_corte");
+  }
+  if(!jsonData.estado_general) errors.push("falta estado_general");
+  return errors;
+}
+
+// ====== Importar uno o varios JSON ======
+async function handleFiles(files){
+  // Snapshot: el listener resetea e.target.value sincrónicamente y vacía la FileList viva
+  files = Array.from(files || []);
+  const log = $('#import-log');
+  log.innerHTML = '';
+  log.classList.add('visible');
+  let ok=0, err=0;
+  const updates = [];
+  for(const f of files){
+    try{
+      const txt = await f.text();
+      const json = JSON.parse(txt);
+      const verrs = validateImport(json);
+      if(verrs.length){
+        err++;
+        log.innerHTML += `<div class="err">✗ ${esc(f.name)}: ${esc(verrs.join(', '))}</div>`;
+        continue;
+      }
+      const key = detectTableroKey(json);
+      if(!key){
+        err++;
+        log.innerHTML += `<div class="err">✗ ${esc(f.name)}: no se pudo identificar el tablero destino</div>`;
+        continue;
+      }
+      const oldVer = DATA[key]?.meta?.version || '?';
+      const newVer = json.meta.version;
+      // Fusionar línea base: el JSON entrante se acumula al histórico previo si la librería está disponible
+      const prev = DATA[key];
+      if(window.Gauges && window.Gauges.mergeBaseline && prev && prev.acciones && prev.acciones.length){
+        DATA[key] = window.Gauges.mergeBaseline(prev, json);
+        const histLen = (DATA[key].acciones && DATA[key].acciones[0] && DATA[key].acciones[0].historial_mensual ? DATA[key].acciones[0].historial_mensual.length : 0);
+        log.innerHTML += `<div class="warn" style="color:var(--accent-deep)">↻ Línea base fusionada en ${key} — histórico acumulado: ${histLen} mes(es)</div>`;
+      } else {
+        DATA[key] = (window.Gauges && window.Gauges._ensureBaselineSelf) ? window.Gauges._ensureBaselineSelf(json) : json;
+      }
+      updates.push(key);
+      ok++;
+      log.innerHTML += `<div class="ok">✓ ${esc(f.name)} → ${key} (v${esc(oldVer)} → v${esc(newVer)}, corte ${esc(json.meta.fecha_corte)})</div>`;
+    }catch(e){
+      err++;
+      log.innerHTML += `<div class="err">✗ ${esc(f.name)}: ${esc(e.message)}</div>`;
+    }
+  }
+  
+  // Sincronizar semáforos del maestro con tableros importados
+  if(updates.length){
+    const sincKeys = updates.filter(k=>k.startsWith('pilar_'));
+    if(sincKeys.length){
+      const idMap = {'pilar_1':'P1','pilar_2':'P2','pilar_3':'P3','pilar_4':'P4','pilar_5':'P5'};
+      DATA.maestro.pilares.forEach(p=>{
+        const k = Object.keys(idMap).find(kk=>idMap[kk]===p.id);
+        if(k && updates.includes(k)){
+          p.semaforo = DATA[k].estado_general.semaforo;
+        }
+      });
+      log.innerHTML += `<div class="warn">↻ Semáforos del maestro sincronizados con ${sincKeys.length} pilares</div>`;
+    }
+  }
+  
+  // Marcar dots de "actualización" en el nav
+  updates.forEach(k=>{
+    const n = document.querySelector(`.nav-item[data-view="${k}"]`);
+    if(n) n.classList.add('has-update');
+  });
+  // Actualizar stamp
+  document.getElementById('ver-stamp').textContent = `v${DATA.maestro.meta.version} · corte ${DATA.maestro.meta.fecha_corte}`;
+  // Re-renderizar vista actual
+  const current = document.querySelector('.nav-item.active')?.dataset.view || 'maestro';
+  navigate(current);
+  
+  if(updates.length) debouncedSave();
+  if(err===0) toast(`✓ ${ok} tablero${ok>1?'s':''} cargado${ok>1?'s':''} correctamente`, 'success');
+  else toast(`${ok} cargados, ${err} con errores — ver detalle`, err>0?'error':'success');
+}
+
+// ====== Renderizadores (mismos que el ejecutivo) ======
+function renderUploader(){
+  return `<div class="uploader-banner">
+    <div class="info">
+      <h3>Recepción de actualizaciones de los articuladores</h3>
+      <p>Cargue los archivos JSON que los 7 articuladores le hayan enviado al cierre del mes. El tablero se actualiza automáticamente y sincroniza semáforos con el maestro. Puede arrastrar y soltar archivos sobre esta página.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <div class="autosave-status" id="autosave-status"><span class="dot"></span><span class="msg">Listo</span></div>
+      <button class="btn btn-secondary" onclick="resetearGerencial()">↺ Empezar de cero</button>
+      <button class="btn btn-secondary" onclick="exportarConsolidado()">↓ Exportar consolidado</button>
+      <button class="btn" onclick="document.getElementById('file-input').click()">↑ Cargar JSONs</button>
+    </div>
+    <div class="import-log" id="import-log" style="grid-column:1/-1;width:100%"></div>
+  </div>`;
+}
+
+function renderMaestro(){
+  const m = DATA.maestro;
+  const v = m.vision_2030;
+  let h = renderUploader();
+  h += `<div class="page-head">
+    <div class="titles">
+      <div class="kicker">Tablero Gerencial · Vista Maestra Consolidada</div>
+      <h1>Proceso de Transformación<br>Empresarial 2026–2030</h1>
+      <div class="lede">Vista del Gerente General. Los 5 pilares y 2 sub-planes operativos se actualizan cuando cada articulador envía su JSON.</div>
+    </div>
+    <div class="meta-block">
+      <div class="k">Estado General</div><div class="v">${sem(m.estado_general.semaforo)}</div>
+      <div class="k">Fecha de corte</div><div class="v">${esc(m.meta.fecha_corte)}</div>
+      <div class="k">Custodio</div><div class="v">${esc(m.meta.custodio)}</div>
+      <div class="k">Cadencia</div><div class="v">${esc(m.meta.cadencia_actualizacion)}</div>
+    </div>
+  </div>`;
+  
+  h += `<div class="vision">
+    <div class="kicker">Visión 2030</div>
+    <div class="text">${esc(v.declaracion||v.texto||'')}</div>
+  </div>`;
+  
+  h += `<section class="block"><h2>KPIs Estratégicos Top</h2>
+    <div class="grid cols-5">`;
+  m.kpis_top_estrategicos.forEach(k=>{
+    h += `<div class="card">
+      <span class="id-tag">${esc(k.pilar)} · ${esc(k.id)}</span>
+      <h3>${esc(k.nombre)}</h3>
+      <div class="footer"><strong>Meta 2030:</strong> ${esc(k.meta_2030||k.meta||'—')}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+  
+  const eg = m.estado_general;
+  h += `<section class="block"><h2>Estado del Plan Estratégico</h2>
+    <div class="grid cols-4">
+      <div class="card"><div class="label">Total acciones del Plan</div><div class="num">${eg.acciones_total_plan||46}</div></div>
+      <div class="card"><div class="label">H1 · Defender</div><div class="num">${(eg.acciones_por_horizonte_plan||{}).H1||'-'}</div></div>
+      <div class="card"><div class="label">H2 · Escalar</div><div class="num">${(eg.acciones_por_horizonte_plan||{}).H2||'-'}</div></div>
+      <div class="card"><div class="label">H3 · Transformar</div><div class="num">${(eg.acciones_por_horizonte_plan||{}).H3||'-'}</div></div>
+    </div>
+  </section>`;
+  
+  // Tabla pilares con resumen de avance consolidado
+  h += `<section class="block"><h2>Los 5 Pilares · Avance Consolidado</h2>
+    <div class="desc">Datos consolidados desde los tableros editores enviados por cada articulador</div>
+    <div class="grid cols-5">`;
+  ['pilar_1','pilar_2','pilar_3','pilar_4','pilar_5'].forEach(pk=>{
+    const p = DATA[pk];
+    const pm = m.pilares.find(x=>x.id===p.meta.pilar_id);
+    const eg = p.estado_general;
+    h += `<div class="card">
+      <span class="id-tag">${esc(pm.id)}</span>
+      <h3>${esc(pm.nombre)}</h3>
+      <div class="kpi-mini">
+        <div><div class="k">Acciones</div><div class="v">${eg.acciones_total}</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--ink-mute)">
+        En curso: <strong style="color:var(--verde)">${eg.acciones_en_curso||0}</strong> ·
+        Pend: <strong style="color:var(--amarillo)">${eg.acciones_pendientes||0}</strong> ·
+        Desv: <strong style="color:var(--rojo)">${eg.acciones_desviadas||0}</strong>
+      </div>
+      <div class="footer" style="margin-top:10px">${sem(eg.semaforo||pm.semaforo||'gris')}</div>
+      <div class="tiny muted" style="margin-top:6px;font-family:var(--mono)">v${esc(p.meta.version)} · ${esc(p.meta.fecha_corte)}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+
+  // Sub-Planes
+  h += `<section class="block"><h2>Sub-Planes Operativos</h2>
+    <div class="grid cols-2">`;
+  ['patios','sc'].forEach(spk=>{
+    const sp = DATA[spk];
+    const eg = sp.estado_general;
+    h += `<div class="card">
+      <span class="id-tag">${esc(sp.meta.palanca_principal)}</span>
+      <h3>${esc(sp.meta.nombre)}</h3>
+      <div class="kpi-mini">
+        <div><div class="k">Acciones</div><div class="v">${eg.acciones_total}</div></div>
+        <div><div class="k">En curso</div><div class="v" style="color:var(--verde)">${eg.acciones_en_curso||0}</div></div>
+        <div><div class="k">Pendientes</div><div class="v" style="color:var(--amarillo)">${eg.acciones_pendientes||0}</div></div>
+        <div><div class="k">Desviadas</div><div class="v" style="color:var(--rojo)">${eg.acciones_desviadas||0}</div></div>
+      </div>
+      <div class="footer" style="margin-top:10px">${sem(eg.semaforo||'gris')}</div>
+      <div class="tiny muted" style="margin-top:6px;font-family:var(--mono)">v${esc(sp.meta.version)} · ${esc(sp.meta.fecha_corte)}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+  
+  h += `<section class="block"><h2>Tres Horizontes de Crecimiento</h2>
+    <div class="desc">Regla 70/20/10 · marco McKinsey</div>
+    <div class="grid cols-3">`;
+  m.horizontes.forEach(hz=>{
+    h += `<div class="card">
+      <span class="id-tag">${esc(hz.id)} · ${esc(hz.periodo)}</span>
+      <h3>${esc(hz.nombre)}</h3>
+      <div class="num">${hz.porcentaje_recursos}<span style="font-size:18px;color:var(--ink-mute)">%</span></div>
+      <div class="label">recursos asignados</div>
+      <div class="footer">${esc(hz.descripcion||'')}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+  
+  h += `<section class="block"><h2>Las 6 Palancas Estratégicas</h2>
+    <div class="grid cols-3">`;
+  m.palancas_estrategicas.forEach(p=>{
+    h += `<div class="card">
+      <span class="id-tag">${esc(p.id)}</span>
+      <h3>${esc(p.nombre)}</h3>
+      <div class="kpi-mini">
+        <div><div class="k">Acciones del Plan</div><div class="v">${p.acciones}</div></div>
+      </div>
+      <div class="footer">${esc(p.descripcion||'')}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+  
+  // Hitos consolidados
+  const allHitos = [];
+  Object.entries(DATA).forEach(([k,d])=>{
+    (d.hitos_criticos_12_meses||[]).forEach(ht=>allHitos.push({...ht, origen:k}));
+  });
+  allHitos.sort((a,b)=>(a.fecha||'').localeCompare(b.fecha||''));
+  h += `<section class="block"><h2>Hitos Críticos · Próximos 12 Meses</h2>
+    <div class="hitos-list">`;
+  allHitos.forEach(ht=>{
+    h += `<div class="hito">
+      <div class="fecha">${esc(ht.fecha)}</div>
+      <div>${horizonteTag(ht.horizonte||'')}</div>
+      <div><div class="hito-name">${esc(ht.hito)}</div><div class="tiny muted">${esc(ht.descripcion||'')}</div></div>
+      <div class="resp">${esc(ht.responsable||'')}</div>
+    </div>`;
+  });
+  h += `</div></section>`;
+  
+  h += `<section class="block"><h2>Riesgos Estratégicos R1–R8</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>ID</th><th>Riesgo</th><th>Prob.</th><th>Imp.</th><th>Mitigación</th></tr></thead><tbody>`;
+  m.riesgos_estrategicos.forEach(r=>{
+    h += `<tr>
+      <td class="id-cell">${esc(r.id)}</td>
+      <td class="name-cell">${esc(r.nombre)}</td>
+      <td class="h-cell">${esc(r.probabilidad||'-')}</td>
+      <td class="h-cell">${esc(r.impacto||'-')}</td>
+      <td>${esc(r.mitigacion||r.estrategia_mitigacion||'')}</td>
+    </tr>`;
+  });
+  h += `</tbody></table></div></section>`;
+  
+  h += `<section class="block"><h2>Decisiones Pendientes de Gerencia</h2>`;
+  m.decisiones_pendientes_gerencia.forEach(d=>{
+    h += `<div class="decision">
+      <div class="top">
+        <span class="id">${esc(d.id||'')}</span>
+        ${d.fecha_limite?`<span class="fl">Antes de ${esc(d.fecha_limite)}</span>`:''}
+      </div>
+      <div class="name">${esc(d.decision||d.nombre||'')}</div>
+      <div class="body">${esc(d.descripcion||d.contexto||'')}</div>
+      ${d.respuesta_comite?`<div class="resp-comite">✓ Respuesta del Comité: ${esc(d.respuesta_comite)}${d.fecha_decision_real?` (${esc(d.fecha_decision_real)})`:''}</div>`:''}
+    </div>`;
+  });
+  h += `</section>`;
+  
+  if(m.observaciones_documentales_para_v3_1?.length){
+    h += `<section class="block"><h2>Observaciones para v3.1 del Plan de Acción</h2>`;
+    m.observaciones_documentales_para_v3_1.forEach(o=>{
+      h += `<div class="obs">
+        <div class="id">${esc(o.id)} · ${esc(o.ubicacion)}</div>
+        <h4>${esc(o.inconsistencia)}</h4>
+        <div class="text"><strong>Corrección recomendada:</strong> ${esc(o.correccion_recomendada)} · Responsable: ${esc(o.responsable_correccion)} · Fecha límite: ${esc(o.fecha_limite)}</div>
+      </div>`;
+    });
+    h += `</section>`;
+  }
+  
+  return h;
+}
+
+function renderPilar(idx){
+  const p = DATA[`pilar_${idx}`];
+  const m = p.meta;
+  let h = renderUploader();
+  h += `<div class="page-head">
+    <div class="titles">
+      <div class="kicker">${esc(m.pilar_id||'P'+idx)} · Pilar consolidado del articulador</div>
+      <h1>${esc(m.nombre)}</h1>
+      <div class="lede">${esc((p.declaracion_pilar||{}).declaracion||(p.declaracion_pilar||{}).texto||'')}</div>
+    </div>
+    <div class="meta-block">
+      <div class="k">Estado</div><div class="v">${sem(p.estado_general.semaforo)}</div>
+      <div class="k">Acciones</div><div class="v">${p.estado_general.acciones_total}</div>
+      <div class="k">Custodio</div><div class="v">${esc(m.custodio)}</div>
+      <div class="k">Versión / corte</div><div class="v">v${esc(m.version)} · ${esc(m.fecha_corte)}</div>
+    </div>
+  </div>`;
+  
+  const eg = p.estado_general;
+  h += `<section class="block"><h2>Estado General Reportado</h2>
+    <div class="grid cols-5">
+      <div class="card"><div class="label">Total</div><div class="num">${eg.acciones_total}</div></div>
+      <div class="card"><div class="label">No iniciadas</div><div class="num small muted">${eg.acciones_no_iniciadas||0}</div></div>
+      <div class="card"><div class="label">Iniciadas</div><div class="num small">${eg.acciones_iniciadas||0}</div></div>
+      <div class="card"><div class="label">En curso</div><div class="num small" style="color:var(--verde)">${eg.acciones_en_curso||0}</div></div>
+      <div class="card"><div class="label">Desviadas</div><div class="num small" style="color:var(--rojo)">${eg.acciones_desviadas||0}</div></div>
+    </div>
+    ${eg.resumen?`<div class="card" style="border:1px solid var(--rule);margin-top:14px"><div class="label">Resumen ejecutivo del articulador</div><div style="margin-top:8px;font-style:italic;color:var(--ink-soft)">${esc(eg.resumen)}</div></div>`:''}
+  </section>`;
+  
+  if(p.kpis_del_pilar?.length){
+    h += `<section class="block"><h2>KPIs del Pilar</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>KPI</th><th>Línea base</th><th>Meta 2030</th><th>Valor mes</th><th>Tend.</th></tr></thead><tbody>`;
+    p.kpis_del_pilar.forEach(k=>{
+      const tend = k.tendencia==='sube'?'↑':k.tendencia==='baja'?'↓':k.tendencia==='estable'?'→':'';
+      h += `<tr><td class="id-cell">${esc(k.id)}</td><td class="name-cell">${esc(k.nombre)}</td><td>${esc(k.linea_base||'—')}</td><td><strong>${esc(k.meta_2030||'—')}</strong></td><td class="h-cell">${esc(k.valor_mes||'—')}</td><td>${tend}</td></tr>`;
+    });
+    h += `</tbody></table></div></section>`;
+  }
+  
+  h += `<section class="block"><h2>Acciones del Pilar (${p.acciones.length})</h2>`;
+  ['H1','H2','H3','ACELERACION-2026'].forEach(hz=>{
+    const ax = p.acciones.filter(a=>a.horizonte===hz);
+    if(!ax.length) return;
+    const lab = hz==='ACELERACION-2026'?'Aceleración 2026':({H1:'Horizonte 1 · Defender (2026–27)',H2:'Horizonte 2 · Escalar (2027–29)',H3:'Horizonte 3 · Transformar (2029–30+)'}[hz]);
+    h += `<div class="bloque-head">${esc(lab)} · ${ax.length} acciones</div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Acción</th><th>Palanca</th><th>Responsable</th><th>% Av.</th><th>Estado</th><th>Comentario mes</th></tr></thead><tbody>`;
+    ax.forEach(a=>{
+      h += `<tr>
+        <td class="id-cell">${esc(a.id)}</td>
+        <td class="name-cell">${esc(a.nombre)}</td>
+        <td class="h-cell">${esc(a.palanca||'')}</td>
+        <td class="resp-cell">${esc(a.responsable||'')}</td>
+        <td class="h-cell" style="text-align:right">${a.porcentaje_avance!=null?esc(a.porcentaje_avance)+'%':''}</td>
+        <td>${estado(a.estado)}</td>
+        <td class="tiny" style="color:var(--ink-soft)">${esc(a.comentario_mensual||'')}${a.alerta?`<div style="color:var(--rojo);margin-top:4px"><strong>⚠ ${esc(a.alerta)}</strong></div>`:''}</td>
+      </tr>`;
+    });
+    h += `</tbody></table></div><div style="height:14px"></div>`;
+  });
+  h += `</section>`;
+  
+  if(p.riesgos_del_pilar?.length){
+    h += `<section class="block"><h2>Riesgos del Pilar</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Riesgo</th><th>Prob. dec.</th><th>Prob. revisada</th><th>Imp. dec.</th><th>Imp. revisado</th><th>Evidencia mes</th></tr></thead><tbody>`;
+    p.riesgos_del_pilar.forEach(r=>{
+      h += `<tr><td class="id-cell">${esc(r.id)}</td><td class="name-cell">${esc(r.nombre)}</td><td class="h-cell">${esc(r.probabilidad||'-')}</td><td class="h-cell"><strong>${esc(r.probabilidad_revisada||'')}</strong></td><td class="h-cell">${esc(r.impacto||'-')}</td><td class="h-cell"><strong>${esc(r.impacto_revisado||'')}</strong></td><td class="tiny">${esc(r.evidencia_mes||'')}</td></tr>`;
+    });
+    h += `</tbody></table></div></section>`;
+  }
+  
+  return h;
+}
+
+function renderSubplan(key){
+  const sp = DATA[key];
+  const m = sp.meta;
+  let h = renderUploader();
+  h += `<div class="page-head">
+    <div class="titles">
+      <div class="kicker">Sub-Plan Operativo · Palanca ${esc(m.palanca_principal)}</div>
+      <h1>${esc(m.nombre)}</h1>
+    </div>
+    <div class="meta-block">
+      <div class="k">Estado</div><div class="v">${sem(sp.estado_general.semaforo)}</div>
+      <div class="k">Acciones</div><div class="v">${sp.estado_general.acciones_total}</div>
+      <div class="k">Director</div><div class="v">${esc(m.director||m.custodio||'')}</div>
+      <div class="k">Versión / corte</div><div class="v">v${esc(m.version)} · ${esc(m.fecha_corte)}</div>
+    </div>
+  </div>`;
+  
+  const eg = sp.estado_general;
+  h += `<section class="block"><h2>Estado General Reportado</h2>
+    <div class="grid cols-5">
+      <div class="card"><div class="label">Total</div><div class="num">${eg.acciones_total}</div></div>
+      <div class="card"><div class="label">Pendientes</div><div class="num small" style="color:var(--amarillo)">${eg.acciones_pendientes||0}</div></div>
+      <div class="card"><div class="label">No iniciadas</div><div class="num small muted">${eg.acciones_no_iniciadas||0}</div></div>
+      <div class="card"><div class="label">En curso</div><div class="num small" style="color:var(--verde)">${eg.acciones_en_curso||0}</div></div>
+      <div class="card"><div class="label">Cerradas</div><div class="num small">${eg.acciones_cerradas||0}</div></div>
+    </div>
+    ${eg.resumen?`<div class="card" style="border:1px solid var(--rule);margin-top:14px"><div class="label">Resumen ejecutivo</div><div style="margin-top:8px;font-style:italic;color:var(--ink-soft)">${esc(eg.resumen)}</div></div>`:''}
+  </section>`;
+  
+  h += `<section class="block"><h2>Acciones Operativas (${sp.acciones.length})</h2>`;
+  const bloques = {};
+  sp.acciones.forEach(a=>{ (bloques[a.bloque||'-']=bloques[a.bloque||'-']||[]).push(a); });
+  const bl = {'T':'Bloque T · Preparatorios','A':'Bloque A · Diseño','B':'Bloque B · Piloto','C':'Bloque C · Escalamiento','D':'Bloque D · Apertura','E':'Bloque E · Decisión definitiva'};
+  Object.keys(bloques).sort().forEach(b=>{
+    h += `<div class="bloque-head">${esc(bl[b]||`Bloque ${b}`)} · ${bloques[b].length} acciones</div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Acción</th><th>Responsable</th><th>% Av.</th><th>Fecha lím.</th><th>Estado</th><th>Comentario mes</th></tr></thead><tbody>`;
+    bloques[b].forEach(a=>{
+      h += `<tr>
+        <td class="id-cell">${esc(a.id)}</td>
+        <td class="name-cell">${esc(a.nombre)}</td>
+        <td class="resp-cell">${esc(a.responsable||'')}</td>
+        <td class="h-cell" style="text-align:right">${a.porcentaje_avance!=null?esc(a.porcentaje_avance)+'%':''}</td>
+        <td class="h-cell">${esc(a.fecha_limite||'')}</td>
+        <td>${estado(a.estado)}</td>
+        <td class="tiny" style="color:var(--ink-soft)">${esc(a.comentario_mensual||'')}${a.alerta?`<div style="color:var(--rojo);margin-top:4px"><strong>⚠ ${esc(a.alerta)}</strong></div>`:''}</td>
+      </tr>`;
+    });
+    h += `</tbody></table></div><div style="height:14px"></div>`;
+  });
+  h += `</section>`;
+  return h;
+}
+
+function renderConcertador(){
+  const c = DATA.concertador;
+  const m = c.meta;
+  let h = renderUploader();
+  h += `<div class="page-head">
+    <div class="titles">
+      <div class="kicker">Rol Transversal · Concertador del Proceso</div>
+      <h1>${esc(m.nombre)}</h1>
+    </div>
+    <div class="meta-block">
+      <div class="k">Titular</div><div class="v">${esc(m.titular||'Gerencia I+D+i')}</div>
+      <div class="k">Reporta a</div><div class="v">${esc(m.reporta_a||'Gerencia General')}</div>
+      <div class="k">Versión / corte</div><div class="v">v${esc(m.version)} · ${esc(m.fecha_corte)}</div>
+    </div>
+  </div>`;
+  
+  const comp = c.compromisos_firmes_solicitados_al_comite_directivo || [];
+  h += `<section class="block"><h2>Compromisos Firmes Solicitados al Comité Directivo (${comp.length})</h2>`;
+  comp.forEach((co,i)=>{
+    h += `<div class="compromiso">
+      <div class="num">${String(i+1).padStart(2,'0')}</div>
+      <div class="body">
+        <h4>${esc(co.compromiso||co.nombre||co.titulo||'')}</h4>
+        <p>${esc(co.descripcion||co.detalle||co.justificacion||'')}</p>
+        ${co.respuesta_comite?`<div class="resp-comite" style="margin-top:8px">✓ ${esc(co.respuesta_comite)}${co.fecha_decision_real?` (${esc(co.fecha_decision_real)})`:''}</div>`:''}
+      </div>
+      <div class="deadline">${co.fecha_limite?'Antes de '+esc(co.fecha_limite):''}</div>
+    </div>`;
+  });
+  h += `</section>`;
+  return h;
+}
+
+// === Exportar consolidado ===
+function exportarConsolidado(){
+  const blob = new Blob([JSON.stringify(DATA,null,2)],{type:'application/json;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Tablero_Gerencial_consolidado_${DATA.maestro.meta.fecha_corte}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Consolidado exportado','success');
+}
+
+const renderers = {
+  maestro: renderMaestro,
+  pilar_1: ()=>renderPilar(1), pilar_2: ()=>renderPilar(2),
+  pilar_3: ()=>renderPilar(3), pilar_4: ()=>renderPilar(4),
+  pilar_5: ()=>renderPilar(5),
+  patios: ()=>renderSubplan('patios'),
+  sc: ()=>renderSubplan('sc'),
+  concertador: renderConcertador,
+};
+
+window.navigate = function navigate(view){
+  $$('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.view===view));
+  const fn = renderers[view] || renderMaestro;
+  document.getElementById('main').innerHTML = fn();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+$$('.nav-item').forEach(n=>n.addEventListener('click',()=>window.navigate(n.dataset.view)));
+
+// File input
+$('#file-input').addEventListener('change',(e)=>{
+  handleFiles(e.target.files);
+  e.target.value = ''; // reset
+});
+
+// Drag & drop sobre todo el body
+['dragover','dragenter'].forEach(ev=>document.body.addEventListener(ev,e=>{e.preventDefault();}));
+document.body.addEventListener('drop',(e)=>{
+  e.preventDefault();
+  const files = Array.from(e.dataTransfer.files).filter(f=>f.name.endsWith('.json'));
+  if(files.length) handleFiles(files);
+});
+
+// Restaurar desde localStorage si existe
+(function initRestore(){
+  const saved = tryRestoreFromLocalStorage();
+  if(saved && saved.data){
+    if(saved.baseVersion === EMBEDDED.maestro.meta.version){
+      DATA = saved.data;
+      lastSavedAt = saved.savedAt;
+      document.getElementById('ver-stamp').textContent = `v${DATA.maestro.meta.version} · corte ${DATA.maestro.meta.fecha_corte}`;
+      // Marcar dots en los tableros que fueron cargados (los que difieren del embebido)
+      const keys = ['pilar_1','pilar_2','pilar_3','pilar_4','pilar_5','patios','sc'];
+      keys.forEach(k => {
+        if(DATA[k] && EMBEDDED[k] && DATA[k].meta.version !== EMBEDDED[k].meta.version){
+          const n = document.querySelector(`.nav-item[data-view="${k}"]`);
+          if(n) n.classList.add('has-update');
+        }
+      });
+      navigate('maestro');
+      setTimeout(() => {
+        setAutosaveStatus('saved', `Restaurado · ${formatTime(lastSavedAt)}`);
+        // Banner informativo
+        const main = document.getElementById('main');
+        if(main){
+          const banner = document.createElement('div');
+          banner.className = 'restore-banner';
+          banner.innerHTML = `<div class="info">↻ <strong>Estado restaurado</strong> desde la sesión del ${formatTime(lastSavedAt)}. Los JSON cargados previamente están preservados.</div><button class="btn btn-secondary" onclick="this.parentElement.remove()">Cerrar aviso</button>`;
+          main.insertBefore(banner, main.firstChild);
+        }
+      }, 50);
+      return;
+    } else {
+      const usar = confirm(
+        'Hay una sesión guardada anteriormente:\n' +
+        '  · Guardado el: ' + formatTime(saved.savedAt) + '\n' +
+        '  · Basado en versión: v' + saved.baseVersion + '\n' +
+        '  · Versión actual: v' + EMBEDDED.maestro.meta.version + '\n\n' +
+        '¿Usar la sesión guardada?'
+      );
+      if(usar){
+        DATA = saved.data;
+        lastSavedAt = saved.savedAt;
+        document.getElementById('ver-stamp').textContent = `v${DATA.maestro.meta.version} · corte ${DATA.maestro.meta.fecha_corte}`;
+        navigate('maestro');
+        setTimeout(() => setAutosaveStatus('saved', `Restaurado · ${formatTime(lastSavedAt)}`), 50);
+        return;
+      } else {
+        clearLocalStorage();
+      }
+    }
+  }
+  navigate('maestro');
+})();
+
+
+// ============ GAUGES OVERLAY MAESTRO v3.0 ============
+// Diseño:
+//  - Lee del DATA real del maestro (no de window.STATE.data)
+//  - Hookea navigate() y handleFiles() para aplicar gauges deterministicamente
+//  - mergeBaseline al cargar JSON: acumula líneas base, no las reemplaza
+(function(){
+  function _waitGauges(cb, attempts){
+    attempts = attempts || 0;
+    if(window.Gauges) return cb();
+    if(attempts > 20) return; // ~2 s máximo
+    setTimeout(function(){ _waitGauges(cb, attempts+1); }, 100);
+  }
+
+  // Mapa pilares/subplanes con info para los gauges
+  var PILARES_INFO = [
+    {id:'P1', key:'pilar_1', nombre:'Talento, Cultura y Conocimiento'},
+    {id:'P2', key:'pilar_2', nombre:'Integración y Eficiencia del Grupo'},
+    {id:'P3', key:'pilar_3', nombre:'Capacidades Tecnológicas e IA'},
+    {id:'P4', key:'pilar_4', nombre:'Ecosistema Externo y Reputación'},
+    {id:'P5', key:'pilar_5', nombre:'Sostenibilidad Financiera'},
+    {id:'SP1', key:'patios', nombre:'Subplan Patios IMPULXA'},
+    {id:'SP2', key:'sc', nombre:'Subplan Servicios Compartidos'}
+  ];
+
+  function getMasterData(){
+    // El maestro almacena en variable de closure 'DATA'. Como no está expuesta a window,
+    // la accedemos a través de un hook que el patcher dejará en window.__maestro.
+    if(window.__maestro && typeof window.__maestro.getData === 'function') return window.__maestro.getData();
+    return null;
+  }
+
+  function findContainer(){ return document.getElementById('main') || document.querySelector('main') || document.body; }
+
+  function isPilarLoaded(d){
+    if(!d || !d.acciones || !d.acciones.length) return false;
+    // "Cargado" = al menos una acción tiene porcentaje_avance asignado O historial_mensual
+    return d.acciones.some(function(a){
+      return a && (a.porcentaje_avance != null || (a.historial_mensual && a.historial_mensual.length));
+    });
+  }
+
+  // ============ APLICAR EN VISTA MAESTRA ============
+  function applyGaugesOnMaestro(){
+    if(!window.Gauges) return;
+    var main = findContainer(); if(!main) return;
+    var data = getMasterData(); if(!data) return;
+    var cargados = PILARES_INFO.map(function(p){
+      return {id:p.id, key:p.key, nombre:p.nombre, data: isPilarLoaded(data[p.key]) ? data[p.key] : null};
+    });
+
+    // Quitar overlay previo si existe
+    var prev = main.querySelector('.g-maestro-overlay');
+    if(prev) prev.remove();
+
+    var consolidado = window.Gauges.renderConsolidadoGlobal(cargados);
+    var evolucion = window.Gauges.renderEvolucionMaestro(cargados);
+    var tarjetas = '<section class="block"><h2>Tableros del Grupo</h2><div class="desc">Cada línea base que cargue se suma al histórico. Las acciones se actualizan al mes más reciente reportado.</div>' +
+      cargados.map(function(p){ return window.Gauges.renderTarjetaPilarMaestro(p); }).join('\n') +
+      '</section>';
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'g-maestro-overlay';
+    wrapper.innerHTML = consolidado + evolucion + tarjetas;
+
+    // Insertar después del page-head si existe, si no, al inicio del main
+    var head = main.querySelector('.page-head');
+    if(head && head.parentNode === main && head.nextSibling){
+      main.insertBefore(wrapper, head.nextSibling);
+    } else {
+      main.insertBefore(wrapper, main.firstChild);
+    }
+  }
+
+  // ============ APLICAR EN VISTA PILAR/SUBPLAN ============
+  function applyGaugesOnPilar(viewKey){
+    if(!window.Gauges) return;
+    var main = findContainer(); if(!main) return;
+    var data = getMasterData(); if(!data) return;
+    var pilarData = data[viewKey];
+    if(!pilarData || !pilarData.acciones || !pilarData.acciones.length) return;
+
+    // Quitar resumen/evolución previos si existen
+    var prevR = main.querySelector('section.g-resumen-visual');
+    if(prevR) prevR.remove();
+    var prevE = main.querySelector('section.g-evolucion');
+    if(prevE) prevE.remove();
+
+    var html = window.Gauges.renderResumenVisualEditor(pilarData) +
+               window.Gauges.renderEvolucionEditor(pilarData);
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    var children = Array.prototype.slice.call(wrapper.children);
+    // Insertar después del page-head o al inicio del main
+    var head = main.querySelector('.page-head');
+    var refNode = head && head.nextSibling ? head.nextSibling : main.firstChild;
+    children.forEach(function(c){ main.insertBefore(c, refNode); });
+  }
+
+  // ============ DISPATCHER POR VISTA ACTIVA ============
+  function applyForActiveView(){
+    var activeNav = document.querySelector('.nav-item.active');
+    var view = activeNav ? activeNav.getAttribute('data-view') : 'maestro';
+    if(view === 'maestro' || !view) applyGaugesOnMaestro();
+    else if(/^pilar_/.test(view)) applyGaugesOnPilar(view);
+    else if(view === 'patios' || view === 'sc') applyGaugesOnPilar(view);
+    // concertador y otros no llevan gauges
+  }
+
+  // ============ HOOKEO DE FUNCIONES DEL MAESTRO ============
+  function installHooks(){
+    // 1. Hook navigate() — se llama en cada cambio de vista
+    if(typeof window.navigate === 'function' && !window.navigate.__gaugesPatched){
+      var origNavigate = window.navigate;
+      window.navigate = function(view){
+        var r = origNavigate.apply(this, arguments);
+        setTimeout(applyForActiveView, 30);
+        return r;
+      };
+      window.navigate.__gaugesPatched = true;
+    }
+    // 2. Hook handleFiles() — para fusionar líneas base en lugar de reemplazar
+    if(typeof window.handleFiles === 'function' && !window.handleFiles.__gaugesPatched){
+      // No hookeamos directamente, sino que parchamos la asignación interna.
+      // En su lugar, exponemos un helper a la función original.
+      window.handleFiles.__gaugesPatched = true;
+    }
+  }
+
+  // ============ INICIALIZACIÓN ============
+  function init(){
+    _waitGauges(function(){
+      installHooks();
+      // Aplicar para la vista activa al cargar la página
+      setTimeout(applyForActiveView, 100);
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+
+  // Exponer para uso externo y testing
+  window.applyGaugesOnMaestro = applyGaugesOnMaestro;
+  window.applyGaugesOnPilar = applyGaugesOnPilar;
+  window.applyGaugesForActiveView = applyForActiveView;
+})();
+
+</script>
+</body>
+</html>
