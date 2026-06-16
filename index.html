@@ -1741,5 +1741,21 @@ document.body.addEventListener('drop',(e)=>{
 })();
 
 </script>
+<script>
+async function cargarPlanEstrategico() {
+  const respuesta = await fetch("./datos/plan_estrategico.json");
+  const datos = await respuesta.json();
+
+  console.log("Datos cargados:", datos);
+
+  document.getElementById("avanceGeneral").textContent =
+    datos.avance_general + "%";
+
+  document.getElementById("ultimaActualizacion").textContent =
+    datos.ultima_actualizacion;
+}
+
+cargarPlanEstrategico();
+</script>
 </body>
 </html>
